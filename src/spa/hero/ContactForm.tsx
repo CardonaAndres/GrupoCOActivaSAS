@@ -1,12 +1,13 @@
 import { WhatsAppIcon } from '@/main/assets/svgs/WhatsAppIcon';
-import { Building, Mail, MessageSquare, Phone, Send, User } from "lucide-react"
+import { Building, Mail, MessageSquare, Pencil, Phone, Send, User } from "lucide-react";
 import { useForm } from "react-hook-form";
 
 interface ContactFormData {
-  name: string;
+  nombre: string;
   email: string;
   telefono: string;
   empresa?: string;
+  cargo?: string;
   mensaje: string;
 }
 
@@ -33,7 +34,7 @@ export const ContactForm = () => {
                             Nombre completo *
                         </label>
                         <input
-                            {...register('name', { 
+                            {...register('nombre', { 
                             required: 'El nombre es requerido',
                             minLength: { value: 2, message: 'Mínimo 2 caracteres' }
                             })}
@@ -41,8 +42,8 @@ export const ContactForm = () => {
                             className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
                             placeholder="Tu nombre completo"
                         />
-                        {errors.name && (
-                            <p className="text-red-300 text-sm mt-1">{errors.name.message}</p>
+                        {errors.nombre && (
+                            <p className="text-red-300 text-sm mt-1">{errors.nombre.message}</p>
                         )}
                     </div>
 
@@ -104,6 +105,20 @@ export const ContactForm = () => {
                         />
                     </div>
 
+                    {/* Cargo */}
+                    <div>
+                        <label className="block text-white font-medium mb-2">
+                        <Pencil className="w-4 h-4 inline mr-2" />
+                        Cargo en la empresa
+                        </label>
+                        <input
+                        {...register('cargo')}
+                        type="text"
+                        className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
+                        placeholder="Nombre de tu cargo"
+                        />
+                    </div>
+
                     {/* Mensaje */}
                     <div>
                         <label className="block text-white font-medium mb-2">
@@ -141,9 +156,6 @@ export const ContactForm = () => {
                           Enviar
                         </button>
                     </div>
-
-
-
                 </div>
             </div>
         </form>

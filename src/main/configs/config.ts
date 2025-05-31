@@ -5,6 +5,7 @@ export const router = {
 export const coactiva_config = {
     cellphones : {
         one : '+57 3018594940',
+        oneToWhatsapp : '573018594940',
     },
     emails : {
         one : 'info@grupocoactiva.com'

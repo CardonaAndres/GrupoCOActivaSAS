@@ -1,5 +1,8 @@
 import { Hero } from "@/spa/components/Hero";
 import { Navbar } from "../components/Navbar";
+import { Services } from "../components/Services";
+import { ContactSection } from "../components/ContactSection";
+
 
 export const HomePage = () => {
   return (
@@ -8,6 +11,8 @@ export const HomePage = () => {
         <div className="pt-16">
             <Hero />
         </div>
+        <Services />
+        <ContactSection />
     
     </>
   )

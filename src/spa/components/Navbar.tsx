@@ -3,8 +3,10 @@ import { styles } from '@/main/assets/ts/styles';
 import { motion } from 'framer-motion';
 import { Phone, Mail, Menu, X, ChevronDown, Shield, Users, Globe } from 'lucide-react';
 import { coactiva_config } from '@/main/configs/config';
+import { useNavHook } from '../hooks/useNavHook';
 
 export const Navbar = () => {
+  const { navItems } = useNavHook();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
 
@@ -145,18 +147,12 @@ export const Navbar = () => {
             </div>
 
             {/* Otros enlaces */}
-            <a href="#" className={`${styles.text.accent} ${styles.hover.primaryText} font-medium transition-colors`}>
-              Nosotros
+            {navItems.map((item, index) => (
+              <a href={item.to} key={index} className={`${styles.text.accent} ${styles.hover.primaryText} font-medium transition-colors`}>
+              {item.name}
             </a>
-            <a href="#" className={`${styles.text.accent} ${styles.hover.primaryText} font-medium transition-colors`}>
-              Casos de Éxito
-            </a>
-            <a href="#" className={`${styles.text.accent} ${styles.hover.primaryText} font-medium transition-colors`}>
-              Blog
-            </a>
-            <a href="#" className={`${styles.text.accent} ${styles.hover.primaryText} font-medium transition-colors`}>
-              Contacto
-            </a>
+            ))}
+            
           </div>
 
           {/* Menu Mobile Button */}
@@ -207,10 +203,11 @@ export const Navbar = () => {
             </div>
 
             {/* Otros enlaces mobile */}
-            <a href="#" className={`block px-4 py-3 ${styles.text.accent} font-medium`}>Nosotros</a>
-            <a href="#" className={`block px-4 py-3 ${styles.text.accent} font-medium`}>Casos de Éxito</a>
-            <a href="#" className={`block px-4 py-3 ${styles.text.accent} font-medium`}>Blog</a>
-            <a href="#" className={`block px-4 py-3 ${styles.text.accent} font-medium`}>Contacto</a>
+            {navItems.map((item, index) => (
+              <a href={item.to} key={index} className={`block px-4 py-3 ${styles.text.accent} font-medium`}>
+                {item.name}
+              </a>
+            ))}
           </div>
         </motion.div>
       </div>

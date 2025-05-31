@@ -15,3 +15,5 @@ export default defineConfig({
     },
   }
 })
+
+// Obligatorio instalar: npm install --save-dev @types/node
