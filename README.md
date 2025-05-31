@@ -29,7 +29,7 @@ El sitio cuenta con:
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/CardonaAndres/coactiva.git
+git clone https://github.com/CardonaAndres/GrupoCOActivaSAS.git
 cd coactiva
 ````
 
