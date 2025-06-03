@@ -5,6 +5,7 @@ import { HomePage } from '@/spa/pages/HomePage';
 import { WhatsappButton } from '@/main/components/WhastappButton';
 import { ContactPage } from '@/spa/pages/ContactPage';
 import { Footer } from '@/spa/components/Footer';
+import { AboutUsPage } from './spa/pages/AboutUsPage';
 
 export const App = () => {
   return (
@@ -13,6 +14,7 @@ export const App = () => {
         <Routes>
           <Route path={router.home} element={<HomePage />} />
           <Route path={router.contact} element={<ContactPage />} />
+          <Route path={router.about} element={<AboutUsPage />} />
         </Routes>
       </Router>
 
