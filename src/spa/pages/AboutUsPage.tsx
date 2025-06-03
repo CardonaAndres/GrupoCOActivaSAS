@@ -6,7 +6,7 @@ export const AboutUsPage = () => {
   return (
     <>
         <Navbar />
-        <div className="pt-16">
+        <div className="pt-24">
             <AboutUs />
         </div>
     </>
