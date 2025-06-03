@@ -1,5 +1,5 @@
 import { coactiva_config } from "@/main/configs/config"
-import { Clock, Mail, MapPin, Phone, Shield, Star, Users } from "lucide-react"
+import { Mail, MapPin, Phone, Shield, Star, Users } from "lucide-react"
 
 const contactInfo = [
     {
@@ -22,13 +22,6 @@ const contactInfo = [
         content: coactiva_config.emails.one,
         subtitle: "Respuesta en 24 horas",
         color: "text-purple-600"
-    },
-    {
-        icon: Clock,
-        title: "Horarios",
-        content: "Lun - Vie: 8:00 AM - 6:00 PM",
-        subtitle: "Sáb: 9:00 AM - 1:00 PM",
-        color: "text-orange-600"
     }
 ]
 

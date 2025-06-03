@@ -1,5 +1,7 @@
 export const router = {
-    home : '/'
+    home : '/',
+    contact : '/contact',
+    about : '/about',
 }
 
 export const coactiva_config = {

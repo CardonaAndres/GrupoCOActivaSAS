@@ -2,8 +2,47 @@ import { useState } from 'react';
 import { styles } from '@/main/assets/ts/styles';
 import { motion } from 'framer-motion';
 import { Phone, Mail, Menu, X, ChevronDown, Shield, Users, Globe } from 'lucide-react';
-import { coactiva_config } from '@/main/configs/config';
+import { coactiva_config, router } from '@/main/configs/config';
 import { useNavHook } from '../hooks/useNavHook';
+import { Link } from 'react-router-dom';
+
+const menuVariants = {
+  closed: {
+    opacity: 0,
+    height: 0,
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut"
+    }
+  },
+  open: {
+    opacity: 1,
+    height: "auto",
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut"
+    }
+  }
+};
+
+const dropdownVariants = {
+  closed: {
+    opacity: 0,
+    y: -10,
+    scale: 0.95,
+    transition: {
+      duration: 0.2
+    }
+  },
+  open: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.2
+    }
+  }
+};
 
 export const Navbar = () => {
   const { navItems } = useNavHook();
@@ -14,44 +53,6 @@ export const Navbar = () => {
   const handleDropdown = (dropdown : any) => {
     setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
   }
-
-  const menuVariants = {
-    closed: {
-      opacity: 0,
-      height: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut"
-      }
-    },
-    open: {
-      opacity: 1,
-      height: "auto",
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut"
-      }
-    }
-  };
-
-  const dropdownVariants = {
-    closed: {
-      opacity: 0,
-      y: -10,
-      scale: 0.95,
-      transition: {
-        duration: 0.2
-      }
-    },
-    open: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.2
-      }
-    }
-  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b border-slate-200/50 shadow-sm">
@@ -81,21 +82,22 @@ export const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           
           {/* Logo */}
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-3"
-          >
-            <div className={`p-2 ${styles.primary[700]} rounded-xl ${styles.shadow.primary}`}>
-              <Shield className="w-8 h-8 text-white" />
-            </div>
-            <div>
-              <h1 className={`text-2xl font-bold ${styles.text.primary}`}>
-                <span className={`${styles.text.accent}`}>{coactiva_config.titles.one}</span>
-              </h1>
-              <p className="text-xs text-slate-500">{coactiva_config.titles.two}</p>
-            </div>
-          </motion.div>
-
+          <Link to={router.home}>
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center space-x-3"
+            >
+              <div className={`p-2 ${styles.primary[700]} rounded-xl ${styles.shadow.primary}`}>
+                <Shield className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h1 className={`text-2xl font-bold ${styles.text.primary}`}>
+                  <span className={`${styles.text.accent}`}>{coactiva_config.titles.one}</span>
+                </h1>
+                <p className="text-xs text-slate-500">{coactiva_config.titles.two}</p>
+              </div>
+            </motion.div>
+          </Link>
           {/* Menu Desktop */}
           <div className="hidden lg:flex items-center space-x-8">
             
@@ -148,9 +150,9 @@ export const Navbar = () => {
 
             {/* Otros enlaces */}
             {navItems.map((item, index) => (
-              <a href={item.to} key={index} className={`${styles.text.accent} ${styles.hover.primaryText} font-medium transition-colors`}>
-              {item.name}
-            </a>
+              <Link to={item.to} key={index} className={`${styles.text.accent} ${styles.hover.primaryText} font-medium transition-colors`}>
+               {item.name}
+             </Link>
             ))}
             
           </div>
@@ -204,9 +206,9 @@ export const Navbar = () => {
 
             {/* Otros enlaces mobile */}
             {navItems.map((item, index) => (
-              <a href={item.to} key={index} className={`block px-4 py-3 ${styles.text.accent} font-medium`}>
+              <Link to={item.to} key={index} className={`block px-4 py-3 ${styles.text.accent} font-medium`}>
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
         </motion.div>
