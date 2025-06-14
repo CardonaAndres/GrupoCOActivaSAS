@@ -6,6 +6,7 @@ import { WhatsappButton } from '@/main/components/WhastappButton';
 import { ContactPage } from '@/spa/pages/ContactPage';
 import { Footer } from '@/spa/components/Footer';
 import { AboutUsPage } from './spa/pages/AboutUsPage';
+import { ServicePage } from './spa/pages/ServicePage';
 
 export const App = () => {
   return (
@@ -15,6 +16,7 @@ export const App = () => {
           <Route path={router.home} element={<HomePage />} />
           <Route path={router.contact} element={<ContactPage />} />
           <Route path={router.about} element={<AboutUsPage />} />
+          <Route path={router.services} element={<ServicePage />} />
         </Routes>
       </Router>
 

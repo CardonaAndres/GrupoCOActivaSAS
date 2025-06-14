@@ -311,6 +311,7 @@ export const ContactSection = () => {
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     className="absolute inset-0"
+                    title='Mapa de ubicación'
                   />
                 </div>
               </motion.div>

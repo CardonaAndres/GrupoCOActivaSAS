@@ -3,9 +3,11 @@ import { Navbar } from "../components/Navbar";
 import { Services } from "../components/Services";
 import { ContactSection } from "../components/ContactSection";
 import { AboutUs } from "../components/AboutUs";
-
+import { useEffect } from "react";
 
 export const HomePage = () => {
+  useEffect(() => { document.title = 'Grupo Coactiva S.A.S | Bienvenido' }, []);
+
   return (
     <>
         <Navbar />

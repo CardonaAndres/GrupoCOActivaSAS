@@ -2,6 +2,7 @@ export const router = {
     home : '/',
     contact : '/contact',
     about : '/about',
+    services : '/services',
 }
 
 export const coactiva_config = {

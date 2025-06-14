@@ -1,7 +1,8 @@
+import Logo from '@/main/assets/imgs/logo.jpg';
 import { useState } from 'react';
 import { styles } from '@/main/assets/ts/styles';
 import { motion } from 'framer-motion';
-import { Phone, Mail, Menu, X, ChevronDown, Shield, Users, Globe } from 'lucide-react';
+import { Phone, Mail, Menu, X } from 'lucide-react';
 import { coactiva_config, router } from '@/main/configs/config';
 import { useNavHook } from '../hooks/useNavHook';
 import { Link } from 'react-router-dom';
@@ -25,34 +26,10 @@ const menuVariants = {
   }
 };
 
-const dropdownVariants = {
-  closed: {
-    opacity: 0,
-    y: -10,
-    scale: 0.95,
-    transition: {
-      duration: 0.2
-    }
-  },
-  open: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.2
-    }
-  }
-};
-
 export const Navbar = () => {
   const { navItems } = useNavHook();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
-
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const handleDropdown = (dropdown : any) => {
-    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
-  }
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b border-slate-200/50 shadow-sm">
@@ -83,12 +60,9 @@ export const Navbar = () => {
           
           {/* Logo */}
           <Link to={router.home}>
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-3"
-            >
-              <div className={`p-2 ${styles.primary[700]} rounded-xl ${styles.shadow.primary}`}>
-                <Shield className="w-8 h-8 text-white" />
+            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-9">
+              <div className='w-26 h-26 flex items-center justify-center'>
+                <img src={Logo} alt="coactiva logo" className='w-full h-full object-contain' />
               </div>
               <div>
                 <h1 className={`text-2xl font-bold ${styles.text.primary}`}>
@@ -101,53 +75,6 @@ export const Navbar = () => {
           {/* Menu Desktop */}
           <div className="hidden lg:flex items-center space-x-8">
             
-            {/* Servicios Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => handleDropdown('servicios')}
-                className={`flex items-center space-x-1 ${styles.text.accent} ${styles.hover.primaryText} font-medium transition-colors py-2`}
-              >
-                <span>Servicios</span>
-                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === 'servicios' ? 'rotate-180' : ''}`} />
-              </button>
-              
-              <motion.div
-                variants={dropdownVariants}
-                animate={activeDropdown === 'servicios' ? 'open' : 'closed'}
-                className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden"
-              >
-                <div className="p-2">
-                  <a href="#" className="flex items-center p-3 rounded-lg hover:bg-slate-50 transition-colors group">
-                    <div className={`p-2 ${styles.primary[100]} rounded-lg mr-3 group-hover:${styles.primary[200]} transition-colors`}>
-                      <Shield className={`w-5 h-5 ${styles.text.primary}`} />
-                    </div>
-                    <div>
-                      <p className="font-medium text-slate-800">Cobro Jurídico</p>
-                      <p className="text-sm text-slate-500">Procesos legales especializados</p>
-                    </div>
-                  </a>
-                  <a href="#" className="flex items-center p-3 rounded-lg hover:bg-slate-50 transition-colors group">
-                    <div className={`p-2 ${styles.accent[100]} rounded-lg mr-3 group-hover:${styles.accent[200]} transition-colors`}>
-                      <Users className="w-5 h-5 text-slate-700" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-slate-800">Gestión Extrajudicial</p>
-                      <p className="text-sm text-slate-500">Negociación y acuerdos</p>
-                    </div>
-                  </a>
-                  <a href="#" className="flex items-center p-3 rounded-lg hover:bg-slate-50 transition-colors group">
-                    <div className={`p-2 ${styles.primary[100]} rounded-lg mr-3 group-hover:${styles.primary[200]} transition-colors`}>
-                      <Globe className={`w-5 h-5 ${styles.text.primary}`} />
-                    </div>
-                    <div>
-                      <p className="font-medium text-slate-800">Cobertura Internacional</p>
-                      <p className="text-sm text-slate-500">América Latina</p>
-                    </div>
-                  </a>
-                </div>
-              </motion.div>
-            </div>
-
             {/* Otros enlaces */}
             {navItems.map((item, index) => (
               <Link to={item.to} key={index} className={`${styles.text.accent} ${styles.hover.primaryText} font-medium transition-colors`}>
@@ -174,36 +101,6 @@ export const Navbar = () => {
         >
           <div className="py-6 space-y-4 border-t border-slate-100">
             
-            {/* Servicios Mobile */}
-            <div>
-              <button
-                onClick={() => handleDropdown('servicios-mobile')}
-                className={`flex items-center justify-between w-full px-4 py-3 ${styles.text.accent} font-medium text-left`}
-              >
-                <span>Servicios</span>
-                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === 'servicios-mobile' ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {activeDropdown === 'servicios-mobile' && (
-                <div className="ml-4 space-y-2 mt-2">
-                  <a href="#" className="flex items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                    <Shield className={`w-5 h-5 ${styles.text.primary} mr-3`} />
-                    <div>
-                      <p className="font-medium text-slate-800">Cobro Jurídico</p>
-                      <p className="text-sm text-slate-500">Procesos legales</p>
-                    </div>
-                  </a>
-                  <a href="#" className="flex items-center p-3 rounded-lg hover:bg-slate-50 transition-colors">
-                    <Users className="w-5 h-5 text-slate-700 mr-3" />
-                    <div>
-                      <p className="font-medium text-slate-800">Gestión Extrajudicial</p>
-                      <p className="text-sm text-slate-500">Negociación</p>
-                    </div>
-                  </a>
-                </div>
-              )}
-            </div>
-
             {/* Otros enlaces mobile */}
             {navItems.map((item, index) => (
               <Link to={item.to} key={index} className={`block px-4 py-3 ${styles.text.accent} font-medium`}>
