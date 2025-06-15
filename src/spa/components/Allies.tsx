@@ -3,8 +3,6 @@ import { motion } from 'framer-motion'
 import { Handshake, Star } from 'lucide-react'
 import { useAlliesHook } from '../hooks/useAlliesHook'
 
-
-
 export const Allies = () => {
     const { partners } = useAlliesHook();
 
