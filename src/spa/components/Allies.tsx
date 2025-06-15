@@ -1,6 +1,6 @@
 import { styles } from '@/main/assets/ts/styles'
 import { motion } from 'framer-motion'
-import { Users, Handshake, Star } from 'lucide-react'
+import { Handshake, Star } from 'lucide-react'
 import { useAlliesHook } from '../hooks/useAlliesHook'
 
 
