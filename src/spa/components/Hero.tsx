@@ -4,6 +4,7 @@ import { CheckCircle, Users, Globe } from 'lucide-react';
 import { ContactForm } from '../hero/ContactForm';
 import { PrincipalHeroCard } from '../hero/PrincipalHeroCard';
 import { InfoCards } from '../hero/InfoCards';
+import { SliderBrands } from '../hero/SliderBrands';
 
 export const Hero = () => {
 
@@ -51,30 +52,6 @@ export const Hero = () => {
     }
   };
 
-  const brandSlideVariants = {
-    animate: {
-      x: [-100, 0, -100],
-      transition: {
-        duration: 20,
-        repeat: Infinity,
-        ease: "linear"
-      }
-    }
-  };
-
-  // Array de marcas con imágenes
-  const brands = [
-    { name: "Coca-Cola", logo: "/logo.jpg" },
-    { name: "Bancolombia", logo: "/logo.jpg" },
-    { name: "Ecopetrol", logo: "/logo.jpg" },
-    { name: "Grupo Éxito", logo: "/logo.jpg" },
-    { name: "Avianca", logo: "/logo.jpg" },
-    { name: "Claro", logo: "/logo.jpg" },
-    { name: "EPM", logo: "/logo.jpg" },
-    { name: "Falabella", logo: "/logo.jpg" },
-    { name: "Rappi", logo: "/logo.jpg" },
-    { name: "Mercado Libre", logo: "/logo.jpg" }
-  ];
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -172,74 +149,8 @@ export const Hero = () => {
               {/* Información de contacto */}
               <InfoCards containerVariants={containerVariants} itemVariants={itemVariants} />
               
-              {/* Sección de marcas - Al final */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 1.2 }}
-                className="mt-16 text-center"
-              >
-                <div className="mb-8">
-                  <motion.p 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.4 }}
-                    className="text-white/80 text-sm font-medium tracking-wider uppercase mb-4"
-                  >
-                    Confían en nosotros
-                  </motion.p>
-                  <motion.h2 
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.6 }}
-                    className="text-white text-2xl lg:text-3xl font-bold mb-8"
-                  >
-                    Empresas líderes que recuperan su cartera con nosotros
-                  </motion.h2>
-                </div>
-
-                {/* Carrusel de marcas con imágenes */}
-                <div className="relative overflow-hidden bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 py-8">
-                  <motion.div variants={brandSlideVariants} animate="animate"
-                    className="flex items-center space-x-12 whitespace-nowrap">
-                    {/* Repetimos las marcas para crear un efecto de carrusel infinito */}
-                    {[...brands, ...brands, ...brands].map((brand, index) => (
-                      <div key={index} className="flex-shrink-0 px-6 py-2 bg-white/90 backdrop-blur-lg rounded-xl border border-white/30 shadow-lg hover:bg-white/95 transition-all duration-300">
-                        <div className="flex items-center space-x-3">
-                          <img src={`http://localhost:5173${brand.logo}`}
-                            alt={`Logo de ${brand.name}`} className="w-12 h-12 object-contain"
-                          />
-                          <span className="text-gray-800 font-semibold text-base tracking-wide">
-                            {brand.name}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </motion.div>
-                  
-                  {/* Gradientes para efecto de fade */}
-                  <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-black/20 to-transparent pointer-events-none" />
-                  <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black/20 to-transparent pointer-events-none" />
-                </div>
-
-                {/* Estadística adicional */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.8 }}
-                  className="mt-6 flex justify-center items-center space-x-8 text-white/80"
-                >
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white">500+</div>
-                    <div className="text-sm">Empresas atendidas</div>
-                  </div>
-                  <div className="w-px h-12 bg-white/30"></div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white">95%</div>
-                    <div className="text-sm">Tasa de éxito</div>
-                  </div>
-                </motion.div>
-              </motion.div>
+              {/* Sección de marcas mejorada - Al final */}
+              <SliderBrands />
             </div>
           </div>
         </div>

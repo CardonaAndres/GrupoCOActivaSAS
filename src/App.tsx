@@ -7,6 +7,7 @@ import { ContactPage } from '@/spa/pages/ContactPage';
 import { Footer } from '@/spa/components/Footer';
 import { AboutUsPage } from './spa/pages/AboutUsPage';
 import { ServicePage } from './spa/pages/ServicePage';
+import { AlliesPage } from './spa/pages/AlliesPage';
 
 export const App = () => {
   return (
@@ -17,6 +18,7 @@ export const App = () => {
           <Route path={router.contact} element={<ContactPage />} />
           <Route path={router.about} element={<AboutUsPage />} />
           <Route path={router.services} element={<ServicePage />} />
+          <Route path={router.allies} element={<AlliesPage />} />
         </Routes>
       </Router>
 

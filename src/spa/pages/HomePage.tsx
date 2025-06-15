@@ -4,6 +4,7 @@ import { Services } from "../components/Services";
 import { ContactSection } from "../components/ContactSection";
 import { AboutUs } from "../components/AboutUs";
 import { useEffect } from "react";
+import { Allies } from "../components/Allies";
 
 export const HomePage = () => {
   useEffect(() => { document.title = 'Grupo Coactiva S.A.S | Bienvenido' }, []);
@@ -17,6 +18,7 @@ export const HomePage = () => {
         <Services />
         <ContactSection />
         <AboutUs />
+        <Allies />
     
     </>
   )

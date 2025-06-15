@@ -16,6 +16,10 @@ const navItems = [
     {
       name: 'Servicios',
       to: router.services
+    },
+    {
+      name: 'Aliados',
+      to: router.allies
     }
 ];
 

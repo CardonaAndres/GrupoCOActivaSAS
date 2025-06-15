@@ -3,9 +3,13 @@ export const router = {
     contact : '/contact',
     about : '/about',
     services : '/services',
+    allies : '/allies',
 }
 
 export const coactiva_config = {
+    domains : {
+        one : 'https://grupocoactiva.vercel.app',
+    },
     cellphones : {
         one : '+57 3018594940',
         oneToWhatsapp : '573018594940',
