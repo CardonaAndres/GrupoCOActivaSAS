@@ -65,10 +65,7 @@ export const Navbar = () => {
                 <img src={Logo} alt="coactiva logo" className='w-full h-full object-contain' />
               </div>
               <div>
-                <h1 className={`text-2xl font-bold ${styles.text.primary}`}>
-                  <span className={`${styles.text.accent}`}>{coactiva_config.titles.one}</span>
-                </h1>
-                <p className="text-xs text-slate-500">{coactiva_config.titles.two}</p>
+                <h1 className="text-xs text-slate-500">{coactiva_config.titles.two}</h1>
               </div>
             </motion.div>
           </Link>

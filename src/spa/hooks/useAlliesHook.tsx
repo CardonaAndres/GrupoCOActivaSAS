@@ -55,8 +55,12 @@ export const useAlliesHook = () => {
         logo: '/allies_logos/masa.png'
       },
       {
-        name: 'Empresa 10',
+        name: 'Empresa 13',
         logo: '/allies_logos/naba.png'
+      },
+            {
+        name: 'Empresa 14',
+        logo: '/allies_logos/elasticserver.jpg'
       }
     ]
 

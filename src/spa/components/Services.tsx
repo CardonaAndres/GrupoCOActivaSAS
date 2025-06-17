@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Scale } from 'lucide-react'
+import { Scale, Zap } from 'lucide-react'
 import { styles } from '@/main/assets/ts/styles'
 import { useServicesHook } from '../hooks/useServicesHook'
 import { WhatsAppIcon } from '@/main/assets/svgs/WhatsAppIcon'
@@ -28,6 +28,17 @@ const cardHoverVariants = {
     hover: {
     y: -8,
     scale: 1.02,
+    transition: {
+        duration: 0.3,
+        ease: "easeOut"
+    }
+    }
+}
+
+const featuredCardVariants = {
+    hover: {
+    y: -12,
+    scale: 1.03,
     transition: {
         duration: 0.3,
         ease: "easeOut"
@@ -81,60 +92,134 @@ export const Services = () => {
                 </motion.p>
                 </motion.div>
 
-                {/* Services Grid */}
+                {/* Services Grid - Featured First Service */}
                 <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-20"
+                className="mb-20"
                 >
-                {services.map((service, index) => {
+                {/* Featured Service - First Service */}
+                {services.length > 0 && (
+                    <motion.div variants={itemVariants} whileHover="hover" className="mb-12">
+                    <motion.div
+                        variants={featuredCardVariants}
+                        className={`relative bg-gradient-to-br from-green-50 to-green-100/50 rounded-3xl p-8 lg:p-12 ${styles.shadow.card} hover:shadow-2xl transition-all duration-500 border-2 border-green-200 overflow-hidden group`}
+                    >
+                        {/* Background Glow Effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 via-transparent to-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        
+                        {/* Floating Elements */}
+                        <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-gradient-to-br from-green-200/30 to-green-300/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                        <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-tl from-green-300/20 to-green-400/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                        <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
+                        {/* Left Content */}
+                        <div>
+
+                            {/* Title with Enhanced Typography */}
+                            <h3 className={`text-3xl lg:text-4xl font-bold ${styles.text.primary} mb-4 leading-tight group-hover:text-green-700 transition-colors duration-300`}>
+                                {services[0].title}
+                            </h3>
+                            
+                            <p className={`text-lg ${styles.text.gray} mb-6 leading-relaxed`}>
+                            {services[0].description}
+                            </p>
+
+                            {/* Enhanced CTA Button */}
+                            <motion.button 
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="group/btn bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3"
+                            >
+                            <Zap className="w-5 h-5 group-hover/btn:animate-pulse" />
+                            Comenzar Ahora
+                            </motion.button>
+                        </div>
+
+                        {/* Right Content - Features */}
+                        <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-green-200/50">
+                            <h4 className="text-xl font-bold text-green-800 mb-6 flex items-center gap-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                            Características Principales
+                            </h4>
+                            
+                            <div className="space-y-4">
+                            {services[0].features.map((feature, featureIndex) => (
+                                <motion.div 
+                                key={featureIndex} 
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: featureIndex * 0.1 }}
+                                className="flex items-center group/feature"
+                                >
+                                <div className="w-3 h-3 bg-gradient-to-r from-green-400 to-green-500 rounded-full mr-4 shadow-sm group-hover/feature:shadow-green-400/50 transition-shadow duration-300" />
+                                <span className={`${styles.text.accent} font-medium group-hover/feature:text-green-700 transition-colors duration-300`}>
+                                    {feature}
+                                </span>
+                                </motion.div>
+                            ))}
+                            </div>
+                            
+                        </div>
+                        </div>
+
+                        {/* Enhanced Hover Effect Line */}
+                        <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-green-400 via-green-500 to-green-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-3xl" />
+                    </motion.div>
+                    </motion.div>
+                )}
+
+                {/* Regular Services Grid */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {services.slice(1).map((service, index) => {
                     const Icon = service.icon
                     return (
-                    <motion.div
-                        key={index}
+                        <motion.div
+                        key={index + 1}
                         variants={itemVariants}
                         whileHover="hover"
-                    >
-                        <motion.div
-                        variants={cardHoverVariants}
-                        className={`bg-white rounded-2xl p-8 ${styles.shadow.card} hover:shadow-2xl transition-all duration-300 border ${styles.border.gray} h-full`}
                         >
-                        {/* Icon */}
-                        <div className="mb-6">
+                        <motion.div
+                            variants={cardHoverVariants}
+                            className={`bg-white rounded-2xl p-8 ${styles.shadow.card} hover:shadow-2xl transition-all duration-300 border ${styles.border.gray} h-full`}
+                        >
+                            {/* Icon */}
+                            <div className="mb-6">
                             <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center shadow-lg ${styles.shadow.primary}`}>
-                            <Icon className={`w-8 h-8 ${styles.text.white}`} />
+                                <Icon className={`w-8 h-8 ${styles.text.white}`} />
                             </div>
-                        </div>
+                            </div>
 
-                        {/* Content */}
-                        <h3 className={`text-xl font-bold ${styles.text.primary} mb-4 leading-tight`}>
+                            {/* Content */}
+                            <h3 className={`text-xl font-bold ${styles.text.primary} mb-4 leading-tight`}>
                             {service.title}
-                        </h3>
-                        
-                        <p className={`${styles.text.gray} mb-6 leading-relaxed`}>
+                            </h3>
+                            
+                            <p className={`${styles.text.gray} mb-6 leading-relaxed`}>
                             {service.description}
-                        </p>
+                            </p>
 
-                        {/* Features */}
-                        <div className="space-y-2">
+                            {/* Features */}
+                            <div className="space-y-2">
                             {service.features.map((feature, featureIndex) => (
-                            <div key={featureIndex} className="flex items-center">
+                                <div key={featureIndex} className="flex items-center">
                                 <div className={`w-2 h-2 ${styles.primary[500]} rounded-full mr-3`} />
                                 <span className={`text-sm ${styles.text.accent} font-medium`}>
-                                {feature}
+                                    {feature}
                                 </span>
-                            </div>
+                                </div>
                             ))}
-                        </div>
+                            </div>
 
-                        {/* Hover Effect Line */}
-                        <div className={`mt-6 h-1 bg-gradient-to-r ${service.color} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300`} />
+                            {/* Hover Effect Line */}
+                            <div className={`mt-6 h-1 bg-gradient-to-r ${service.color} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300`} />
                         </motion.div>
-                    </motion.div>
+                        </motion.div>
                     )
-                })}
+                    })}
+                </div>
                 </motion.div>
 
                 {/* Process Section */}

@@ -1,19 +1,19 @@
 import { Award, BarChart3, Briefcase, Clock, FileText, Handshake, Scale, Users } from "lucide-react"
 
 const services = [
+      {
+        icon: Briefcase,
+        title: "Cobro de Cartera Prejurídico, Jurídico y Extrajurídico",
+        description: "Gestionamos el cobro de tus obligaciones en todas sus etapas, aplicando estrategias personalizadas para maximizar la recuperación.",
+        features: ["Estrategias personalizadas", "Todas las etapas", "Máxima recuperación"],
+        color: "from-slate-600 to-slate-700"
+    },
     {
         icon: FileText,
         title: "Certificación de Castigo de Cartera",
         description: "Emitimos certificaciones formales que respaldan la depuración contable de cartera incobrable, conforme a la normativa vigente.",
         features: ["Cumplimiento normativo", "Proceso ágil", "Documentación completa"],
         color: "from-green-500 to-green-600"
-    },
-    {
-        icon: Briefcase,
-        title: "Cobro de Cartera Prejurídico, Jurídico y Extrajurídico",
-        description: "Gestionamos el cobro de tus obligaciones en todas sus etapas, aplicando estrategias personalizadas para maximizar la recuperación.",
-        features: ["Estrategias personalizadas", "Todas las etapas", "Máxima recuperación"],
-        color: "from-slate-600 to-slate-700"
     },
     {
         icon: Handshake,
