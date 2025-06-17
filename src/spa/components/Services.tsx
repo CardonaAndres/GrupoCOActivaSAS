@@ -446,66 +446,6 @@ export const Services = () => {
                             ))}
                         </div>
 
-                        {/* Visual Success Timeline */}
-                        <div className="bg-gradient-to-r from-green-50 via-white to-green-50 rounded-2xl p-8 border border-green-100">
-                            <h4 className="text-2xl font-bold text-center text-gray-800 mb-8">Nuestro Proceso de Éxito</h4>
-                            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                                {[
-                                    { 
-                                        title: "Consulta Inicial", 
-                                        desc: "Análisis gratuito de tu cartera",
-                                        icon: "🔍",
-                                        image: "bg-gradient-to-br from-blue-100 to-blue-200"
-                                    },
-                                    { 
-                                        title: "Plan Estratégico", 
-                                        desc: "Diseño de estrategia personalizada",
-                                        icon: "📋",
-                                        image: "bg-gradient-to-br from-purple-100 to-purple-200"
-                                    },
-                                    { 
-                                        title: "Ejecución", 
-                                        desc: "Implementación del plan de cobro",
-                                        icon: "⚡",
-                                        image: "bg-gradient-to-br from-orange-100 to-orange-200"
-                                    },
-                                    { 
-                                        title: "Resultados", 
-                                        desc: "Recuperación exitosa de fondos",
-                                        icon: "💰",
-                                        image: "bg-gradient-to-br from-green-100 to-green-200"
-                                    }
-                                ].map((step, index) => (
-                                    <motion.div
-                                        key={index}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: index * 0.2 }}
-                                        className="flex flex-col items-center text-center group relative"
-                                    >
-                                        {/* Connecting Line */}
-                                        {index < 3 && (
-                                            <div className="hidden md:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-green-300 to-green-400 transform translate-x-4 z-0" />
-                                        )}
-                                        
-                                        {/* Step Image/Icon */}
-                                        <div className={`w-24 h-24 ${step.image} rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 relative z-10 border border-white`}>
-                                            <span className="text-2xl">{step.icon}</span>
-                                            <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold">
-                                                {index + 1}
-                                            </div>
-                                        </div>
-                                        
-                                        <h5 className="font-bold text-gray-800 mb-2 group-hover:text-green-700 transition-colors duration-300">
-                                            {step.title}
-                                        </h5>
-                                        <p className="text-sm text-gray-600 max-w-32 group-hover:text-gray-700 transition-colors duration-300">
-                                            {step.desc}
-                                        </p>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
                     </motion.div>
                 </motion.div>
 
