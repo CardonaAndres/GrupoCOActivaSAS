@@ -6,16 +6,16 @@ const navItems = [
       to : router.home
     },
     {
-        name : 'Nosotros',
-        to : router.about
-    },
-    {
-        name : 'Contacto',
-        to : router.contact
+      name: 'Nosotros',
+      to: router.about
     },
     {
       name: 'Servicios',
       to: router.services
+    },
+    {
+      name: 'Contacto',
+      to: router.contact
     },
     {
       name: 'Aliados',

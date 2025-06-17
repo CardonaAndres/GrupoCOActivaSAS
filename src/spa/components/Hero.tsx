@@ -57,7 +57,7 @@ export const Hero = () => {
     <div className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0" style={{
-          backgroundImage: `url('/ImgDeEjemplo.webp')`,
+          backgroundImage: `url('https://impulsapopular.com/wp-content/uploads/2018/05/Alianzas-estrategicas.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
