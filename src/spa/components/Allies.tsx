@@ -2,6 +2,7 @@ import { styles } from '@/main/assets/ts/styles'
 import { motion } from 'framer-motion'
 import { Handshake, Star } from 'lucide-react'
 import { useAlliesHook } from '../hooks/useAlliesHook'
+import { coactiva_config } from '@/main/configs/config'
 
 export const Allies = () => {
     const { partners } = useAlliesHook();
@@ -151,6 +152,7 @@ export const Allies = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => window.open(`https://wa.me/${coactiva_config.cellphones.oneToWhatsapp}`, '_blank')}
               className={`bg-white ${styles.text.primary} font-bold py-4 px-8 rounded-xl 
                          transition-all duration-300 ${styles.shadow.white} hover:shadow-xl 
                          transform hover:-translate-y-1`}

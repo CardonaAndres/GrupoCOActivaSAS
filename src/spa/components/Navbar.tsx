@@ -37,6 +37,9 @@ export const Navbar = () => {
       <div className={`${styles.primary[700]} ${styles.text.white} py-2`}>
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex justify-between items-center text-sm">
+            <div className="hidden lg:block">
+              <span className="font-medium">🕒 Respuesta inmediata</span>
+            </div>
             <div className="flex items-center space-x-6">
               <div className="flex items-center">
                 <Phone className="w-4 h-4 mr-2" />
@@ -46,9 +49,6 @@ export const Navbar = () => {
                 <Mail className="w-4 h-4 mr-2" />
                 <span> {coactiva_config.emails.one} </span>
               </div> 
-            </div>
-            <div className="hidden lg:block">
-              <span className="font-medium">🕒 Respuesta inmediata</span>
             </div>
           </div>
         </div>

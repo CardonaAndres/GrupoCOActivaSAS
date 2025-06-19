@@ -3,6 +3,7 @@ import { Scale, Zap, Star, Sparkles, TrendingUp, Users, Clock } from 'lucide-rea
 import { styles } from '@/main/assets/ts/styles'
 import { useServicesHook } from '../hooks/useServicesHook'
 import { WhatsAppIcon } from '@/main/assets/svgs/WhatsAppIcon'
+import { coactiva_config } from '@/main/configs/config'
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -181,6 +182,7 @@ export const Services = () => {
                             <motion.button 
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            onClick={() => window.open(`https://wa.me/${coactiva_config.cellphones.oneToWhatsapp}`, '_blank')}
                             className="group/btn bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3"
                             >
                             <Zap className="w-5 h-5 group-hover/btn:animate-pulse" />
@@ -418,35 +420,6 @@ export const Services = () => {
                         })}
                     </div>
 
-                    {/* Enhanced Success Stats Section */}
-                    <motion.div 
-                        variants={itemVariants}
-                        className="mt-16"
-                    >
-                        {/* Stats Grid */}
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                            {[
-                                { number: "98%", label: "Tasa de Éxito", icon: "📈", color: "from-green-400 to-green-500" },
-                                { number: "+15", label: "Años de Experiencia", icon: "🏆", color: "from-blue-400 to-blue-500" },
-                                { number: "500+", label: "Clientes Satisfechos", icon: "👥", color: "from-purple-400 to-purple-500" },
-                                { number: "24/7", label: "Soporte Disponible", icon: "🚀", color: "from-orange-400 to-orange-500" }
-                            ].map((stat, index) => (
-                                <motion.div
-                                    key={index}
-                                    whileHover={{ scale: 1.05, y: -5 }}
-                                    className="bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 text-center border-2 border-gray-100 group cursor-pointer relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-                                >
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-                                    <div className="relative z-10">
-                                        <div className="text-3xl mb-3 group-hover:animate-bounce transform transition-transform duration-300">{stat.icon}</div>
-                                        <div className="text-3xl lg:text-4xl font-bold text-gray-800 mb-2 group-hover:text-green-700 transition-colors duration-300">{stat.number}</div>
-                                        <div className="text-sm text-gray-600 font-medium group-hover:text-gray-700 transition-colors duration-300">{stat.label}</div>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-
-                    </motion.div>
                 </motion.div>
 
                 {/* Enhanced CTA Section */}
@@ -466,7 +439,7 @@ export const Services = () => {
                     Contáctanos hoy y descubre cómo podemos ayudarte.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button className={`${styles.primary[600]} ${styles.hover.primary} ${styles.text.white} 
+                        <button onClick={() => window.open(`https://wa.me/${coactiva_config.cellphones.oneToWhatsapp}`, '_blank')} className={`${styles.primary[600]} ${styles.hover.primary} ${styles.text.white} 
                         ${styles.shadow.primary} font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center gap-2`}
                         >
                             <WhatsAppIcon  />

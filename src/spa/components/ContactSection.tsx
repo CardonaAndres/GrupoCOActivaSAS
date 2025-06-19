@@ -1,10 +1,18 @@
 import { styles } from '@/main/assets/ts/styles'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { Send, CheckCircle, MessageCircle, Building } from 'lucide-react'
 import { useContactHook } from '../hooks/useContactHook'
 import { WhatsAppIcon } from '@/main/assets/svgs/WhatsAppIcon'
+import { coactiva_config } from '@/main/configs/config'
+
+// Declarar la interfaz global para grecaptcha
+declare global {
+  interface Window {
+    grecaptcha: any;
+  }
+}
 
 interface FormData {
   nombre: string
@@ -21,16 +29,101 @@ export const ContactSection = () => {
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset} = useForm<FormData>()
 
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false)
+
+  // clave de sitio de reCAPTCHA 
+  const RECAPTCHA_SITE_KEY = '6LfWvWUrAAAAAJDA_6bKLNWG6yOG7NNWZS7kZKxJ'
+
+  // Cargar el script de reCAPTCHA cuando el componente se monta
+  useEffect(() => {
+    const loadRecaptcha = () => {
+      // Verificar si ya existe el script
+      const existingScript = document.querySelector(`script[src*="recaptcha"]`)
+      if (existingScript) existingScript.remove()
+      
+      // Limpiar grecaptcha si existe
+      if (window.grecaptcha) delete window.grecaptcha
+      
+      const script = document.createElement('script')
+      script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`
+      script.async = true
+      script.defer = true
+      script.onload = () => {
+        // Esperar un poco para asegurar que grecaptcha esté completamente cargado
+        setTimeout(() => {
+          if (window.grecaptcha && window.grecaptcha.ready) {
+            window.grecaptcha.ready(() => {
+              setRecaptchaLoaded(true)
+            })
+          } else {
+            console.error('reCAPTCHA no se cargó correctamente')
+          }
+        }, 100)
+      }
+      script.onerror = () => console.error('Error al cargar reCAPTCHA')
+      
+      document.head.appendChild(script)
+    }
+
+    loadRecaptcha()
+
+    // Cleanup al desmontar el componente
+    return () => {
+      const script = document.querySelector(`script[src*="recaptcha"]`)
+
+      if (script) script.remove() 
+      if (window.grecaptcha) delete window.grecaptcha
+      
+    }
+  }, [])
+
+  // Función para ejecutar reCAPTCHA
+  const executeRecaptcha = (): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      if (!window.grecaptcha || !recaptchaLoaded) {
+        reject('reCAPTCHA no está cargado')
+        return
+      }
+
+      window.grecaptcha.ready(() => {
+        window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact_form' })
+          .then((token: string) => {
+            console.log('reCAPTCHA token obtenido:', token)
+            resolve(token)
+          })
+          .catch((error: any) => {
+            console.error('Error al ejecutar reCAPTCHA:', error)
+            reject(error)
+          })
+      })
+    })
+  }
 
   const onSubmit = async (data: FormData) => {
-    // Simular envío de formulario
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    console.log('Form data:', data)
-    setIsSubmitted(true)
-    reset()
-    
-    // Resetear el estado después de 3 segundos
-    setTimeout(() => setIsSubmitted(false), 3000)
+    try {
+      // Ejecutar reCAPTCHA antes de enviar el formulario
+      const recaptchaToken = await executeRecaptcha()
+      
+      // Agregar el token de reCAPTCHA a los datos del formulario
+      const formDataWithRecaptcha = { ...data, recaptchaToken}
+
+      // envío de formulario con validación de reCAPTCHA
+      await new Promise(resolve => setTimeout(resolve, 2000))
+      
+      console.log('Form data with reCAPTCHA:', formDataWithRecaptcha)
+      
+      // El servidor verificaría el token con Google usando tu clave secreta (FUTURE)
+      
+      setIsSubmitted(true)
+      reset()
+
+      // Resetear el estado después de 2 segundos
+      setTimeout(() => setIsSubmitted(false), 2000)
+      
+    } catch (error) {
+      console.error('Error con reCAPTCHA:', error)
+      alert('Error de verificación. Por favor, inténtalo de nuevo.')
+    }
   }
 
   const containerVariants = {
@@ -126,7 +219,7 @@ export const ContactSection = () => {
                     </p>
                   </motion.div>
                 ) : (
-                  <div className="space-y-6">
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <label className={`block text-sm font-medium ${styles.text.darkGray} mb-2`}>
@@ -232,16 +325,33 @@ export const ContactSection = () => {
                       )}
                     </div>
 
+                    {/* Información sobre reCAPTCHA */}
+                    <div className="text-xs text-gray-500">
+                      Este sitio está protegido por reCAPTCHA y se aplican la{' '}
+                      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                        Política de Privacidad
+                      </a>{' '}
+                      y los{' '}
+                      <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                        Términos de Servicio
+                      </a>{' '}
+                      de Google.
+                    </div>
+
                     <button
-                      type="button"
-                      onClick={handleSubmit(onSubmit)}
-                      disabled={isSubmitting}
+                      type="submit"
+                      disabled={isSubmitting || !recaptchaLoaded}
                       className={`w-full bg-gradient-to-r ${styles.gradient.primary} ${styles.text.white} font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg ${styles.shadow.primary} hover:shadow-2xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center`}
                     >
                       {isSubmitting ? (
                         <>
                           <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" />
                           Enviando...
+                        </>
+                      ) : !recaptchaLoaded ? (
+                        <>
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" />
+                          Cargando verificación...
                         </>
                       ) : (
                         <>
@@ -250,7 +360,7 @@ export const ContactSection = () => {
                         </>
                       )}
                     </button>
-                  </div>
+                  </form>
                 )}
               </div>
             </motion.div>
@@ -328,7 +438,8 @@ export const ContactSection = () => {
                 <p className={`${styles.text.white} opacity-90 mb-6`}>
                   Agenda una cita personalizada con nuestros expertos
                 </p>
-                <button className={`bg-white ${styles.text.primary} font-semibold py-3 px-6 rounded-xl ${styles.hover.accent} transition-all duration-300 flex items-center mx-auto`}>
+                <button 
+                onClick={() => window.open(`https://wa.me/${coactiva_config.cellphones.oneToWhatsapp}`, '_blank')} className={`bg-white ${styles.text.primary} font-semibold py-3 px-6 rounded-xl ${styles.hover.accent} transition-all duration-300 flex items-center mx-auto`}>
                   <WhatsAppIcon />
                   Agendar Cita
                 </button>

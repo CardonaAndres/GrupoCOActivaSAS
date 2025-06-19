@@ -1,4 +1,5 @@
 import { styles } from '@/main/assets/ts/styles'
+import { coactiva_config } from '@/main/configs/config'
 import { motion } from 'framer-motion'
 import { Target, Eye, Heart, Users, Shield, Award, Handshake, CheckCircle, Globe, Scale, TrendingUp, Clock, UserCheck, BarChart3, Phone } from 'lucide-react'
 
@@ -444,6 +445,7 @@ export const AboutUs = () => {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() => window.open(`https://wa.me/${coactiva_config.cellphones.oneToWhatsapp}`, '_blank')}
                     className={`bg-white ${styles.text.secondary} font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-xl ${styles.hover.accent} transition-all duration-300 ${styles.shadow.card} text-sm sm:text-base inline-flex items-center gap-2`}
                   >
                     <Phone className="w-4 h-4" />

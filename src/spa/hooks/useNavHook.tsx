@@ -28,5 +28,3 @@ export const useNavHook = () => {
     navItems
   }
 }
-
-
