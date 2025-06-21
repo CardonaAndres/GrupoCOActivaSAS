@@ -30,7 +30,7 @@ export const styles = {
     white: 'text-white',
     black: 'text-black',
     gray: 'text-gray-600',
-    lightGray: 'text-gray-400',
+    lightGray: 'text-gray-300',
     darkGray: 'text-gray-800',
   },
   border: {

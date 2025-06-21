@@ -3,7 +3,7 @@ import { Award, BarChart3, Briefcase, Clock, FileText, Handshake, Scale, Users }
 const services = [
       {
         icon: Briefcase,
-        title: "Cobro de Cartera Prejurídico, Jurídico",
+        title: "Cobro de Cartera: prejurídico y jurídico",
         description: "Gestionamos el cobro de tus obligaciones en todas sus etapas, aplicando estrategias personalizadas para maximizar la recuperación.",
         features: ["Estrategias personalizadas", "Todas las etapas", "Máxima recuperación"],
         color: "from-teal-700 via-teal-500 to-teal-800"

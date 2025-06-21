@@ -14,7 +14,7 @@ export const PrincipalHeroCard = ({ containerVariants, itemVariants } : Props) =
         <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 shadow-lg shadow-black/10">
             <Award className="w-5 h-5 text-white mr-3" />
             <span className="text-white text-sm">
-            10 años de Experiencia Recuperando cartera Empresarial en Colombia y Latam
+            10 años de experiencia recuperando cartera empresarial en Colombia y LATAM
             </span>
         </div>
         </motion.div>
@@ -46,7 +46,7 @@ export const PrincipalHeroCard = ({ containerVariants, itemVariants } : Props) =
             whileTap={{ scale: 0.95 }}
             className="px-10 py-5 bg-slate-900/80 backdrop-blur-md text-white font-bold text-lg rounded-full border border-slate-700/50 hover:bg-slate-800/90 transition-all duration-300 min-w-[200px]"
         >
-            Ver Servicios
+            Ver servicios
         </motion.button>
         </motion.div>
     </motion.div>

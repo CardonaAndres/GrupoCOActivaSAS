@@ -148,7 +148,7 @@ export const AboutUs = () => {
             </h2>
             <div className={`w-16 sm:w-24 h-1 bg-gradient-to-r ${styles.gradient.primary} mx-auto mb-4 sm:mb-6 rounded-full`} />
             <p className={`text-lg sm:text-xl ${styles.text.secondary} max-w-3xl mx-auto leading-relaxed px-4`}>
-              Agencia líder en gestión y recuperación de cartera en Colombia
+              Agencia líder en gestión y recuperación de cartera en Colombia y América Latina
             </p>
           </motion.div>
 
@@ -256,7 +256,7 @@ export const AboutUs = () => {
                   </div>
                 </div>
                 <p className={`${styles.text.gray} text-sm`}>
-                  Profesionales especializados en derecho, finanzas y atención al cliente
+                  Profesionales especializados en Derecho, Finanzas y Atención al cliente
                 </p>
               </motion.div>
             </motion.div>

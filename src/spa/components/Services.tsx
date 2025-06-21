@@ -131,7 +131,7 @@ export const Services = () => {
                         variants={itemVariants} 
                         className={`text-xl ${styles.text.accent} mb-8 leading-relaxed max-w-3xl mx-auto`}
                     >
-                        En Grupo Coactiva SAS ofrecemos soluciones personalizadas para la recuperación de cartera vencida para empresas de Colombia y Latam.
+                        En Grupo Coactiva S.A.S ofrecemos soluciones personalizadas para la recuperación de cartera vencida para empresas de LATAM.
                     </motion.p>
 
                     {/* Hero Illustration */}
@@ -177,7 +177,7 @@ export const Services = () => {
                                             className="group/btn bg-gradient-to-r from-teal-700 via-teal-500 to-teal-800 hover:from-teal-800 hover:to-teal-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3"
                                         >
                                             <Zap className="w-5 h-5 group-hover/btn:animate-pulse" />
-                                            Comenzar Ahora
+                                            Comenzar ahora
                                         </motion.button>
                                     </div>
 
@@ -305,8 +305,8 @@ export const Services = () => {
                             Nuestros Beneficios
                         </h3>
                         <p className={`text-xl ${styles.text.accent} max-w-3xl mx-auto leading-relaxed mb-8`}>
-                            Trabajamos con un enfoque integral y personalizado para garantizar los mejores resultados. 
-                            <span className="font-semibold text-teal-700"> Resultados que hablan por sí solos.</span>
+                            Trabajamos con un enfoque integral y personalizado para garantizar 
+                            <span className="font-semibold text-teal-700"> resultados efectivos que hablan por sí solos. </span>
                         </p>
 
                         {/* Benefits Preview Images */}
