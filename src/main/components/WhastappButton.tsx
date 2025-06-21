@@ -1,6 +1,6 @@
 import { WhatsAppIcon } from "../assets/svgs/WhatsAppIcon";
 import { coactiva_config } from "../configs/config";
-import { Phone, MessageCircle, Menu, X } from "lucide-react";
+import { Phone, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export const WhatsappButton = () => {
@@ -100,23 +100,6 @@ export const WhatsappButton = () => {
           </div>
         </div>
 
-        {/* Botón de mensajes directos */}
-        <div className="relative group">
-          <button
-            onClick={handleWhatsApp}
-            aria-label="Enviar mensaje directo"
-            className="bg-teal-500 hover:bg-teal-600 active:bg-teal-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95"
-          >
-            <MessageCircle className="w-5 h-5" />
-          </button>
-          
-          <div className="absolute right-16 top-1/2 transform -translate-y-1/2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
-            <div className="bg-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg whitespace-nowrap relative">
-              Mensaje directo
-              <div className="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-900 border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Botón Principal - Menú */}
