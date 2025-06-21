@@ -24,7 +24,7 @@ export const PrincipalHeroCard = ({ containerVariants, itemVariants } : Props) =
         <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-6">
             Haz que tu 
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-200">
-            negocio avance
+            empresa avance
             </span>
         </h1>
         <p className="text-2xl lg:text-3xl text-white/90 font-light max-w-4xl mx-auto">
