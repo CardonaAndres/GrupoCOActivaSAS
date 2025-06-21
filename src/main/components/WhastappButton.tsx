@@ -48,7 +48,7 @@ export const WhatsappButton = () => {
       {/* Backdrop para cerrar en mobile */}
       {isExpanded && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-20 md:bg-transparent -z-10"
+          className="fixed inset-0 bg-opacity-80 md:bg-transparent -z-10"
           onClick={() => setIsExpanded(false)}
         />
       )}
