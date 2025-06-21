@@ -1,14 +1,7 @@
 import { coactiva_config } from "@/main/configs/config"
-import { Mail, MapPin, Phone, Shield, Star, Users } from "lucide-react"
+import { Mail, Phone, Shield, Star, Users } from "lucide-react"
 
 const contactInfo = [
-    {
-        icon: MapPin,
-        title: "Nuestra Oficina",
-        content: coactiva_config.address.one,
-        subtitle: "Medellín, Colombia",
-        color: "text-green-600"
-    },
     {
         icon: Phone,
         title: "Teléfono",
