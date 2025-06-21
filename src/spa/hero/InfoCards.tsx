@@ -18,7 +18,7 @@ export const InfoCards = ({ containerVariants, itemVariants } : Props) => {
             </div>
             <div className="text-left">
                 <p className="font-semibold">Consulta inmediata</p>
-                <p className="text-sm text-white/70"> {coactiva_config.cellphones.one} </p>
+                <p className="text-sm text-white/70">+57 {coactiva_config.cellphones.one} </p>
             </div>
             </div>
             

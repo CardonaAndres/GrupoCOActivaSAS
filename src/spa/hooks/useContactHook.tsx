@@ -12,7 +12,7 @@ const contactInfo = [
     {
         icon: Phone,
         title: "Teléfono",
-        content: coactiva_config.cellphones.one,
+        content: '+57 ' + coactiva_config.cellphones.one,
         subtitle: "Línea directa",
         color: "text-blue-600"
     },

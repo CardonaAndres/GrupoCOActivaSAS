@@ -26,7 +26,9 @@ export const HomePage = () => {
         <div className="pt-16">
             <Hero />
         </div>
-        <Services />
+        <div id="services"> 
+          <Services />
+        </div>
         <ContactSection />
         <section className={`py-16 bg-gradient-to-br ${styles.gradient.accent}`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

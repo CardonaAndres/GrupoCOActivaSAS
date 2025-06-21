@@ -3,38 +3,38 @@ import { Award, BarChart3, Briefcase, Clock, FileText, Handshake, Scale, Users }
 const services = [
       {
         icon: Briefcase,
-        title: "Cobro de Cartera Prejurídico, Jurídico y Extrajurídico",
+        title: "Cobro de Cartera Prejurídico, Jurídico",
         description: "Gestionamos el cobro de tus obligaciones en todas sus etapas, aplicando estrategias personalizadas para maximizar la recuperación.",
         features: ["Estrategias personalizadas", "Todas las etapas", "Máxima recuperación"],
-        color: "from-slate-600 to-slate-700"
+        color: "from-teal-700 via-teal-500 to-teal-800"
     },
     {
         icon: FileText,
         title: "Certificación de Castigo de Cartera",
         description: "Emitimos certificaciones formales que respaldan la depuración contable de cartera incobrable, conforme a la normativa vigente.",
         features: ["Cumplimiento normativo", "Proceso ágil", "Documentación completa"],
-        color: "from-green-500 to-green-600"
+        color: "from-teal-700 via-teal-500 to-teal-800"
     },
     {
         icon: Handshake,
         title: "Conciliaciones en Asuntos de Cartera",
         description: "Facilitamos acuerdos de pago y conciliaciones efectivas entre las partes, priorizando soluciones rápidas y amigables.",
         features: ["Soluciones rápidas", "Acuerdos efectivos", "Relaciones comerciales"],
-        color: "from-green-600 to-green-700"
+        color: "from-teal-700 via-teal-500 to-teal-800"
     },
     {
         icon: BarChart3,
         title: "Estudios de Crédito y Análisis de Bienes",
         description: "Realizamos estudios detallados sobre la capacidad crediticia de personas y empresas, así como análisis de bienes y activos.",
         features: ["Análisis detallado", "Capacidad crediticia", "Evaluación de activos"],
-        color: "from-slate-500 to-slate-600"
+        color: "from-teal-700 via-teal-500 to-teal-800"
     }
 ]
 
 const benefits = [
     {
       icon: Award,
-      title: "Más de 15 años de experiencia",
+      title: "Más de 10 años de experiencia",
       description: "Equipo de abogados expertos en recuperación de cartera"
     },
     {

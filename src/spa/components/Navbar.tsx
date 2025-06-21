@@ -43,7 +43,7 @@ export const Navbar = () => {
             <div className="flex items-center space-x-6">
               <div className="flex items-center">
                 <Phone className="w-4 h-4 mr-2" />
-                <span>Consulta Gratuita: {coactiva_config.cellphones.one} </span>
+                <span>Consulta Gratuita: +57 {coactiva_config.cellphones.one} </span>
               </div>
               <div className="hidden md:flex items-center">
                 <Mail className="w-4 h-4 mr-2" />

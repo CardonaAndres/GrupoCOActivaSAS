@@ -100,7 +100,7 @@ export const AboutUs = () => {
     },
     {
       icon: Clock,
-      number: "15+",
+      number: "10+",
       label: "Años de experiencia",
       description: "en el mercado colombiano"
     },
