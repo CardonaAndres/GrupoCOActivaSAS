@@ -9,7 +9,7 @@ interface Props {
 export const PrincipalHeroCard = ({ containerVariants, itemVariants } : Props) => {
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="visible" 
-        className="text-center mb-12 mt-5">
+        className="text-center mb-12 mt-14">
         <motion.div variants={itemVariants} className="mb-8">
         <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 shadow-lg shadow-black/10">
             <Award className="w-5 h-5 text-white mr-3" />
