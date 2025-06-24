@@ -8,7 +8,7 @@ import { Footer } from '@/spa/components/Footer';
 import { AboutUsPage } from './spa/pages/AboutUsPage';
 import { ServicePage } from './spa/pages/ServicePage';
 import { AlliesPage } from './spa/pages/AlliesPage';
-import { MetaTags } from './main/components/Metatags';
+import { MetaTags } from './main/components/MetaTags.tsx';
 
 export const App = () => {
   return (
