@@ -2,10 +2,11 @@ import { styles } from '@/main/assets/ts/styles'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
-import { Send, CheckCircle, MessageCircle, Building } from 'lucide-react'
+import { Send, CheckCircle, MessageCircle } from 'lucide-react'
 import { useContactHook } from '../hooks/useContactHook'
 import { WhatsAppIcon } from '@/main/assets/svgs/WhatsAppIcon'
 import { coactiva_config } from '@/main/configs/config'
+import { LocationsComponent } from './LocationsComponent'
 
 // Declarar la interfaz global para grecaptcha
 declare global {
@@ -396,35 +397,7 @@ export const ContactSection = () => {
               </div>
 
               {/* Map */}
-              <motion.div 
-                whileHover={{ scale: 1.01 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"
-              >
-                <div className="p-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <Building className={`w-6 h-6 ${styles.text.primary}`} />
-                    <h4 className={`font-semibold ${styles.text.darkGray}`}>
-                      Nuestra Ubicación
-                    </h4>
-                  </div>
-                  <p className={`${styles.text.gray} mb-4`}>
-                    Visítanos en nuestras oficinas en el corazón de Medellín
-                  </p>
-                </div>
-                <div className="h-64 relative">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0234567890123!2d-75.5678901234567!3d6.234567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e44290123456789%3A0x1234567890abcdef!2sCircular%2076%20%23%2039B-135%2C%20Laureles%2C%20Medell%C3%ADn%2C%20Antioquia%2C%20Colombia!5e0!3m2!1ses!2sco!4v1234567890123!5m2!1ses!2sco"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="absolute inset-0"
-                    title='Mapa de ubicación'
-                  />
-                </div>
-              </motion.div>
+              <LocationsComponent styles={styles} />
 
               {/* CTA Card */}
               <motion.div 

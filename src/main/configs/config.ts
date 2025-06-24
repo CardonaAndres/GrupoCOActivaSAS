@@ -8,14 +8,14 @@ export const router = {
 
 export const coactiva_config = {
     domains : {
-        one : 'https://grupocoactiva.vercel.app',
+        one : 'https://grupocoactivasas.com',
     },
     cellphones : {
         one : '3018594940',
         oneToWhatsapp : `573018594940?text=${encodeURIComponent('¡Hola! Me comunico con ustedes desde la página web. Estoy interesado(a) en obtener más información sobre los servicios de GrupoCOActivaSAS. Muchas gracias.')}`,
     },
     emails : {
-        one : 'info@grupocoactiva.com'
+        one : 'comercial@grupocoactivasas.com'
     },
     address : {
         one : 'Circular 76 #39B - 135 Laureles Medellín'
