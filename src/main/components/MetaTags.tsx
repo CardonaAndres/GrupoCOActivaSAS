@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-import { coactiva_config } from '../configs/config';
 
 export const MetaTags = () => {
   const siteTitle = "Cobro Jurídico Colombia | Casa de Cobranza Profesional en Bogotá y Medellín";
@@ -79,12 +78,30 @@ export const MetaTags = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LegalService",
-    "name": "Grupocoactivasas",
+    "name": "Cobro Jurídico Colombia",
     "description": siteDescription,
     "url": window.location.origin,
-    "logo": `${window.location.origin}/logo.jpg`,
-    "telephone": coactiva_config.cellphones.one,
-    "email": coactiva_config.emails.one,
+    "logo": `${window.location.origin}/logo.png`,
+    "telephone": "+57-300-000-0000",
+    "email": "info@cobrojuridico.com",
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "Calle Principal 123",
+        "addressLocality": "Bogotá",
+        "addressRegion": "Cundinamarca",
+        "postalCode": "110111",
+        "addressCountry": "CO"
+      },
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "Carrera Principal 456",
+        "addressLocality": "Medellín",
+        "addressRegion": "Antioquia",
+        "postalCode": "050001",
+        "addressCountry": "CO"
+      }
+    ],
     "areaServed": [
       {
         "@type": "Country",
@@ -132,18 +149,18 @@ export const MetaTags = () => {
       <meta property="og:url" content={window.location.href} />
       <meta property="og:title" content={siteTitle} />
       <meta property="og:description" content={siteDescription} />
-      <meta property="og:image" content={`${window.location.origin}/logo.jpg`} />
+      <meta property="og:image" content={`${window.location.origin}/og-image.jpg`} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content="Cobro Jurídico Colombia" />
       <meta property="og:locale" content="es_CO" />
 
       {/* Twitter */}
-      <meta property="twitter:card" content="/logo.jpg" />
+      <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={window.location.href} />
       <meta property="twitter:title" content={siteTitle} />
       <meta property="twitter:description" content={siteDescription} />
-      <meta property="twitter:image" content={`${window.location.origin}/logo.jpg`} />
+      <meta property="twitter:image" content={`${window.location.origin}/twitter-image.jpg`} />
       <meta property="twitter:creator" content="@cobrojuridico" />
 
       {/* SEO técnico */}
@@ -172,7 +189,7 @@ export const MetaTags = () => {
       <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
       <link rel="manifest" href="/site.webmanifest" />
 
-      {/* DNS Prefetch para optimización */}
+      {/* DNS Prefetch para optimización - SIN Google Maps */}
       <link rel="dns-prefetch" href="//fonts.googleapis.com" />
       <link rel="preconnect" href="//www.google-analytics.com" crossOrigin="" />
       <link rel="preconnect" href="//www.googletagmanager.com" crossOrigin="" />
@@ -194,10 +211,8 @@ export const MetaTags = () => {
       <meta name="rating" content="general" />
       <meta name="revisit-after" content="1 days" />
 
-      {/* Seguridad */}
+      {/* Seguridad - Solo Content-Type válido en meta */}
       <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-      <meta httpEquiv="X-Frame-Options" content="DENY" />
-      <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
 
       {/* Metadatos específicos del negocio */}
       <meta name="business.hours" content="mo-fr 08:00-18:00" />
