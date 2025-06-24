@@ -3,6 +3,7 @@ import { Building, Mail, MessageSquare, Pencil, Phone, Send, User } from "lucide
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from 'react';
 import { coactiva_config } from '@/main/configs/config';
+import { useContactHook } from '../hooks/useContactHook';
 
 // Declarar la interfaz global para grecaptcha
 declare global {
@@ -25,6 +26,7 @@ export const ContactForm = () => {
     
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+    const { sendEmail } = useContactHook();
 
     // Clave de sitio de reCAPTCHA 
     const RECAPTCHA_SITE_KEY = '6LfWvWUrAAAAAJDA_6bKLNWG6yOG7NNWZS7kZKxJ';
@@ -99,14 +101,8 @@ export const ContactForm = () => {
             
             // Agregar el token de reCAPTCHA a los datos del formulario
             const formDataWithRecaptcha = { ...data, recaptchaToken };
+            await sendEmail(formDataWithRecaptcha);
 
-            // Simular envío de formulario con validación de reCAPTCHA
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            
-            console.log('Form data with reCAPTCHA:', formDataWithRecaptcha);
-            
-            // El servidor verificaría el token con Google usando tu clave secreta (FUTURE)
-            
             setIsSubmitted(true);
             reset();
 

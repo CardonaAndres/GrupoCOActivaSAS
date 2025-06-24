@@ -8,10 +8,12 @@ import { Footer } from '@/spa/components/Footer';
 import { AboutUsPage } from './spa/pages/AboutUsPage';
 import { ServicePage } from './spa/pages/ServicePage';
 import { AlliesPage } from './spa/pages/AlliesPage';
+import { MetaTags } from './main/components/Metatags';
 
 export const App = () => {
   return (
     <>
+      <MetaTags />
       <Router>
         <Routes>
           <Route path={router.home} element={<HomePage />} />

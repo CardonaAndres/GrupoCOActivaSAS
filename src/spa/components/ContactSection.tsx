@@ -26,7 +26,7 @@ interface FormData {
 }
 
 export const ContactSection = () => {
-  const { contactInfo, features } = useContactHook();  
+  const { contactInfo, features, sendEmail } = useContactHook();  
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset} = useForm<FormData>()
 
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -107,13 +107,7 @@ export const ContactSection = () => {
       
       // Agregar el token de reCAPTCHA a los datos del formulario
       const formDataWithRecaptcha = { ...data, recaptchaToken}
-
-      // envío de formulario con validación de reCAPTCHA
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-      console.log('Form data with reCAPTCHA:', formDataWithRecaptcha)
-      
-      // El servidor verificaría el token con Google usando tu clave secreta (FUTURE)
+      await sendEmail(formDataWithRecaptcha);
       
       setIsSubmitted(true)
       reset()

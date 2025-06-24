@@ -12,7 +12,7 @@ export const coactiva_config = {
     },
     cellphones : {
         one : '3018594940',
-        oneToWhatsapp : `573018594940?text=${encodeURIComponent('¡Hola! Me comunico con ustedes desde la página web. Estoy interesado(a) en obtener más información sobre los servicios de GrupoCOActivaSAS. Muchas gracias.')}`,
+        oneToWhatsapp : `573018594940?text=${encodeURIComponent('¡Hola! Bienvenido a Grupo Coactiva SAS (Recuperación de Cartera Vencida Empresarial) ¿cuéntanos cómo podemos ayudarte hoy?')}`,
     },
     emails : {
         one : 'comercial@grupocoactivasas.com'

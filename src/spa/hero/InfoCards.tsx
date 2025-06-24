@@ -1,7 +1,7 @@
 import { styles } from "@/main/assets/ts/styles"
 import { coactiva_config } from "@/main/configs/config"
 import { motion } from "framer-motion"
-import { Mail, MapPin, Phone } from "lucide-react"
+import { Mail, Phone } from "lucide-react"
 
 interface Props {
     containerVariants : any,
@@ -32,15 +32,6 @@ export const InfoCards = ({ containerVariants, itemVariants } : Props) => {
             </div>
             </div>
             
-            <div className="flex items-center group cursor-pointer hover:text-white transition-colors">
-            <div className="p-2 bg-slate-700 rounded-lg mr-3 group-hover:bg-slate-600 transition-colors">
-                <MapPin className="w-5 h-5 text-white" />
-            </div>
-            <div className="text-left">
-                <p className="font-semibold">Medellín, Colombia</p>
-                <p className="text-sm text-white/70">Circular 76 #39B-135</p>
-            </div>
-            </div>
         </motion.div>
     </motion.div>
   )

@@ -1,5 +1,7 @@
 import { coactiva_config } from "@/main/configs/config"
 import { Mail, Phone, Shield, Star, Users } from "lucide-react"
+import emailjs from '@emailjs/browser'
+import { useState } from "react"
 
 const contactInfo = [
     {
@@ -36,10 +38,53 @@ const features = [
     }
 ]
 
+type emailData = {
+    nombre: string;
+    email: string;
+    telefono: string;
+    empresa?: string;
+    cargo?: string;
+    mensaje: string;
+    recaptchaToken: string;
+}
+
 export const useContactHook = () => {
-  return {
-    features,
-    contactInfo
-  }
+    const [ loading, setLoading ] = useState(false);
+
+    const sendEmail = async (emailData: emailData) => {
+            try {
+                setLoading(true);
+
+                const result = await emailjs.send(
+                    'service_oio611e',
+                    'template_3fcxb7u',
+                    {
+                        nombre: emailData.nombre,
+                        email: emailData.email,
+                        telefono: emailData.telefono,
+                        empresa: emailData.empresa,
+                        cargo: emailData.cargo,
+                        mensaje: emailData.mensaje,
+                    },
+                    'tdTDxrJyt3wjDmdwz'
+                );
+
+                console.log('Email enviado:', result.text);
+                return { success: true };
+            } catch (error: any) {
+                console.error('Error al enviar email:', error);
+                return { success: false, error };
+            } finally {
+                setLoading(false);
+            }
+    };
+
+
+    return {
+        features,
+        contactInfo,
+        sendEmail,
+        loading
+    }
 }
 

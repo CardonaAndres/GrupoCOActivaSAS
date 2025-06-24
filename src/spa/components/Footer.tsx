@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { MapPin,Mail,Shield,Users,TrendingUp,Facebook,Instagram,Twitter,ArrowUp } from 'lucide-react'
+import { MapPin,Mail,Shield,Users,TrendingUp, Instagram ,ArrowUp } from 'lucide-react'
 import { styles } from '@/main/assets/ts/styles'
 import { coactiva_config } from '@/main/configs/config'
 
@@ -91,13 +91,15 @@ export const Footer = () => {
                 <p className={`${styles.text.white} font-semibold mb-4`}>Síguenos en redes sociales</p>
                 <div className="flex space-x-4">
                   {[
-                    { icon: Facebook, label: 'Facebook' },
-                    { icon: Instagram, label: 'Instagram' },
-                    { icon: Twitter, label: 'Twitter' }
-                  ].map(({ icon: Icon, label }) => (
+                    { 
+                      icon: Instagram, 
+                      label: 'Instagram',
+                      url : 'https://www.instagram.com/grupocoactiva?igsh=amNuczBubnU4bG4='
+                    },
+                  ].map(({ icon: Icon, label, url }) => (
                     <motion.a
                       key={label}
-                      href="#"
+                      href={url}
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                       className={`w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm ${styles.border.white} border flex items-center justify-center ${styles.text.lightGray} hover:bg-gradient-to-br ${styles.hover.primary} hover:text-white transition-all duration-300`}
