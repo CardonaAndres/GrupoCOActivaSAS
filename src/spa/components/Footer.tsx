@@ -59,7 +59,7 @@ export const Footer = () => {
                 </p>
                 <div className={`inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r ${styles.gradient.primary} ${styles.text.white} text-sm font-medium`}>
                   <Shield className="w-4 h-4 mr-2" />
-                  +15 años de experiencia
+                  10 años de experiencia
                 </div>
               </div>
 
