@@ -17,7 +17,7 @@ export const WhatsappButton = () => {
   };
 
   const handleWhatsApp = () => {
-    window.open(`https://wa.me/${coactiva_config.cellphones.oneToWhatsapp}?text=Hola,%20me%20gustaría%20obtener%20más%20información`, '_blank');
+    window.open(`https://wa.me/${coactiva_config.cellphones.oneToWhatsapp}`, '_blank');
   };
 
   if (!isVisible) return null;
