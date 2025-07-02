@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { MapPin,Mail,Shield,Users,TrendingUp, Instagram ,ArrowUp, FileText } from 'lucide-react'
+import { MapPin,Mail,Shield,Users,TrendingUp, Instagram ,ArrowUp, FileText, Building2 } from 'lucide-react'
 import { styles } from '@/main/assets/ts/styles'
 import { coactiva_config, router } from '@/main/configs/config'
 
@@ -46,7 +46,7 @@ export const Footer = () => {
       >
         {/* Main Footer Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
             
             {/* Company Info */}
             <motion.div variants={itemVariants} className="lg:col-span-2">
@@ -111,6 +111,30 @@ export const Footer = () => {
                     </motion.a>
                   ))}
                 </div>
+              </div>
+            </motion.div>
+
+            {/* Cities Section */}
+            <motion.div variants={itemVariants}>
+              <h4 className={`text-lg font-semibold ${styles.text.white} mb-6`}>
+                Nuestras ciudades
+              </h4>
+              <div className="space-y-4">
+                {[
+                  { name: 'Medellín', description: 'Oficina Principal' },
+                  { name: 'Bogotá', description: 'Sede Nacional' },
+                  { name: 'Cali', description: 'Oficina Regional' }
+                ].map((city, index) => (
+                  <div key={index} className="flex items-start space-x-3">
+                    <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${styles.gradient.primary} flex items-center justify-center flex-shrink-0 mt-0.5`}>
+                      <Building2 className={`w-4 h-4 ${styles.text.white}`} />
+                    </div>
+                    <div>
+                      <p className={`${styles.text.white} font-medium`}>{city.name}</p>
+                      <p className={`${styles.text.lightGray} text-sm`}>{city.description}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </motion.div>
 

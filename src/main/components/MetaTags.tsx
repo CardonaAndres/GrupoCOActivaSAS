@@ -192,10 +192,10 @@ export const MetaTags = () => {
       <meta name="apple-mobile-web-app-title" content="Cobro Jurídico Colombia" />
 
       {/* Favicon y iconos */}
-      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+      <link rel="icon" type="image/x-icon" href="/logo.jpg" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/logo.jpg" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/logo.jpg" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/logo.jpg" />
       <link rel="manifest" href="/site.webmanifest" />
 
       {/* DNS Prefetch para optimización - SIN Google Maps */}
