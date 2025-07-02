@@ -38,7 +38,7 @@ export const PrincipalHeroCard = ({ containerVariants, itemVariants } : Props) =
             Somos tu aliado estratégico para la recuperación de cartera y gestión de cobro jurídico. 
             Soluciones efectivas, rápidas y seguras que protegen el patrimonio de tu empresa.
         </motion.p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center text-white/90">
+        <div className="flex flex-row gap-4 justify-center text-white/90">
             <div className="flex items-center gap-2">
                 <Clock className="w-5 h-5 text-teal-400" />
                 <span className="text-sm font-medium">Respuesta en 24h</span>
