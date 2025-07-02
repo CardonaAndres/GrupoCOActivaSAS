@@ -23,18 +23,13 @@ export const SliderBrands = () => {
             transition={{ duration: 1, delay: 1.2 }} className="mt-16 text-center"
             >
                 <div className="mb-8">
-                    <motion.p 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.4 }}
-                    className="text-white/80 text-sm font-medium tracking-wider uppercase mb-4"
+                    <motion.p initial={{ opacity: 0 }}  animate={{ opacity: 1 }}
+                    transition={{ delay: 1.4 }} className="text-white/80 text-sm font-medium tracking-wider uppercase mb-4"
                     >
-                    Confían en nosotros
+                    Resultados efectivos en recuperación de cartera
                     </motion.p>
-                    <motion.h2 
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.6 }}
+                    <motion.h2 initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1.6 }}
                     className="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-8"
                     >
                     Empresas líderes que recuperan su cartera con Grupo Coactiva S.A.S

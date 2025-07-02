@@ -2,7 +2,7 @@ import { WhatsAppIcon } from '@/main/assets/svgs/WhatsAppIcon';
 import { Building, Mail, MessageSquare, Pencil, Phone, Send, User } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from 'react';
-import { coactiva_config } from '@/main/configs/config';
+import { coactiva_config, router } from '@/main/configs/config';
 import { useContactHook } from '../hooks/useContactHook';
 
 // Declarar la interfaz global para grecaptcha
@@ -261,7 +261,7 @@ export const ContactForm = () => {
                         {/* Información sobre reCAPTCHA */}
                         <div className="text-xs text-white/60">
                             Este sitio está protegido por reCAPTCHA y se aplican la{' '}
-                            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:underline">
+                            <a href={router.privacity} target="_blank" rel="noopener noreferrer" className="text-white/80 hover:underline">
                                 Política de Privacidad
                             </a>{' '}
                             y los{' '}

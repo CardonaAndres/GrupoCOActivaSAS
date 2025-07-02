@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import { MapPin,Mail,Shield,Users,TrendingUp, Instagram ,ArrowUp } from 'lucide-react'
+import { MapPin,Mail,Shield,Users,TrendingUp, Instagram ,ArrowUp, FileText } from 'lucide-react'
 import { styles } from '@/main/assets/ts/styles'
-import { coactiva_config } from '@/main/configs/config'
+import { coactiva_config, router } from '@/main/configs/config'
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -100,6 +100,8 @@ export const Footer = () => {
                     <motion.a
                       key={label}
                       href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                       className={`w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm ${styles.border.white} border flex items-center justify-center ${styles.text.lightGray} hover:bg-gradient-to-br ${styles.hover.primary} hover:text-white transition-all duration-300`}
@@ -196,6 +198,15 @@ export const Footer = () => {
               </div>
               
               <div className="flex items-center space-x-6">
+                {/* Privacy Policy Link */}
+                <motion.a
+                  href={router.privacity}
+                  whileHover={{ scale: 1.05 }}
+                  className={`flex items-center space-x-2 ${styles.text.lightGray} text-sm ${styles.hover.primaryText} transition-colors duration-300`}
+                >
+                  <FileText className="w-4 h-4" />
+                  <span>Política de Privacidad</span>
+                </motion.a>
                 
                 {/* Scroll to Top Button */}
                 <motion.button

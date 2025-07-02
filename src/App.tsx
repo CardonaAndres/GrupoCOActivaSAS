@@ -9,6 +9,8 @@ import { AboutUsPage } from './spa/pages/AboutUsPage';
 import { ServicePage } from './spa/pages/ServicePage';
 import { AlliesPage } from './spa/pages/AlliesPage';
 import { MetaTags } from './main/components/MetaTags.tsx';
+import { PrivacityPage } from './spa/pages/PrivacityPage.tsx';
+import { FloatingContactButton } from './main/components/FloatingContactButton.tsx';
 
 export const App = () => {
   return (
@@ -21,11 +23,13 @@ export const App = () => {
           <Route path={router.about} element={<AboutUsPage />} />
           <Route path={router.services} element={<ServicePage />} />
           <Route path={router.allies} element={<AlliesPage />} />
+          <Route path={router.privacity} element={<PrivacityPage />} />
         </Routes>
       </Router>
 
       <Footer />
       <WhatsappButton />
+      <FloatingContactButton />
     </>
   )
 }

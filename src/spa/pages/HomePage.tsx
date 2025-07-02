@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { styles } from "@/main/assets/ts/styles";
 import { ArrowRight, Handshake, Users } from "lucide-react";
 import { router } from "@/main/configs/config";
+import { References } from "../components/References";
 
 const buttonVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -29,6 +30,7 @@ export const HomePage = () => {
         <div id="services"> 
           <Services />
         </div>
+        <References />
         <ContactSection />
         <section className={`py-16 bg-gradient-to-br ${styles.gradient.accent}`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

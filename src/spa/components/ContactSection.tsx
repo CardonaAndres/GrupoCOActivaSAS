@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { Send, CheckCircle, MessageCircle } from 'lucide-react'
 import { useContactHook } from '../hooks/useContactHook'
 import { WhatsAppIcon } from '@/main/assets/svgs/WhatsAppIcon'
-import { coactiva_config } from '@/main/configs/config'
+import { coactiva_config, router } from '@/main/configs/config'
 import { LocationsComponent } from './LocationsComponent'
 
 // Declarar la interfaz global para grecaptcha
@@ -323,7 +323,7 @@ export const ContactSection = () => {
                     {/* Información sobre reCAPTCHA */}
                     <div className="text-xs text-gray-500">
                       Este sitio está protegido por reCAPTCHA y se aplican la{' '}
-                      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                      <a href={router.privacity} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
                         Política de Privacidad
                       </a>{' '}
                       y los{' '}
@@ -363,7 +363,7 @@ export const ContactSection = () => {
             {/* Contact Info & Map */}
             <motion.div variants={itemVariants} className="space-y-8">
               {/* Contact Cards */}
-              <div className="grid sm:grid-cols-2 gap-6">
+              <div className="grid sm:grid-cols-2 gap-6 ">
                 {contactInfo.map((info, index) => (
                   <motion.div
                     key={index}
@@ -374,7 +374,7 @@ export const ContactSection = () => {
                       <div className={`w-12 h-12 ${styles.accent[100]} rounded-xl flex items-center justify-center flex-shrink-0`}>
                         <info.icon className={`w-6 h-6 ${info.color}`} />
                       </div>
-                      <div>
+                      <div className=''>
                         <h4 className={`font-semibold ${styles.text.darkGray} mb-1`}>
                           {info.title}
                         </h4>

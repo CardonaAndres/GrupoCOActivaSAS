@@ -1,5 +1,6 @@
+import { coactiva_config } from '@/main/configs/config';
 import { motion } from 'framer-motion';
-import { Award } from 'lucide-react';
+import { Award, Clock, Phone } from 'lucide-react';
 
 interface Props {
     containerVariants : any,
@@ -10,7 +11,7 @@ export const PrincipalHeroCard = ({ containerVariants, itemVariants } : Props) =
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="visible" 
         className="text-center mb-12 mt-14">
-        <motion.div variants={itemVariants} className="mb-8">
+        <motion.div variants={itemVariants} className="mb-4">
         <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 shadow-lg shadow-black/10">
             <Award className="w-5 h-5 text-white mr-3" />
             <span className="text-white text-sm">
@@ -37,17 +38,33 @@ export const PrincipalHeroCard = ({ containerVariants, itemVariants } : Props) =
             Somos tu aliado estratégico para la recuperación de cartera y gestión de cobro jurídico. 
             Soluciones efectivas, rápidas y seguras que protegen el patrimonio de tu empresa.
         </motion.p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center text-white/90">
+            <div className="flex items-center gap-2">
+                <Clock className="w-5 h-5 text-teal-400" />
+                <span className="text-sm font-medium">Respuesta en 24h</span>
+            </div>
+            <div className="flex items-center gap-2">
+                <Award className="w-5 h-5 text-teal-400" />
+                <span className="text-sm font-medium">95% casos exitosos</span>
+            </div>
+        </div>
 
         {/* Botones de acción */}
-        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-        
-        <motion.button onClick={() => window.location.href = '/#services'}
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-10 py-5 bg-slate-900/80 backdrop-blur-md text-white font-bold text-lg rounded-full border border-slate-700/50 hover:bg-slate-800/90 transition-all duration-300 min-w-[200px]"
-        >
-            Ver servicios
-        </motion.button>
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center my-7">
+            <motion.button onClick={() => window.location.href = '/#services'}
+                whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} className="px-10 py-5 bg-slate-900/80 backdrop-blur-md text-white font-bold text-lg rounded-full border border-slate-700/50 hover:bg-slate-800/90 transition-all duration-300 min-w-[200px]"
+            >
+                Ver servicios
+            </motion.button>
+        </motion.div>
+                {/* CTA adicional - Llamada inmediata */}
+        <motion.div variants={itemVariants} className="mt-6">
+            <button onClick={() => {window.open(`tel:${coactiva_config.cellphones.one}`, '_self')}} className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+                <Phone className="w-4 h-4" />
+                <span className="text-sm underline">
+                    ¿Urgente? Llámanos: {coactiva_config.cellphones.one} 
+                </span>
+            </button>
         </motion.div>
     </motion.div>
   )
