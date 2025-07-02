@@ -82,8 +82,7 @@ export const Navbar = () => {
           </div>
 
           {/* Menu Mobile Button */}
-          <button
-            onClick={toggleMenu}
+          <button onClick={toggleMenu} aria-label='Boton desplegable'
             className={`lg:hidden p-2 ${styles.text.accent} ${styles.hover.primaryText} transition-colors`}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
