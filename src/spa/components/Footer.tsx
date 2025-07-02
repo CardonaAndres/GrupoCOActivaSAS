@@ -32,8 +32,8 @@ export const Footer = () => {
     <footer className={`relative ${styles.accent[900]} overflow-hidden`}>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("/ImgDeEjemplo.webp")`
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
+          backgroundImage: `url("https://actiucdn.net/cdn-cgi/image/width=782,height=9999,fit=contain,format=auto,quality=85/uploads/images/actualidad/descripciones/oficina-del-futuro-2.jpg")`
         }} />
       </div>
 
@@ -45,7 +45,7 @@ export const Footer = () => {
         className="relative z-10"
       >
         {/* Main Footer Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-10 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
             
             {/* Company Info */}
@@ -182,16 +182,14 @@ export const Footer = () => {
               </h4>
               <ul className="space-y-3">
                 {[
+                  'Cobro de Cartera: prejurídico y jurídico',
                   'Certificación de Castigo de Cartera',
-                  'Cobro Prejurídico y Jurídico',
-                  'Cobro Extrajudicial',
-                  'Conciliaciones',
-                  'Estudios de Crédito',
-                  'Análisis de Bienes'
+                  'Conciliaciones en Asuntos de Cartera',
+                  'Estudios de Crédito y Análisis de Bienes'
                 ].map((service, index) => (
                   <li key={index}>
                     <a 
-                      href="#" 
+                      onClick={() => window.location.href = router.contact} 
                       className={`${styles.text.lightGray} text-sm ${styles.hover.primaryText} transition-colors duration-300 hover:translate-x-1 transform inline-block`}
                     >
                       {service}

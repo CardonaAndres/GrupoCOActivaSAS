@@ -11,6 +11,7 @@ import { AlliesPage } from './spa/pages/AlliesPage';
 import { MetaTags } from './main/components/MetaTags.tsx';
 import { PrivacityPage } from './spa/pages/PrivacityPage.tsx';
 import { FloatingContactButton } from './main/components/FloatingContactButton.tsx';
+import { FAQPage } from './spa/pages/FAQPage.tsx';
 
 export const App = () => {
   return (
@@ -24,6 +25,7 @@ export const App = () => {
           <Route path={router.services} element={<ServicePage />} />
           <Route path={router.allies} element={<AlliesPage />} />
           <Route path={router.privacity} element={<PrivacityPage />} />
+          <Route path={router.FAQ} element={<FAQPage />} />
         </Routes>
       </Router>
 

@@ -4,7 +4,8 @@ export const router = {
     about : '/about',
     services : '/services',
     allies : '/allies',
-    privacity : '/privacity'
+    privacity : '/privacity',
+    FAQ : '/FAQ'
 }
 
 export const coactiva_config = {

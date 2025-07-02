@@ -12,10 +12,7 @@ export const WhatsappButton = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleCall = () => {
-    window.open(`tel:${coactiva_config.cellphones.one}`, '_self');
-  };
-
+  const handleCall = () => window.open(`tel:${coactiva_config.cellphones.one}`, '_self');
   const handleWhatsApp = () => {
     window.open(`https://wa.me/${coactiva_config.cellphones.oneToWhatsapp}`, '_blank');
   };
