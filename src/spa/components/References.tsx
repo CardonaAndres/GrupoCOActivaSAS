@@ -113,11 +113,11 @@ export const References = () => {
               <span className="text-teal-700 font-medium text-sm">100% Casos Verificables</span>
             </div>
             
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-700 via-teal-500 to-teal-800 bg-clip-text text-transparent mb-6">
-              Ellos Ya Recuperaron Su Dinero
+            <h2 className="text-4xl sm:text-4xl lg:text-4xl font-bold bg-gradient-to-r from-teal-700 via-teal-500 to-teal-800 bg-clip-text text-transparent mb-6">
+              Ellos Recuperan Su Cartera Con Nosotros
             </h2>
-            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed px-4 font-medium">
-              Únete a las +500 empresas que transformaron su cartera morosa en liquidez
+            <p className="text-lg sm:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed px-4 font-medium">
+              ¡Más de 500 empresas ya lo hicieron! Transforma tu cartera vencida en liquidez inmediata.
             </p>
             <motion.div 
               className="w-32 h-1 bg-gradient-to-r from-teal-600 to-cyan-500 mx-auto mt-8 rounded-full"

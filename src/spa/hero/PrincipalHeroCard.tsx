@@ -57,12 +57,16 @@ export const PrincipalHeroCard = ({ containerVariants, itemVariants } : Props) =
                 Ver servicios
             </motion.button>
         </motion.div>
-                {/* CTA adicional - Llamada inmediata */}
+        {/* CTA adicional - Llamada inmediata */}
         <motion.div variants={itemVariants} className="mt-6">
-            <button onClick={() => {window.open(`tel:${coactiva_config.cellphones.one}`, '_self')}} className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors">
-                <Phone className="w-4 h-4" />
-                <span className="text-sm underline">
-                    ¿Urgente? Llámanos: {coactiva_config.cellphones.one} 
+            <button onClick={() => {window.open(`tel:${coactiva_config.cellphones.one}`, '_self')}} 
+                className="group inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors w-full sm:w-auto justify-center sm:justify-start p-3 sm:p-0 rounded-lg sm:rounded-none hover:bg-white/10">
+                <Phone className="w-4 h-4 sm:w-4 sm:h-4 flex-shrink-0" />
+                <span className="text-sm sm:text-sm underline text-center sm:text-left leading-relaxed">
+                    <span className="block sm:inline">¿Tus clientes te deben y no te pagan?</span>
+                    <span className="block sm:inline sm:ml-1">
+                        Contáctanos: <span className="font-medium">{coactiva_config.cellphones.one}</span>
+                    </span>
                 </span>
             </button>
         </motion.div>
