@@ -94,10 +94,10 @@ export const CardsNavigation = () => {
             <Star className="w-4 h-4 mr-2" />
             Explora nuestras secciones
           </div>
-          <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold ${styles.text.primary} mb-4`}>
+          <h2 className={`text-3xl md:text-3xl lg:text-4xl font-bold ${styles.text.primary} mb-4`}>
             Descubre todo sobre
             <span className={`block bg-gradient-to-r ${styles.gradient.primary} bg-clip-text text-transparent`}>
-              Grupo Coactiva
+              Grupo Coactiva S.A.S
             </span>
           </h2>
           <p className={`text-lg ${styles.text.secondary} max-w-3xl mx-auto`}>
