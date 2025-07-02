@@ -19,7 +19,9 @@ const buttonVariants = {
 }
 
 export const HomePage = () => {
-  useEffect(() => { document.title = 'Grupo Coactiva S.A.S | Bienvenido' }, []);
+  useEffect(() => { 
+    document.title = 'Abogados de cobranzas Medellín, Bogotá y Cali | Grupo Coactiva SAS' 
+  }, []);
 
   return (
     <>

@@ -3,7 +3,9 @@ import { ContactSection } from "../components/ContactSection";
 import { useEffect } from "react";
 
 export const ContactPage = () => {
-  useEffect(() => { document.title = 'Grupo Coactiva S.A.S | Contáctanos' }, [])
+  useEffect(() => { 
+    document.title = 'Contacto abogados cobranzas empresas | Grupo Coactiva SAS' 
+  }, [])
 
   return (
     <>

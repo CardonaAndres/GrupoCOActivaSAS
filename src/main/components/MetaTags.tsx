@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 
 export const MetaTags = () => {
-  const siteTitle = "Cobro Jurídico Colombia | Casa de Cobranza Profesional en Bogotá y Medellín";
-  const siteDescription = "Empresa líder en cobro jurídico y prejurídico en Colombia. Servicios profesionales de recuperación de cartera vencida, gestión de cobranza y asesoría legal especializada en Bogotá, Medellín y toda Colombia. Abogados expertos en cobranza ejecutiva con más de 10 años de experiencia.";
+  const siteTitle = "Abogados de cobranzas Medellín, Bogotá y Cali | Grupo Coactiva SAS";
+  const siteDescription = "Grupo Coactiva SAS. Abogados especializados en cobranza de cartera para empresas. Recuperamos deudas de alto valor en Medellín, Bogotá y Cali. Contáctanos.";
   
   const keywords = [
     "cobro jurídico Colombia",
@@ -132,7 +132,7 @@ export const MetaTags = () => {
   };
 
   return (
-    <Helmet>
+    <Helmet htmlAttributes={{ lang: 'es' }}>
       {/* Google Tag Manager */}
       <script>
         {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -149,7 +149,6 @@ export const MetaTags = () => {
       <link rel="canonical" href={window.location.href} />
       
       {/* Idioma y codificación */}
-      <html lang="es" />
       <meta charSet="utf-8" />
       <meta httpEquiv="content-language" content="es-CO" />
 
@@ -187,7 +186,8 @@ export const MetaTags = () => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
       <meta name="theme-color" content="#1e40af" />
       <meta name="msapplication-TileColor" content="#1e40af" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="mobile-web-app-capable" content="yes" /> {/* Android / Chrome */}
+      <meta name="apple-mobile-web-app-capable" content="yes" /> {/* iOS Safari */}
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <meta name="apple-mobile-web-app-title" content="Cobro Jurídico Colombia" />
 
