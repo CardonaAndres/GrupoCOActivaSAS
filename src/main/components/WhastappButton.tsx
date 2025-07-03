@@ -13,10 +13,8 @@ export const WhatsappButton = () => {
   }, []);
 
   const handleCall = () => window.open(`tel:${coactiva_config.cellphones.one}`, '_self');
-  const handleWhatsApp = () => {
-    window.open(`https://wa.me/${coactiva_config.cellphones.oneToWhatsapp}`, '_blank');
-  };
-
+  const handleWhatsApp = () => window.open(`https://wa.me/${coactiva_config.cellphones.oneToWhatsapp}`, '_blank');
+  
   if (!isVisible) return null;
 
   return (

@@ -8,12 +8,16 @@ import {
     Phone, 
     Mail, 
     Clock, 
-    Shield, 
     CheckCircle, 
     Star, 
     Users, 
-    TrendingUp 
+    TrendingUp, 
+    DollarSign, 
+    Percent, 
+    FileText, 
+    Scale 
 } from 'lucide-react'
+import { coactiva_config } from '@/main/configs/config'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -49,40 +53,34 @@ const floatingVariants = {
 
 const faqData = [
   {
-    question: "¿Cómo funciona exactamente el modelo de cobro por resultados?",
-    answer: "Nuestro modelo elimina completamente el riesgo para tu empresa. No hay costos iniciales, pagos mensuales ni inversiones adelantadas. Solo cobras un porcentaje del dinero que efectivamente recuperamos de tu cartera vencida. Esto significa que nuestro éxito está directamente ligado al tuyo.",
-    category: "Modelo de Negocio",
+    question: "¿Cómo puedo contratar los servicios de Grupo Coactiva S.A.S?",
+    answer: "Es muy sencillo: puede comunicarse con nosotros a través de nuestro formulario web, vía WhatsApp, vía telefónica o por correo electrónico. Le asignaremos un asesor comercial que evaluará su caso, presentará una propuesta formal y, una vez aprobada, iniciaremos el proceso de cobro en máximo 24 horas.",
+    icon: Phone
+  },
+  {
+    question: "¿Qué beneficios tiene tercerizar el cobro de cartera con Grupo Coactiva S.A.S?",
+    answer: "Al tercerizar con nosotros, su empresa podrá reducir costos operativos y cargas administrativas, incrementar la recuperación de cartera en menor tiempo y contar con personal experto en cobranza y gestión jurídica.",
     icon: TrendingUp
   },
   {
-    question: "¿Qué garantías ofrecen sobre la recuperación de mi cartera?",
-    answer: "Ofrecemos una garantía de transparencia total con reportes semanales detallados. Nuestro historial muestra tasas de recuperación entre 35-65% dependiendo del tipo de cartera. Además, si no recuperamos nada en los primeros 90 días, evaluamos sin costo si continuar o no con el proceso.",
-    category: "Garantías",
-    icon: Shield
+    question: "¿A partir de qué cuantías gestiona Grupo Coactiva S.A.S el cobro de obligaciones?",
+    answer: "En Grupo Coactiva S.A.S gestionamos obligaciones desde montos mínimos de $10.000.000 pesos por deudor tanto para proceso prejuridico y jurídico. Le invitamos a contactarnos para evaluar su caso y ofrecerle la mejor alternativa de gestión según la cuantía de sus obligaciones.",
+    icon: DollarSign
   },
   {
-    question: "¿En cuánto tiempo veré los primeros resultados?",
-    answer: "Los primeros contactos exitosos suelen ocurrir en las primeras 48 horas. Las primeras recuperaciones extrajudiciales aparecen típicamente entre la semana 2-4. Para procesos jurídicos, los primeros resultados se ven entre el mes 3-6, con recuperaciones significativas durante todo el proceso.",
-    category: "Tiempos",
-    icon: Clock
+    question: "¿Qué costos o comisiones manejan por la gestión de cobro?",
+    answer: "Nuestras tarifas se adaptan al monto, antigüedad y cuantía de la obligacion a recuperar. Trabajamos bajo esquemas de honorarios por éxito, lo que significa que cobramos un porcentaje previamente pactado únicamente sobre las sumas efectivamente recuperadas.",
+    icon: Percent
   },
   {
-    question: "¿Cómo protegen la información de mis clientes?",
-    answer: "Implementamos protocolos de seguridad nivel bancario con cifrado de datos, acceso restringido por roles, y cumplimos 100% con la Ley de Habeas Data. Nuestro equipo firma acuerdos de confidencialidad y manejamos toda la información bajo estrictos estándares de privacidad y protección de datos.",
-    category: "Seguridad",
-    icon: Shield
+    question: "¿Qué tipo de cartera puede gestionar Grupo Coactiva S.A.S?",
+    answer: "Gestionamos todo tipo de cartera, siempre y cuando sea cartera vencida y de difícil recaudo. Atendemos obligaciones financieras, comerciales, jurídicas y de servicios, tanto de personas naturales como jurídicas, adaptando nuestras estrategias según la etapa de morosidad y las necesidades del cliente.",
+    icon: FileText
   },
   {
-    question: "¿Cuál es el monto mínimo de cartera que aceptan?",
-    answer: "Aceptamos carteras desde $50 millones COP. Para carteras menores, ofrecemos nuestro servicio de 'Cartera Express' con tarifas especiales. No hay límite máximo - hemos manejado exitosamente portafolios de más de $50.000 millones COP.",
-    category: "Requisitos",
-    icon: TrendingUp
-  },
-  {
-    question: "¿Qué documentación necesito y cómo es el proceso de inicio?",
-    answer: "Necesitas: base de datos de deudores (Excel/CSV), contratos o pagarés originales, y carta de autorización. Nuestro proceso de onboarding toma 5-7 días: análisis de cartera, firma de contrato, carga en sistema, y inicio de gestiones. Te asignamos un gerente de cuenta exclusivo.",
-    category: "Proceso",
-    icon: CheckCircle
+    question: "¿Cuál es el proceso que siguen para realizar el cobro de cartera?",
+    answer: "Iniciamos con una etapa prejuridica, donde contactamos al deudor por medio de visita personalizada. Si no se obtiene respuesta frente al pago de la obligación, pasamos a la etapa jurídica, en la que, previa autorización del cliente, adelantamos los trámites legales correspondientes para el cobro judicial de la obligación.",
+    icon: Scale
   }
 ]
 
@@ -90,16 +88,11 @@ const statsData = [
   { label: "Años de experiencia", value: "10+", icon: Star },
   { label: "Clientes satisfechos", value: "500+", icon: Users },
   { label: "Respuesta inicial", value: "24h", icon: Clock }
-]
+];
 
 export const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(0) // Primera pregunta abierta por defecto
-  const [selectedCategory, setSelectedCategory] = useState('Todos')
   const toggleFAQ = (index : any) => setOpenIndex(openIndex === index ? null : index)
-  const categories = ['Todos', ...Array.from(new Set(faqData.map(faq => faq.category)))]
-  const filteredFAQs = selectedCategory === 'Todos' 
-    ? faqData 
-    : faqData.filter(faq => faq.category === selectedCategory)
 
   return (
     <section className={`py-12 lg:py-20 ${styles.primary[50]} relative overflow-hidden`}>
@@ -176,33 +169,13 @@ export const FAQ = () => {
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
           {/* FAQ Content */}
           <motion.div variants={itemVariants} className="xl:col-span-2">
-            {/* Category Filter */}
-            <div className="mb-6">
-              <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
-                  <motion.button
-                    key={category}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-300 ${
-                      selectedCategory === category
-                        ? `bg-gradient-to-r ${styles.gradient.primary} ${styles.text.white} ${styles.shadow.primary}`
-                        : `bg-white/80 ${styles.text.secondary} hover:bg-white ${styles.shadow.card}`
-                    }`}
-                  >
-                    {category}
-                  </motion.button>
-                ))}
-              </div>
-            </div>
 
             {/* FAQ List */}
             <div className="space-y-4">
               <AnimatePresence mode="wait">
-                {filteredFAQs.map((faq, index) => (
+                {faqData.map((faq, index) => (
                   <motion.div
-                    key={`${selectedCategory}-${index}`}
+                    key={`${index}`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
@@ -221,10 +194,7 @@ export const FAQ = () => {
                           <faq.icon className={`w-5 h-5 ${styles.text.white}`} />
                         </div>
                         <div className="flex-1">
-                          <div className={`text-xs font-medium ${styles.text.accent} mb-1 uppercase tracking-wide`}>
-                            {faq.category}
-                          </div>
-                          <h3 className={`text-base lg:text-lg font-bold ${styles.text.primary} leading-tight`}>
+                          <h3 className={`text-base lg:text-sm font-bold ${styles.text.primary} leading-tight`}>
                             {faq.question}
                           </h3>
                         </div>
@@ -327,9 +297,7 @@ export const FAQ = () => {
                   </motion.div>
                 </div>
 
-                <motion.button whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }} className="w-full bg-white text-teal-800 font-bold py-3 px-4 rounded-xl transition-all duration-300 hover:shadow-xl"
-                >
+                <motion.button whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} className="w-full bg-white text-teal-800 font-bold py-3 px-4 rounded-xl transition-all duration-300 hover:shadow-xl" onClick={() => window.open(`https://wa.me/${coactiva_config.cellphones.oneToWhatsapp}`, '_blank')}>
                   Solicitar consulta gratuita
                 </motion.button>
 
