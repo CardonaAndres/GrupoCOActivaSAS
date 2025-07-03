@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 
 export const MetaTags = () => {
-  const siteTitle = "Abogados de cobranzas Medellín, Bogotá y Cali | Grupo Coactiva SAS";
+  const siteTitle = "Abogados en cobranza de cartera en Medellín, Bogotá y Cali | Grupo Coactiva SAS";
   const siteDescription = "Grupo Coactiva SAS. Abogados especializados en cobranza de cartera para empresas. Recuperamos deudas de alto valor en Medellín, Bogotá y Cali. Contáctanos.";
   
   const keywords = [

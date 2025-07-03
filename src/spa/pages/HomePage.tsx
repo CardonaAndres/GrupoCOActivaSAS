@@ -8,7 +8,7 @@ import { CardsNavigation } from "../components/CardsNavigation";
 
 export const HomePage = () => {
   useEffect(() => { 
-    document.title = 'Abogados de cobranzas Medellín, Bogotá y Cali | Grupo Coactiva SAS' 
+    document.title = 'Abogados en cobranza de cartera en Medellín, Bogotá y Cali | Grupo Coactiva SAS' 
   }, []);
 
   return (

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export const ContactPage = () => {
   useEffect(() => { 
-    document.title = 'Contacto abogados cobranzas empresas | Grupo Coactiva SAS' 
+    document.title = 'Contacta abogados de cobranza para empresas | Grupo Coactiva SAS' 
   }, [])
 
   return (
