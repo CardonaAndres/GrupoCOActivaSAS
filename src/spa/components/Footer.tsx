@@ -188,12 +188,9 @@ export const Footer = () => {
                   'Estudios de Crédito y Análisis de Bienes'
                 ].map((service, index) => (
                   <li key={index}>
-                    <a 
-                      onClick={() => window.location.href = router.contact} 
-                      className={`${styles.text.lightGray} text-sm ${styles.hover.primaryText} transition-colors duration-300 hover:translate-x-1 transform inline-block`}
-                    >
+                    <button onClick={() => window.location.href = router.contact} className={`${styles.text.lightGray} text-sm ${styles.hover.primaryText} transition-colors duration-300 hover:translate-x-1 transform inline-block`} aria-label='Solicitar consulta gratuita'>
                       {service}
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>

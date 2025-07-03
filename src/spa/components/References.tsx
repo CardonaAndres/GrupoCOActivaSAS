@@ -46,7 +46,7 @@ export const References = () => {
   const references = [
     {
       company: "Casa Arango",
-      logo: "/allies_logos/casa_arango.jpg",
+      logo: "/allies_logos/casa_arango.webp",
       manager: "Daniel Arango",
       position: "Gerente General",
       testimonial: "Para nosotros en Casa Arango, trabajar con Grupo Coactiva ha representado una alianza estratégica clave en nuestra gestión de Recuperación de cartera. Su equipo se ha destacado por su profesionalismo, eficiencia.",
@@ -54,7 +54,7 @@ export const References = () => {
     },
     {
       company: "Elastic Server",
-      logo: "/allies_logos/elasticserver.jpg",
+      logo: "/allies_logos/elasticserver.webp",
       manager: "Andrés Saldarriaga",
       position: "Gerente General",
       testimonial: "Contar con Grupo Coactiva ha sido una decisión acertada para Elastic Server. Su enfoque estratégico y la solidez de sus procesos de recuperación de cartera nos han permitido mejorar significativamente nuestros indicadores financieros. Valoramos especialmente su capacidad de adaptación a nuestras políticas internas y la transparencia con la que gestionan cada caso.",
@@ -62,7 +62,7 @@ export const References = () => {
     },
     {
       company: "Ingecon Obras & Contratos SAS",
-      logo: "/allies_logos/ingecon.jpg",
+      logo: "/allies_logos/ingecon.webp",
       manager: "Mauricio Ocampo",
       position: "Gerente General",
       testimonial: "En Ingecon, confiamos en Grupo Coactiva para la gestión de nuestra cartera institucional y ha sido una decisión estratégica acertada. Su equipo combina eficiencia, seriedad y un manejo respetuoso de cada caso, cuidando siempre la imagen de nuestra empresa frente a los clientes. Gracias a su gestión, hemos optimizado tiempos de recuperación y fortalecido nuestra liquidez operativa. Son un aliado confiable para cualquier empresa de ingeniería que valore resultados con responsabilidad.",
