@@ -12,6 +12,7 @@ import { MetaTags } from './main/components/MetaTags.tsx';
 import { PrivacityPage } from './spa/pages/PrivacityPage.tsx';
 import { FloatingContactButton } from './main/components/FloatingContactButton.tsx';
 import { FAQPage } from './spa/pages/FAQPage.tsx';
+import { SedePage } from './spa/pages/SedePage.tsx';
 
 export const App = () => {
   return (
@@ -26,6 +27,8 @@ export const App = () => {
           <Route path={router.allies} element={<AlliesPage />} />
           <Route path={router.privacity} element={<PrivacityPage />} />
           <Route path={router.FAQ} element={<FAQPage />} />
+          <Route path={router.sedeMedellin} element={<SedePage city="Medellín" />} />
+          <Route path={router.sedeBogota} element={<SedePage city="Bogotá" />} />
         </Routes>
       </Router>
 
