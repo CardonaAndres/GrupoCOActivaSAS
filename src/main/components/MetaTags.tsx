@@ -518,12 +518,6 @@ export const MetaTags = () => {
       <meta name="owner" content="Grupo Coactiva SAS" />
       <meta name="directory" content="submission" />
 
-      {/* Seguridad */}
-      <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-      <meta httpEquiv="X-Frame-Options" content="SAMEORIGIN" />
-      <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
-      <meta name="referrer" content="strict-origin-when-cross-origin" />
-
       {/* Industria y servicios específicos */}
       <meta name="industry" content="Legal Services" />
       <meta name="industry" content="Debt Collection" />
