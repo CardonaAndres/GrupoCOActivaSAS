@@ -1,7 +1,7 @@
 import { styles } from '@/main/assets/ts/styles'
 import { coactiva_config } from '@/main/configs/config'
 import { motion } from 'framer-motion'
-import { Target, Eye, Heart, Users, Shield, Award, Handshake, CheckCircle, Globe, Scale, TrendingUp, Clock, UserCheck, BarChart3, Phone } from 'lucide-react'
+import { Target, Eye, Heart, Users, Shield, Award, CheckCircle, Globe, Scale, TrendingUp, Clock, UserCheck, BarChart3, Phone } from 'lucide-react'
 
 export const AboutUs = () => {
   const containerVariants = {
@@ -65,12 +65,6 @@ export const AboutUs = () => {
   ]
 
   const expertise = [
-    { 
-      title: "Cobro Extrajudicial", 
-      icon: Handshake,
-      description: "Gestión amigable y profesional",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=300&h=200&fit=crop&crop=center&auto=format&q=80"
-    },
     { 
       title: "Cobro Prejurídico", 
       icon: Award,
@@ -404,7 +398,7 @@ export const AboutUs = () => {
               <div className="relative z-10">
                 <div className="text-center mb-6 sm:mb-8">
                   <h3 className="text-2xl sm:text-3xl font-bold mb-4">
-                    Expertos en Cobro Extrajudicial, Prejurídico y Jurídico
+                    Expertos en cobro prejurídico y jurídico
                   </h3>
                   <p className="text-green-100 text-base sm:text-lg max-w-3xl mx-auto">
                     Ofrecemos un servicio integral, adaptado a las necesidades de cada cliente, 
@@ -412,7 +406,7 @@ export const AboutUs = () => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-8">
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 mb-6 sm:mb-8">
                   {expertise.map((item, index) => (
                     <motion.div
                       key={index}
