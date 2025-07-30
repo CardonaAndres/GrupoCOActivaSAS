@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { MapPin,Mail,Shield,Users,TrendingUp, Instagram ,ArrowUp, FileText } from 'lucide-react'
+import { Mail,Shield,Users,TrendingUp, Instagram ,ArrowUp, FileText, Phone } from 'lucide-react'
 import { styles } from '@/main/assets/ts/styles'
 import { coactiva_config, router } from '@/main/configs/config'
 
@@ -122,14 +122,12 @@ export const Footer = () => {
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
                   <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${styles.gradient.primary} flex items-center justify-center flex-shrink-0 mt-0.5`}>
-                    <MapPin className={`w-5 h-5 ${styles.text.white}`} />
+                    <Phone className={`w-5 h-5 ${styles.text.white}`} />
                   </div>
                   <div>
-                    <p className={`${styles.text.white} font-medium`}>Dirección</p>
+                    <p className={`${styles.text.white} font-medium`}>Teléfono</p>
                     <p className={`${styles.text.lightGray} text-sm leading-relaxed`}>
-                      Circular 76 # 39B - 135<br />
-                      Laureles, Medellín<br />
-                      Colombia
+                      +57 3018594940
                     </p>
                   </div>
                 </div>

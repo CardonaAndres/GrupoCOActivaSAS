@@ -46,7 +46,7 @@ const locations = [
         id: 2,
         city: "Medellín",
         region: "Antioquia",
-        isMain: true,
+        isMain: false,
         href : router.sedeMedellin
     }
 ]
