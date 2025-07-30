@@ -5,7 +5,7 @@ import { ContactSection } from "../components/ContactSection";
 import { useEffect } from "react";
 import { References } from "../components/References";
 import { CardsNavigation } from "../components/CardsNavigation";
-// import { BlogSection } from "../components/BlogSection";
+import { BlogSection } from "../components/BlogSection";
 import { CityButtons } from "../components/CityButtons";
 
 export const HomePage = () => {
@@ -26,7 +26,7 @@ export const HomePage = () => {
         <References />
         <ContactSection />
         <CardsNavigation />
-        {/* <BlogSection /> */}
+        <BlogSection /> 
     </>
   )
 }

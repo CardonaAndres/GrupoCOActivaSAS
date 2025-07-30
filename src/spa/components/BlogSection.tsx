@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
-import { BookOpen, ArrowRight, Sparkles } from 'lucide-react'
+import { BookOpen, ArrowRight, Sparkles, Clock, Scale, FileText } from 'lucide-react'
 import { styles } from '@/main/assets/ts/styles'
+import { useBlogHook } from '../hooks/useBlogHook'
+import type { BlogPost } from '@/main/assets/ts/types'
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -44,45 +46,71 @@ const pulseVariants = {
     }
 }
 
-
-// Artículos de ejemplo - puedes reemplazar con datos reales
-const featuredArticles = [
-    {
-        id: 1,
-        title: "Estrategias Efectivas para la Recuperación de Cartera",
-        excerpt: "Descubre las técnicas más avanzadas y probadas para maximizar la recuperación de cuentas por cobrar en el mercado latinoamericano.",
-        category: "Estrategias",
-        readTime: "5 min",
-        views: "2.1k",
-        date: "2024-07-15",
-        featured: true,
-        image: "https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-    },
-    {
-        id: 2,
-        title: "Marco Legal del Cobro en Colombia 2024",
-        excerpt: "Conoce las últimas actualizaciones en la legislación colombiana sobre procesos de cobro y recuperación de cartera.",
-        category: "Legal",
-        readTime: "8 min",
-        views: "1.8k",
-        date: "2024-07-10",
-        featured: false,
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-    },
-    {
-        id: 3,
-        title: "Tecnología en el Cobro: Herramientas Digitales",
-        excerpt: "Explora cómo la tecnología está revolucionando los procesos de cobranza y mejorando las tasas de recuperación.",
-        category: "Tecnología",
-        readTime: "6 min",
-        views: "1.5k",
-        date: "2024-07-05",
-        featured: false,
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-    }
-]
+// Artículos destacados seleccionados del array
+const getFeaturedArticles = (blogPosts: BlogPost[]) => {
+    // Seleccionar los 3 artículos más interesantes basados en relevancia y utilidad
+    const featuredIndices = [1, 2, 4]; // Momento ideal, Cobro prejurídico, Ley 1116
+    
+    return featuredIndices.map(index => {
+        const post = blogPosts[index];
+        if (!post) return null;
+        
+        // Mapear iconos y categorías para cada artículo
+        const articleMeta: Record<number, { icon: any; category: string; color: string; excerpt: string }> = {
+            1: { 
+                icon: Clock, 
+                category: "Timing Estratégico",
+                color: "from-amber-500 to-orange-600",
+                excerpt: "Descubre el momento exacto para iniciar el cobro de cartera y maximizar tus probabilidades de recuperación exitosa."
+            },
+            2: { 
+                icon: Scale, 
+                category: "Estrategia Legal",
+                color: "from-blue-500 to-indigo-600",
+                excerpt: "Aprende la importancia del cobro prejurídico como paso previo antes de escalar a procesos judiciales costosos."
+            },
+            4: { 
+                icon: FileText, 
+                category: "Protección Legal",
+                color: "from-red-500 to-rose-600",
+                excerpt: "Protege tu cartera antes de que tu cliente se acoja a la Ley 1116 de insolvencia empresarial en Colombia."
+            }
+        };
+        
+        const meta = articleMeta[index];
+        const IconComponent = meta.icon;
+        
+        return {
+            id: `article-${index}`,
+            title: post.content.title,
+            excerpt: meta.excerpt,
+            image: post.images[0]?.url || "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            imageAlt: post.images[0]?.alt || post.content.title,
+            category: meta.category,
+            icon: IconComponent,
+            color: meta.color,
+            readTime: "5 min",
+            slug: `/blog/articulo-${index + 1}`
+        };
+    }).filter(Boolean);
+};
 
 export const BlogSection = () => {
+    const { blogPosts } = useBlogHook();
+    const featuredArticles = getFeaturedArticles(blogPosts);
+
+    const handleArticleClick = (slug : any) => {
+        // Aquí puedes implementar la navegación a la página del artículo
+        console.log(`Navegando a: ${slug}`);
+        // router.push(slug) o window.location.href = slug
+    };
+
+    const handleViewAll = () => {
+        // Navegación a la página de blog completo
+        console.log("Navegando a página de blog completo");
+        // router.push('/blog') o window.location.href = '/blog'
+    };
+
     return (
         <section className={`py-20 ${styles.accent[50]} relative overflow-hidden`}>
             {/* Enhanced Background Decorations */}
@@ -130,7 +158,6 @@ export const BlogSection = () => {
                         Mantente actualizado con las últimas tendencias, estrategias y normativas en 
                         <span className={`font-semibold ${styles.text.secondary}`}> recuperación de cartera y cobranza judicial.</span>
                     </motion.p>
-
                 </motion.div>
 
                 {/* Articles Grid */}
@@ -141,54 +168,81 @@ export const BlogSection = () => {
                     viewport={{ once: true, margin: "-100px" }}
                     className="mb-16"
                 >
-                    {/* Articles Grid - 3 Column Layout like the image */}
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {featuredArticles.map((article) => (
-                            <motion.article
-                                key={article.id}
-                                variants={itemVariants}
-                                whileHover="hover"
-                                className="group cursor-pointer"
-                            >
-                                <motion.div
-                                    variants={cardHoverVariants}
-                                    className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 h-full relative"
+                        {featuredArticles.map((article) => {
+                            const IconComponent = article?.icon;
+                            return (
+                                <motion.article
+                                    key={article?.id}
+                                    variants={itemVariants}
+                                    whileHover="hover"
+                                    className="group cursor-pointer"
+                                    onClick={() => handleArticleClick(article?.slug)}
                                 >
-                                    {/* Image Container */}
-                                    <div className="relative h-48 overflow-hidden">
-                                        <img 
-                                            src={article.image} 
-                                            alt={article.title}
-                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                        
-                                        {/* Category Badge */}
-                                        <div className="absolute top-4 left-4">
-                                            <span className={`inline-flex items-center px-3 py-1 rounded-full ${styles.primary[600]} text-white text-xs font-medium shadow-sm`}>
-                                                {article.category}
-                                            </span>
+                                    <motion.div
+                                        variants={cardHoverVariants}
+                                        className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 h-full relative group"
+                                    >
+                                        {/* Image Container */}
+                                        <div className="relative h-48 overflow-hidden">
+                                            <img 
+                                                src={article?.image} 
+                                                alt={article?.imageAlt}
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                            
+                                            {/* Category Badge with Icon */}
+                                            <div className="absolute top-4 left-4">
+                                                <div className={`inline-flex items-center px-3 py-2 rounded-full bg-gradient-to-r ${article?.color} text-white text-xs font-bold shadow-lg backdrop-blur-sm`}>
+                                                    <IconComponent className="w-3 h-3 mr-1" />
+                                                    {article?.category}
+                                                </div>
+                                            </div>
+
+                                            {/* Read Time Badge */}
+                                            <div className="absolute top-4 right-4">
+                                                <div className="bg-white/90 backdrop-blur-sm text-gray-700 px-2 py-1 rounded-full text-xs font-medium">
+                                                    <Clock className="w-3 h-3 inline mr-1" />
+                                                    {article?.readTime}
+                                                </div>
+                                            </div>
+
+                                            {/* Floating Icon on Hover */}
+                                            <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                                                <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                                                    <ArrowRight className="w-5 h-5 text-white" />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Content */}
-                                    <div className="p-6">
-                                        {/* Title */}
-                                        <h3 className={`text-xl font-bold ${styles.text.primary} mb-3 leading-tight group-hover:${styles.text.secondary} transition-colors duration-300`}>
-                                            {article.title}
-                                        </h3>
-                                        
-                                        {/* Excerpt */}
-                                        <p className={`${styles.text.gray} mb-4 leading-relaxed text-sm line-clamp-3`}>
-                                            {article.excerpt}
-                                        </p>
-                                    </div>
+                                        {/* Content */}
+                                        <div className="p-6">
+                                            {/* Title */}
+                                            <h3 className={`text-xl font-bold ${styles.text.primary} mb-3 leading-tight group-hover:${styles.text.secondary} transition-colors duration-300 line-clamp-2`}>
+                                                {article?.title}
+                                            </h3>
+                                            
+                                            {/* Excerpt */}
+                                            <p className={`${styles.text.gray} mb-4 leading-relaxed text-sm line-clamp-3`}>
+                                                {article?.excerpt}
+                                            </p>
 
-                                    {/* Hover Effect Line */}
-                                    <div className={`absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r ${styles.gradient.primary} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-2xl`} />
-                                </motion.div>
-                            </motion.article>
-                        ))}
+                                            {/* Read More Link */}
+                                            <div className="flex items-center justify-between">
+                                                <span className={`text-sm font-semibold ${styles.text.secondary} group-hover:${styles.text.primary} transition-colors duration-300`}>
+                                                    Leer más
+                                                </span>
+                                                <ArrowRight className={`w-4 h-4 ${styles.text.secondary} group-hover:${styles.text.primary} group-hover:translate-x-1 transition-all duration-300`} />
+                                            </div>
+                                        </div>
+
+                                        {/* Hover Effect Line */}
+                                        <div className={`absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r ${article?.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-2xl`} />
+                                    </motion.div>
+                                </motion.article>
+                            );
+                        })}
                     </div>
                 </motion.div>
 
@@ -200,22 +254,64 @@ export const BlogSection = () => {
                     viewport={{ once: true, margin: "-100px" }}
                     className="text-center"
                 >
-                    <div className={`p-2 lg:p-4 relative overflow-hidden`}>
-
+                    <div className="p-2 lg:p-4 relative overflow-hidden">
                         <div className="relative z-10">
+                            {/* Stats Preview */}
+                            <motion.div 
+                                className="mb-8 grid grid-cols-3 gap-4 max-w-md mx-auto"
+                                variants={containerVariants}
+                            >
+                                <motion.div 
+                                    variants={itemVariants}
+                                    className="text-center"
+                                >
+                                    <div className={`text-2xl font-bold ${styles.text.secondary}`}>
+                                        {blogPosts.length}+
+                                    </div>
+                                    <div className="text-sm text-gray-600">Artículos</div>
+                                </motion.div>
+                                <motion.div 
+                                    variants={itemVariants}
+                                    className="text-center"
+                                >
+                                    <div className={`text-2xl font-bold ${styles.text.secondary}`}>
+                                        100%
+                                    </div>
+                                    <div className="text-sm text-gray-600">Especializado</div>
+                                </motion.div>
+                                <motion.div 
+                                    variants={itemVariants}
+                                    className="text-center"
+                                >
+                                    <div className={`text-2xl font-bold ${styles.text.secondary}`}>
+                                        24/7
+                                    </div>
+                                    <div className="text-sm text-gray-600">Disponible</div>
+                                </motion.div>
+                            </motion.div>
 
-                            {/* CTA Button - Single Button like in the image */}
+                            {/* CTA Button */}
                             <div className="flex justify-center">
                                 <motion.button 
                                     whileHover={{ scale: 1.05, y: -2 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className={`group bg-gradient-to-r ${styles.gradient.primary} ${styles.hover.primary} text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3`}
+                                    onClick={handleViewAll}
+                                    className={`group bg-gradient-to-r ${styles.gradient.primary} hover:from-teal-700 hover:to-teal-900 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3`}
                                 >
                                     <BookOpen className="w-5 h-5 group-hover:animate-pulse" />
-                                    Ver todos
+                                    Ver todos los artículos
                                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                                 </motion.button>
                             </div>
+
+                            {/* Additional Info */}
+                            <motion.p 
+                                variants={itemVariants}
+                                className="mt-4 text-sm text-gray-600 max-w-lg mx-auto"
+                            >
+                                Accede a nuestra biblioteca completa de conocimiento especializado en 
+                                <span className="font-semibold text-teal-700"> recuperación de cartera y estrategias legales</span>
+                            </motion.p>
                         </div>
                     </div>
                 </motion.div>
