@@ -241,7 +241,7 @@ export const SedeComponent = () => {
                             <h2 className={`text-3xl lg:text-4xl font-bold ${styles.text.primary} mb-6 leading-tight`}>
                                 Nuestra 
                                 <span className={`text-transparent bg-clip-text bg-gradient-to-r ${styles.gradient.primary}`}>
-                                    {' '}Ubicación
+                                    {' '}Sede
                                 </span>
                             </h2>
                             <p className={`text-lg ${styles.text.accent} leading-relaxed mb-6`}>
