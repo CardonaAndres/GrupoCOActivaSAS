@@ -1,7 +1,9 @@
 import type { BlogPost } from "@/main/assets/ts/types";
+import { AlertCircle, BookOpen, Clock, DollarSign, FileText, Scale } from "lucide-react";
 
 const blogPosts: BlogPost[] = [
   {
+    id: 'articulo-1',
     seo: {
       title: "5 Beneficios del Cobro de Cartera Vencida para Empresas – Grupo Coactiva SAS",
       metaDescription: "Recupera tu liquidez. Descubre cómo Grupo Coactiva SAS logra el cobro de cartera vencida a nivel nacional con abogados expertos y paga por resultados.",
@@ -69,6 +71,7 @@ const blogPosts: BlogPost[] = [
     }
   },
   {
+    id: 'articulo-2',
     seo: {
       title: "¿Cuándo es el Momento Ideal para Iniciar el Cobro de Cartera Vencida? – Grupo Coactiva SAS",
       metaDescription: "Inicia a tiempo el cobro de cartera vencida. Grupo Coactiva SAS te ayuda con gestión legal, cobertura nacional y paga por resultados efectivos.",
@@ -145,6 +148,7 @@ const blogPosts: BlogPost[] = [
     }
   },
   {
+    id: 'articulo-3',
     seo: {
       title: "Importancia del Cobro Prejurídico en Colombia – Grupo Coactiva SAS",
       metaDescription: "El cobro prejurídico es clave antes de acciones legales. Grupo Coactiva SAS garantiza recuperación de cartera vencida con cobertura y abogados expertos.",
@@ -216,6 +220,7 @@ const blogPosts: BlogPost[] = [
     }
   },
   {
+    id: 'articulo-4',
     seo: {
       title: "Cobro de Facturas Electrónicas: Lo que Debes Saber para Iniciar un Proceso Jurídico – Grupo Coactiva SAS",
       metaDescription: "¿Factura electrónica sin pago? Grupo Coactiva SAS te asesora en su cobro jurídico, con cobertura nacional y abogados expertos. Solo pagas por resultados.",
@@ -275,6 +280,7 @@ const blogPosts: BlogPost[] = [
     }
   },
   {
+    id: 'articulo-5',
     seo: {
       title: "Ley 1116 e Insolvencia Empresarial: ¿Por qué Cobrar la Cartera Antes de que tu Cliente se Acoja? – Grupo Coactiva SAS",
       metaDescription: "Evita pérdidas por insolvencia empresarial. Grupo Coactiva SAS te ayuda a cobrar antes de que tu cliente se acoja a la Ley 1116. Solo pagas por resultados efectivos.",
@@ -348,9 +354,104 @@ const blogPosts: BlogPost[] = [
   }
 ];
 
+// Mapeo de metadatos para cada artículo
+const getArticleMetadata = (index : number) => {
+    type Difficulty = "Básico" | "Intermedio" | "Avanzado";
+
+    interface MetadataItem {
+        icon: React.ElementType;
+        category: string;
+        color: string;
+        readTime: string;
+        difficulty: Difficulty;
+    }
+
+    type Metadata = Record<number, MetadataItem>;
+
+    const metadata: Metadata = {
+        0: { 
+            icon: DollarSign, 
+            category: "Beneficios Empresariales",
+            color: "from-emerald-500 to-green-600",
+            readTime: "8 min",
+            difficulty: "Básico"
+        },
+        1: { 
+            icon: Clock, 
+            category: "Timing Estratégico",
+            color: "from-amber-500 to-orange-600",
+            readTime: "6 min",
+            difficulty: "Intermedio"
+        },
+        2: { 
+            icon: Scale, 
+            category: "Estrategia Legal",
+            color: "from-blue-500 to-indigo-600",
+            readTime: "7 min",
+            difficulty: "Intermedio"
+        },
+        3: { 
+            icon: FileText, 
+            category: "Facturación Digital",
+            color: "from-purple-500 to-violet-600",
+            readTime: "9 min",
+            difficulty: "Avanzado"
+        },
+        4: { 
+            icon: AlertCircle, 
+            category: "Protección Legal",
+            color: "from-red-500 to-rose-600",
+            readTime: "10 min",
+            difficulty: "Avanzado"
+        }
+    };
+    
+    return metadata[index] || {
+        icon: BookOpen,
+        category: "General",
+        color: "from-gray-500 to-slate-600",
+        readTime: "5 min",
+        difficulty: "Básico"
+    };
+};
+
+// Función para crear excerpt personalizado
+const createExcerpt = (post: BlogPost, maxLength = 150) => {
+    const intro = post.content.introduction;
+    if (intro.length <= maxLength) return intro;
+    
+    const truncated = intro.substring(0, maxLength);
+    const lastSpace = truncated.lastIndexOf(' ');
+    return truncated.substring(0, lastSpace) + '...';
+};
+
+// Transformar posts con metadatos
+const transformedPosts = blogPosts.map((post, index) => {
+    const meta = getArticleMetadata(index);
+    const IconComponent = meta.icon;
+    
+    return {
+        id: `post-${index}`,
+        title: post.content.title,
+        excerpt: createExcerpt(post),
+        image: post.images[0]?.url || "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+        imageAlt: post.images[0]?.alt || post.content.title,
+        category: meta.category,
+        icon: IconComponent,
+        color: meta.color,
+        readTime: meta.readTime,
+        difficulty: meta.difficulty,
+        slug: `articulo-${index + 1}`,
+        publishDate: `2024-${String(12 - index).padStart(2, '0')}-${String(15 + index * 2).padStart(2, '0')}`, // Fechas simuladas
+        seo: post.seo
+    };
+});
+
 export const useBlogHook = () => {
   return {
-    blogPosts
+    blogPosts,
+    getArticleMetadata,
+    transformedPosts
   }
 }
 

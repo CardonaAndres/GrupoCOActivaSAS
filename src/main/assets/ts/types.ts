@@ -1,4 +1,5 @@
 export type BlogPost = {
+  id: string;
   seo: {
     title: string;
     metaDescription: string;

@@ -14,6 +14,10 @@ const navItems = [
       to: router.services
     },
     {
+      name: 'Blog',
+      to: router.blogPage
+    },
+    {
       name: 'Contacto',
       to: router.contact
     },

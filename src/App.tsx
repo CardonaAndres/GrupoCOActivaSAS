@@ -13,6 +13,8 @@ import { PrivacityPage } from './spa/pages/PrivacityPage.tsx';
 import { FloatingContactButton } from './main/components/FloatingContactButton.tsx';
 import { FAQPage } from './spa/pages/FAQPage.tsx';
 import { SedePage } from './spa/pages/SedePage.tsx';
+import { BlogPage } from './spa/pages/BlogPage.tsx';
+import { BlogPostPage } from './spa/components/BlogPostPage.tsx';
 
 export const App = () => {
   return (
@@ -29,6 +31,8 @@ export const App = () => {
           <Route path={router.FAQ} element={<FAQPage />} />
           <Route path={router.sedeMedellin} element={<SedePage city="Medellín" />} />
           <Route path={router.sedeBogota} element={<SedePage city="Bogotá" />} />
+          <Route path={router.blogPage} element={<BlogPage />} />
+          <Route path={router.blogPost} element={<BlogPostPage />} />
         </Routes>
       </Router>
 

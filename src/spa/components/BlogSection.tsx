@@ -3,6 +3,8 @@ import { BookOpen, ArrowRight, Sparkles, Clock, Scale, FileText } from 'lucide-r
 import { styles } from '@/main/assets/ts/styles'
 import { useBlogHook } from '../hooks/useBlogHook'
 import type { BlogPost } from '@/main/assets/ts/types'
+import { router } from '@/main/configs/config'
+import { useNavigate } from 'react-router-dom'
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -90,26 +92,18 @@ const getFeaturedArticles = (blogPosts: BlogPost[]) => {
             icon: IconComponent,
             color: meta.color,
             readTime: "5 min",
-            slug: `/blog/articulo-${index + 1}`
+            slug: `articulo-${index + 1}`
         };
     }).filter(Boolean);
 };
 
 export const BlogSection = () => {
     const { blogPosts } = useBlogHook();
+    const navigate = useNavigate();
     const featuredArticles = getFeaturedArticles(blogPosts);
 
-    const handleArticleClick = (slug : any) => {
-        // Aquí puedes implementar la navegación a la página del artículo
-        console.log(`Navegando a: ${slug}`);
-        // router.push(slug) o window.location.href = slug
-    };
-
-    const handleViewAll = () => {
-        // Navegación a la página de blog completo
-        console.log("Navegando a página de blog completo");
-        // router.push('/blog') o window.location.href = '/blog'
-    };
+    const handleArticleClick = (slug : string) => navigate(router.blogPost.replace(':slug', slug));
+    const handleViewAll = () => window.location.href = router.blogPage;
 
     return (
         <section className={`py-20 ${styles.accent[50]} relative overflow-hidden`}>
@@ -177,7 +171,7 @@ export const BlogSection = () => {
                                     variants={itemVariants}
                                     whileHover="hover"
                                     className="group cursor-pointer"
-                                    onClick={() => handleArticleClick(article?.slug)}
+                                    onClick={() => handleArticleClick(article?.slug || '')}
                                 >
                                     <motion.div
                                         variants={cardHoverVariants}
@@ -197,14 +191,6 @@ export const BlogSection = () => {
                                                 <div className={`inline-flex items-center px-3 py-2 rounded-full bg-gradient-to-r ${article?.color} text-white text-xs font-bold shadow-lg backdrop-blur-sm`}>
                                                     <IconComponent className="w-3 h-3 mr-1" />
                                                     {article?.category}
-                                                </div>
-                                            </div>
-
-                                            {/* Read Time Badge */}
-                                            <div className="absolute top-4 right-4">
-                                                <div className="bg-white/90 backdrop-blur-sm text-gray-700 px-2 py-1 rounded-full text-xs font-medium">
-                                                    <Clock className="w-3 h-3 inline mr-1" />
-                                                    {article?.readTime}
                                                 </div>
                                             </div>
 
@@ -258,18 +244,9 @@ export const BlogSection = () => {
                         <div className="relative z-10">
                             {/* Stats Preview */}
                             <motion.div 
-                                className="mb-8 grid grid-cols-3 gap-4 max-w-md mx-auto"
+                                className="mb-8 grid grid-cols-2 gap-4 max-w-md mx-auto"
                                 variants={containerVariants}
                             >
-                                <motion.div 
-                                    variants={itemVariants}
-                                    className="text-center"
-                                >
-                                    <div className={`text-2xl font-bold ${styles.text.secondary}`}>
-                                        {blogPosts.length}+
-                                    </div>
-                                    <div className="text-sm text-gray-600">Artículos</div>
-                                </motion.div>
                                 <motion.div 
                                     variants={itemVariants}
                                     className="text-center"

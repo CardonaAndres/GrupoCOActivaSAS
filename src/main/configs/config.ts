@@ -8,6 +8,8 @@ export const router = {
     FAQ : '/preguntas-frecuentes-cobranzas-coactiva',
     sedeMedellin : '/casa-de-cobranzas-en-medellin',
     sedeBogota : '/casa-de-cobranzas-en-bogota',
+    blogPage : '/nuestras-publicaciones-grupo-coactiva',
+    blogPost : '/nuestra-publicacion/:slug',
 }
 
 export const coactiva_config = {
