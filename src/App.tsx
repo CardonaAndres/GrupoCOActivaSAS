@@ -29,10 +29,16 @@ export const App = () => {
           <Route path={router.allies} element={<AlliesPage />} />
           <Route path={router.privacity} element={<PrivacityPage />} />
           <Route path={router.FAQ} element={<FAQPage />} />
+
+          <Route path={router.medellinUrlOne} element={<SedePage city="Medellín" />} />
           <Route path={router.sedeMedellin} element={<SedePage city="Medellín" />} />
+          <Route path={router.bogotaUrlOne} element={<SedePage city="Bogotá" />} />
           <Route path={router.sedeBogota} element={<SedePage city="Bogotá" />} />
+
           <Route path={router.blogPage} element={<BlogPage />} />
           <Route path={router.blogPost} element={<BlogPostPage />} />
+
+          <Route path="*" element={<HomePage />} />
         </Routes>
       </Router>
 

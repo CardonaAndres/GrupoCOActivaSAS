@@ -4,7 +4,7 @@ import { SedeComponent } from "../components/SedeComponent"
 
 export const SedePage = ({ city } : { city: string }) => {
     useEffect(() => {
-        document.title = `Casa de cobranzas en ${city} - Grupo Coactiva S.A.S`
+        document.title = `Abogados de Cobranza en ${city} | Grupo Coactiva S.A.S`
     }, [city]);
 
     return (
