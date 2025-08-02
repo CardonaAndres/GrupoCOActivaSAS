@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { References } from "../components/References";
 import { CardsNavigation } from "../components/CardsNavigation";
 import { BlogSection } from "../components/BlogSection";
-import { CityButtons } from "../components/CityButtons";
 
 export const HomePage = () => {
   useEffect(() => { 
@@ -19,7 +18,6 @@ export const HomePage = () => {
         <div className="pt-16">
             <Hero />
         </div>
-        <CityButtons />
         <div id="services"> 
           <Services />
         </div>

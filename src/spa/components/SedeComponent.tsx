@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { MapPin, Navigation, Building, Sparkles, Star } from 'lucide-react'
+import { MapPin, Navigation, Building, Star, Mail } from 'lucide-react'
 import { styles } from '@/main/assets/ts/styles'
 import { useLocation } from 'react-router-dom'
 import { coactiva_config, sedes } from '@/main/configs/config'
@@ -51,7 +51,7 @@ const floatingVariants = {
 export const SedeComponent = () => {
     const location = useLocation();
     const isMedellin = location.pathname.includes('medellin');
-    const { city, backgroundImage, mapUrl, description, highlights } = isMedellin ? sedes.medellin : sedes.bogota;
+    const { city, address, backgroundImage, mapUrl, description, highlights, email } = isMedellin ? sedes.medellin : sedes.bogota;
 
     return (
         <section className={`py-20 ${styles.accent[50]} relative overflow-hidden`}>
@@ -96,27 +96,25 @@ export const SedeComponent = () => {
                         {/* Header Content */}
                         <div className="absolute inset-0 flex items-center justify-center">
                             <div className="text-center text-white relative z-10">
-                                <motion.div variants={itemVariants} className="mb-6">
-                                    <motion.span 
-                                        variants={pulseVariants}
-                                        animate="pulse"
-                                        className="inline-flex items-center px-6 py-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-sm font-bold shadow-lg"
-                                    >
-                                        <Building className="w-5 h-5 mr-2" />
-                                        Nuestra Sede
-                                        <Sparkles className="w-4 h-4 ml-2" />
-                                    </motion.span>
-                                </motion.div>
-
                                 <motion.h1 
                                     variants={itemVariants}
                                     className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
                                 >
-                                    Sede 
+                                    Sede
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-teal-200">
                                         {' '}{city}
                                     </span>
                                 </motion.h1>
+
+                                <motion.div
+                                    variants={itemVariants}
+                                    className="flex items-center justify-center mb-4"
+                                >
+                                    <MapPin className="w-6 h-6 text-cyan-200 mr-3" />
+                                    <p className="text-xl text-white/90 font-medium">
+                                        {address}
+                                    </p>
+                                </motion.div>
 
                                 <motion.p 
                                     variants={itemVariants}
@@ -148,7 +146,7 @@ export const SedeComponent = () => {
                             <h2 className={`text-3xl lg:text-4xl font-bold ${styles.text.primary} mb-6 leading-tight`}>
                                 Información de 
                                 <span className={`text-transparent bg-clip-text bg-gradient-to-r ${styles.gradient.primary}`}>
-                                    {' '}Contacto
+                                    {' '}contacto
                                 </span>
                             </h2>
                             <p className={`text-lg ${styles.text.accent} leading-relaxed`}>
@@ -156,6 +154,35 @@ export const SedeComponent = () => {
                                 Contáctanos a través de cualquiera de nuestros canales disponibles.
                             </p>
                         </div>
+
+                        {/* Contact Details */}
+                        <motion.div variants={itemVariants} className="space-y-4">
+                            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                                <h3 className={`text-lg font-bold ${styles.text.primary} mb-4 flex items-center`}>
+                                    <Building className={`w-5 h-5 ${styles.text.secondary} mr-2`} />
+                                    Detalles de la oficina
+                                </h3>
+                                
+                                <div className="space-y-3">
+                                    <div className="flex items-start">
+                                        <MapPin className={`w-5 h-5 ${styles.text.accent} mt-0.5 mr-3 flex-shrink-0`} />
+                                        <div>
+                                            <p className={`font-medium ${styles.text.primary}`}>Dirección</p>
+                                            <p className={`${styles.text.accent} text-sm`}>{address}</p>
+                                            <p className={`${styles.text.accent} text-sm`}>{city}, Colombia</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="flex items-start">
+                                        <Mail className={`w-5 h-5 ${styles.text.accent} mt-0.5 mr-3 flex-shrink-0`} />
+                                        <div>
+                                            <p className={`font-medium ${styles.text.primary}`}>Email</p>
+                                            <p className={`${styles.text.accent} text-sm`}>{email}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
 
                         {/* CTA Section */}
                         <div className="space-y-4">
@@ -213,9 +240,9 @@ export const SedeComponent = () => {
                         <motion.div variants={itemVariants} className="mt-8">
                             <h3 className={`text-xl font-bold ${styles.text.primary} mb-4 flex items-center`}>
                                 <Star className={`w-5 h-5 ${styles.text.secondary} mr-2`} />
-                                ¿Por qué elegir nuestra sede?
+                                ¿Por qué Grupo Coactiva S.A.S?
                             </h3>
-                            <div className="grid grid-cols-2 gap-3">
+                            <div className="grid grid-cols-3 gap-3">
                                 {highlights.map((highlight, index) => (
                                     <motion.div
                                         key={index}
@@ -239,13 +266,12 @@ export const SedeComponent = () => {
                         {/* Map Header */}
                         <div>
                             <h2 className={`text-3xl lg:text-4xl font-bold ${styles.text.primary} mb-6 leading-tight`}>
-                                Nuestra 
                                 <span className={`text-transparent bg-clip-text bg-gradient-to-r ${styles.gradient.primary}`}>
-                                    {' '}Sede
+                                    Ubicación
                                 </span>
                             </h2>
                             <p className={`text-lg ${styles.text.accent} leading-relaxed mb-6`}>
-                                Encuentranos fácilmente en el corazón de {city}. 
+                                Encuéntranos fácilmente en el corazón de {city}. 
                                 Nuestra ubicación estratégica nos permite brindar un servicio eficiente y accesible.
                             </p>
                         </div>
@@ -270,7 +296,7 @@ export const SedeComponent = () => {
                                             </div>
                                             <div>
                                                 <h4 className={`font-bold ${styles.text.primary}`}>Mapa Interactivo</h4>
-                                                <p className={`text-sm ${styles.text.accent}`}>Sede {city}</p>
+                                                <p className={`text-sm ${styles.text.accent}`}>{address}</p>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-1">
@@ -299,7 +325,7 @@ export const SedeComponent = () => {
                                 {/* Map Footer */}
                                 <div className="relative z-10 mt-4 flex items-center justify-between text-sm">
                                     <span className={`${styles.text.accent} font-medium`}>
-                                        📍 {city}, Colombia
+                                        📍 {address}, {city}
                                     </span>
                                     <span className={`${styles.text.gray}`}>
                                         Actualizado hoy
@@ -311,7 +337,9 @@ export const SedeComponent = () => {
                             <motion.button
                                 whileHover={{ scale: 1.1, rotate: 5 }}
                                 whileTap={{ scale: 0.9 }}
+                                onClick={() => window.open(`https://maps.google.com/?q=${encodeURIComponent(address + ', ' + city)}`, '_blank')}
                                 className={`absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br ${styles.primary[500]} to-cyan-600 rounded-full shadow-xl flex items-center justify-center z-20 hover:shadow-2xl transition-all duration-300`}
+                                title="Abrir en Google Maps"
                             >
                                 <Navigation className="w-6 h-6 text-white" />
                             </motion.button>

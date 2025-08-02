@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import { Mail,Shield,Users,TrendingUp, Instagram ,ArrowUp, FileText, Phone } from 'lucide-react'
+import { Mail,Shield,Users,TrendingUp, Instagram ,ArrowUp, FileText, Phone, MapPin } from 'lucide-react'
 import { styles } from '@/main/assets/ts/styles'
-import { coactiva_config, router } from '@/main/configs/config'
+import { coactiva_config, router, sedes } from '@/main/configs/config'
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -142,8 +142,36 @@ export const Footer = () => {
                       href="mailto:info@grupocoactiva.com" 
                       className={`${styles.text.lightGray} text-sm ${styles.hover.primaryText} transition-colors duration-300`}
                     >
-                      { coactiva_config.emails.one }
+                      {coactiva_config.emails.one}
                     </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${styles.gradient.primary} flex items-center justify-center flex-shrink-0`}>
+                    <MapPin className={`w-5 h-5 ${styles.text.white}`} />
+                  </div>
+                  <div className="flex-1">
+                    <p className={`${styles.text.white} font-medium mb-3`}>Nuestras ubicaciones</p>
+                    <div className="space-y-2">
+                      <motion.button
+                        onClick={() => window.location.href = router.medellinUrlOne}
+                        whileHover={{ scale: 1.02, x: 5 }}
+                        className={`block w-full text-left ${styles.text.lightGray} text-sm ${styles.hover.primaryText} transition-all duration-300 hover:bg-white/10 rounded-lg p-2`}
+                      >
+                        <div className="font-medium text-white">Medellín</div>
+                        <div className="text-xs">{sedes.medellin.address}</div>
+                      </motion.button>
+                      
+                      <motion.button
+                        onClick={() => window.location.href = router.bogotaUrlOne}
+                        whileHover={{ scale: 1.02, x: 5 }}
+                        className={`block w-full text-left ${styles.text.lightGray} text-sm ${styles.hover.primaryText} transition-all duration-300 hover:bg-white/10 rounded-lg p-2`}
+                      >
+                        <div className="font-medium text-white">Bogotá</div>
+                        <div className="text-xs">{sedes.bogota.address}</div>
+                      </motion.button>
+                    </div>
                   </div>
                 </div>
               </div>

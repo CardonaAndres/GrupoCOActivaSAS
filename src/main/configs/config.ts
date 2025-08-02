@@ -37,6 +37,7 @@ export const coactiva_config = {
 export const sedes = {
     medellin: {
         city: 'Medellín',
+        address: 'Circular 76 # 39B-135. Laureles, Medellín',
         backgroundImage: '/backgroung_imgs/medellin.webp',
         email: 'comercial@grupocoactivasas.com',
         mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0234567890123!2d-75.5678901234567!3d6.234567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e44290123456789%3A0x1234567890abcdef!2sCircular%2076%20%23%2039B-135%2C%20Laureles%2C%20Medell%C3%ADn%2C%20Antioquia%2C%20Colombia!5e0!3m2!1ses!2sco!4v1234567890123!5m2!1ses!2sco',
@@ -44,6 +45,8 @@ export const sedes = {
         highlights: ['Ubicación estratégica', 'Atención personalizada', 'Equipo especializado']
     },
     bogota: {
+        name: 'Oficina Bogotá',
+        address: 'Cl. 106 # 54-93. Suba, Bogotá',
         city: 'Bogotá',
         backgroundImage: '/backgroung_imgs/bogota.webp',
         email: 'comercial@grupocoactivasas.com',
