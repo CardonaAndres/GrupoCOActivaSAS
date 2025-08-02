@@ -315,9 +315,6 @@ export const SedeComponent = () => {
                                     <span className={`${styles.text.accent} font-medium`}>
                                         📍 {address}, {city}
                                     </span>
-                                    <span className={`${styles.text.gray}`}>
-                                        Actualizado hoy
-                                    </span>
                                 </div>
                             </div>
 
