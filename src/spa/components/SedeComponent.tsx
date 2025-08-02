@@ -100,25 +100,13 @@ export const SedeComponent = () => {
                                     variants={itemVariants}
                                     className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
                                 >
-                                    Sede
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-teal-200">
-                                        {' '}{city}
+                                        {city}
                                     </span>
                                 </motion.h1>
-
-                                <motion.div
-                                    variants={itemVariants}
-                                    className="flex items-center justify-center mb-4"
-                                >
-                                    <MapPin className="w-6 h-6 text-cyan-200 mr-3" />
-                                    <p className="text-xl text-white/90 font-medium">
-                                        {address}
-                                    </p>
-                                </motion.div>
-
                                 <motion.p 
                                     variants={itemVariants}
-                                    className="text-xl mb-8 leading-relaxed max-w-3xl mx-auto text-white/90"
+                                    className="text-xl mb-8 leading-relaxed max-w-4xl mx-auto text-white/90"
                                 >
                                     {description}
                                 </motion.p>
