@@ -1,218 +1,207 @@
+import { useState, useEffect } from 'react';
+import { Menu, X, AlertCircle, Phone, Mail, MapPin } from 'lucide-react';
 import { styles } from '@/main/assets/ts/styles';
-import { motion } from 'framer-motion';
-import { CheckCircle, Users, Globe } from 'lucide-react';
 import { ContactForm } from '../hero/ContactForm';
-import { PrincipalHeroCard } from '../hero/PrincipalHeroCard';
-import { InfoCards } from '../hero/InfoCards';
-import { SliderBrands } from '../hero/SliderBrands';
-import { useState, useEffect, useMemo, memo } from 'react';
 
-// Tipos para mejor type safety
-interface BenefitCardProps {
-  icon: React.ComponentType<{ className?: string }>;
-  iconBg: string;
-  title: string;
-  description: string;
-}
+const Navigation = ({ className = "", onLinkClick = () => {} }) => (
+  <nav className={`flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-8 text-white ${className}`}>
+    <a href="#inicio" onClick={onLinkClick} className="text-cyan-400 font-medium text-lg md:text-base hover:text-cyan-300 transition-colors">Inicio</a>
+    <a href="#nosotros" onClick={onLinkClick} className={`${styles.hover.accentText} transition-colors text-lg md:text-base`}>Sobre nosotros</a>
+    <a href="#servicios" onClick={onLinkClick} className={`${styles.hover.accentText} transition-colors text-lg md:text-base`}>Servicios</a>
+    <a href="#articulos" onClick={onLinkClick} className={`${styles.hover.accentText} transition-colors text-lg md:text-base`}>Artículos</a>
+    <a href="#contacto" onClick={onLinkClick} className={`${styles.hover.accentText} transition-colors text-lg md:text-base`}>Contáctanos</a>
+  </nav>
+);
 
-// Componente memoizado para las cards de beneficios
-const BenefitCard = memo<BenefitCardProps>(({ icon: Icon, iconBg, title, description }) => (
-  <motion.div 
-    variants={itemVariants} 
-    className="backdrop-blur-xl rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 border border-white/25 shadow-2xl hover:bg-black/40 transition-all duration-300"
-    whileHover={{ scale: 1.05 }} 
-    whileTap={{ scale: 0.98 }}
-  >
-    <div className="flex items-center mb-3 md:mb-4">
-      <div className={`p-2 md:p-3 ${iconBg} rounded-lg md:rounded-xl mr-3 md:mr-4 shadow-lg`}>
-        <Icon className={`w-5 h-5 md:w-6 md:h-6 ${iconBg.includes('white') ? '' : 'text-white'}`} />
-      </div>
-      <h3 className="text-white font-bold text-base md:text-lg drop-shadow-lg">{title}</h3>
-    </div>
-    <p className="text-white/95 text-sm md:text-base drop-shadow-md">{description}</p>
-  </motion.div>
-));
+const MobileMenu = ({ isOpen, onToggle }: { isOpen: boolean, onToggle: () => void }) => {
+  const handleLinkClick = () => {
+    onToggle(); // Cierra el menú cuando se hace clic en un enlace
+  };
 
-BenefitCard.displayName = 'BenefitCard';
-
-// Componente para elementos flotantes decorativos
-const FloatingElements = memo(() => (
-  <div className="absolute inset-0 z-20 hidden lg:block pointer-events-none">
-    <motion.div
-      variants={floatingVariants}
-      animate="animate"
-      className="absolute top-20 right-20 w-32 h-32 lg:w-40 lg:h-40 bg-white/5 rounded-full blur-3xl will-change-transform"
-    />
-    <motion.div
-      variants={floatingVariants}
-      animate="animate"
-      initial={{ animationDelay: '2s' }}
-      className={`absolute bottom-32 left-16 w-24 h-24 lg:w-32 lg:h-32 ${styles.primary[400]}/10 rounded-full blur-2xl will-change-transform`}
-    />
-    <motion.div
-      variants={pulseVariants}
-      animate="animate"
-      className="absolute top-1/2 right-1/4 w-20 h-20 lg:w-24 lg:h-24 bg-slate-200/5 rounded-full blur-xl will-change-[transform,opacity]"
-    />
-  </div>
-));
-
-FloatingElements.displayName = 'FloatingElements';
-
-// Constantes y variantes fuera del componente
-const DESKTOP_BREAKPOINT = 768;
-const RESIZE_DEBOUNCE_MS = 150;
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.8,
-      staggerChildren: 0.15
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { y: 50, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.8, ease: "easeOut" }
-  }
-};
-
-const floatingVariants = {
-  animate: {
-    y: [-20, 20, -20],
-    x: [-10, 10, -10],
-    transition: {
-      duration: 6,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
-  }
-};
-
-const pulseVariants = {
-  animate: {
-    scale: [1, 1.1, 1],
-    opacity: [0.8, 0.8, 0.8],
-    transition: {
-      duration: 3,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
-  }
-};
-
-// Datos de las cards de beneficios
-const benefitCardsData = [
-  {
-    icon: CheckCircle,
-    iconBg: "bg-white",
-    title: "Solo pagas por resultados",
-    description: "Sin inversión inicial, sin costos ocultos. Solo cobramos cuando recuperas tu dinero."
-  },
-  {
-    icon: Users,
-    iconBg: styles.primary[600],
-    title: "Equipo especializado",
-    description: "Abogados expertos en recuperación de cartera con estrategias personalizadas."
-  },
-  {
-    icon: Globe,
-    iconBg: "bg-slate-700",
-    title: "Cobertura total",
-    description: "Gestión de cobro en Colombia y toda América Latina con procesos ágiles."
-  }
-];
-
-// Hook personalizado para detectar desktop
-const useIsDesktop = () => {
-  const [isDesktop, setIsDesktop] = useState(() => 
-    typeof window !== 'undefined' ? window.innerWidth >= DESKTOP_BREAKPOINT : true
-  );
-
+  // Prevent body scroll when menu is open
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
     
-    const handleResize = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setIsDesktop(window.innerWidth >= DESKTOP_BREAKPOINT);
-      }, RESIZE_DEBOUNCE_MS);
-    };
-
-    window.addEventListener('resize', handleResize);
     return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener('resize', handleResize);
+      document.body.style.overflow = 'unset';
     };
-  }, []);
-
-  return isDesktop;
-};
-
-export const Hero = () => {
-  const isDesktop = useIsDesktop();
-  
-  // Memoizar la imagen actual
-  const currentImage = useMemo(() => 
-    isDesktop ? '/backgroung_imgs/desk_img.webp' : '/backgroung_imgs/cell_img.webp', 
-    [isDesktop]
-  );
-
-  // Memoizar estilos del background
-  const backgroundStyle = useMemo(() => ({
-    backgroundImage: `url('${currentImage}')`,
-    backgroundSize: 'cover',
-    backgroundPosition: isDesktop ? 'center 20%' : 'center center',
-    backgroundRepeat: 'no-repeat',
-    willChange: 'auto',
-    transform: 'translateZ(0)', // Force GPU acceleration
-    WebkitBackfaceVisibility: 'hidden' as const,
-    backfaceVisibility: 'hidden' as const,
-  }), [currentImage, isDesktop]);
+  }, [isOpen]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* Background Image optimizado */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0" style={backgroundStyle} />
-      </div>
+    <div className="md:hidden">
+      <button 
+        onClick={onToggle}
+        className="text-white p-2 hover:bg-white/20 rounded-lg transition-all duration-200 hover:scale-105"
+        aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+      >
+        {isOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
       
-      {/* Elementos flotantes decorativos */}
-      <FloatingElements />
-
-      {/* Contenido principal */}
-      <div className="relative z-30 min-h-screen">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="min-h-screen flex items-center py-8 sm:py-12 md:py-20">
-            <div className="w-full max-w-7xl mx-auto">
-              <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16'>
-                <PrincipalHeroCard containerVariants={containerVariants} itemVariants={itemVariants}/>
-                <ContactForm />
-              </div>
-              
-              {/* Cards de beneficios */}
-              <motion.div 
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 md:mb-12 mt-8 sm:mt-12 md:mt-16"
+      {/* Mobile menu overlay with animation */}
+      <div className={`fixed inset-0 z-50 transition-all duration-300 ${
+        isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+      }`}>
+        <div className="absolute inset-0 bg-teal-900/95 backdrop-blur-md" onClick={onToggle} />
+        
+        <div className={`relative h-full bg-gradient-to-br from-teal-800 to-teal-900 transform transition-transform duration-300 ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
+          <div className="flex flex-col h-full">
+            {/* Header */}
+            <div className="flex justify-between items-center p-6 border-b border-white/20">
+              <Logo />
+              <button 
+                onClick={onToggle}
+                className="text-white p-2 hover:bg-white/20 rounded-lg transition-all duration-200"
               >
-                {benefitCardsData.map((card, index) => (
-                  <BenefitCard key={index} {...card} />
-                ))}
-              </motion.div>
-
-              <InfoCards containerVariants={containerVariants} itemVariants={itemVariants} />
-              <SliderBrands />
+                <X size={24} />
+              </button>
+            </div>
+            
+            {/* Navigation */}
+            <div className="flex-1 px-6 py-12">
+              <Navigation className="text-xl space-y-8" onLinkClick={handleLinkClick} />
+              
+              {/* Contact info in mobile menu */}
+              <div className="mt-16 pt-8 border-t border-white/20">
+                <h3 className="text-cyan-400 font-semibold mb-6 text-lg">Contacto rápido</h3>
+                <div className="space-y-4 text-white/80">
+                  <div className="flex items-center space-x-3">
+                    <Phone size={18} className="text-cyan-400" />
+                    <span>+57 123 456 7890</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Mail size={18} className="text-cyan-400" />
+                    <span>info@grupocoactiva.com</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <MapPin size={18} className="text-cyan-400" />
+                    <span>Guarne, Antioquia</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  );
+};
+
+const Logo = () => (
+  <div className="flex items-center group cursor-pointer">
+    <div className="text-cyan-400 mr-3 transition-transform group-hover:scale-110 duration-200">
+      <AlertCircle size={32} />
+    </div>
+    <div className="text-white">
+      <div className="text-xl font-bold tracking-wider">GRUPO</div>
+      <div className="text-xs tracking-widest opacity-80">COACTIVA S.A.S</div>
+    </div>
+  </div>
+);
+
+export const Hero = () => { 
+  const imageURL = 'https://images.pexels.com/photos/3446126/pexels-photo-3446126.jpeg';
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  return (
+    <div className="relative min-h-screen bg-gradient-to-br from-teal-600 to-teal-800">
+      {/* Background - Solo visible en desktop */}
+      <div className="hidden md:block absolute inset-0">
+        <div 
+          className="w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${imageURL})`
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-900/40 to-teal-800/60" />
+      </div>
+
+      {/* Header con imagen de fondo en móvil */}
+      <header className="relative z-10">
+        {/* Imagen de fondo solo en móvil */}
+        <div className="md:hidden absolute inset-0 h-80">
+          <div 
+            className="w-full h-full bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(${imageURL})`
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-teal-900/60 via-teal-800/70 to-teal-600" />
+        </div>
+
+        {/* Navigation */}
+        <div className="relative z-20 px-4 md:px-8 py-6">
+          <div className="flex items-center justify-between max-w-7xl mx-auto">
+            <Logo />
+            <div className="hidden md:block">
+              <Navigation />
+            </div>
+            <MobileMenu isOpen={isMobileMenuOpen} onToggle={toggleMobileMenu} />
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="relative z-10 px-4 md:px-8 pb-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:min-h-[calc(100vh-120px)]">
+            {/* Left Content */}
+            <div className="lg:w-3/5 py-8 md:py-16 lg:pr-12">
+              <div className="max-w-3xl">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                  <span className="text-white block">Enfócate en</span>
+                  <span className="text-cyan-400 block">crecer,</span>
+                  <span className="text-white block">nosotros cobramos</span>
+                  <span className="text-cyan-400">por ti.</span>
+                </h1>
+                
+                <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+                  Recuperamos tu cartera vencida con estrategias efectivas y profesionales.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                  <button className="border-2 border-white/30 hover:border-white/50 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-200 hover:bg-white/10">
+                    Ver casos de éxito
+                  </button>
+                </div>
+                
+                {/* Mobile Content */}
+                <div className="lg:hidden mt-16">
+                  <ContactForm />
+                </div>
+              </div>
+            </div>
+
+            {/* Right Content - Desktop Only */}
+            <div className="hidden lg:block lg:w-2/5">
+              <ContactForm />
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Large decorative element - Desktop only */}
+      <div className="hidden xl:block absolute bottom-0 right-0 opacity-10 pointer-events-none">
+        <div className="text-cyan-300 text-[500px] font-bold leading-none select-none">
+          G
+        </div>
+      </div>
+      
+      {/* Additional decorative elements */}
+      <div className="hidden md:block absolute top-1/4 left-8 opacity-20">
+        <div className="w-32 h-32 rounded-full border-2 border-cyan-400/30"></div>
+      </div>
+      <div className="hidden md:block absolute bottom-1/4 right-1/4 opacity-20">
+        <div className="w-16 h-16 rounded-full bg-cyan-400/20"></div>
       </div>
     </div>
   );
