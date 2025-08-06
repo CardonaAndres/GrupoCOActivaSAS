@@ -71,7 +71,7 @@ export const BlogPostPage = () => {
             3: { 
                 readTime: "9 min",
                 difficulty: "Avanzado",
-                category: "Facturación Digital",
+                category: "Facturación Electrónica",
                 publishDate: "2024-12-09"
             },
             4: { 

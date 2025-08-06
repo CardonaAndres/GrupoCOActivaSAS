@@ -392,7 +392,7 @@ const getArticleMetadata = (index : number) => {
         },
         3: { 
             icon: FileText, 
-            category: "Facturación Digital",
+            category: "Facturación Electrónica",
             color: "from-purple-500 to-violet-600",
             readTime: "9 min",
             difficulty: "Avanzado"

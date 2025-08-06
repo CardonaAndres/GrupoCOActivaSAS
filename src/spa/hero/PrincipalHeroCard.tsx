@@ -1,7 +1,6 @@
 import { styles } from '@/main/assets/ts/styles';
-import { coactiva_config } from '@/main/configs/config';
 import { motion } from 'framer-motion';
-import { Award, Clock, Phone } from 'lucide-react';
+import { Award, Clock } from 'lucide-react';
 
 interface Props {
     containerVariants : any,
@@ -54,18 +53,7 @@ export const PrincipalHeroCard = ({ containerVariants, itemVariants } : Props) =
             </motion.button>
         </motion.div>
         {/* CTA adicional - Llamada inmediata */}
-        <motion.div variants={itemVariants} className="mt-6">
-            <button onClick={() => {window.open(`tel:${coactiva_config.cellphones.one}`, '_self')}} 
-                className="group inline-flex items-center gap-2 text-teal-800/80 hover:text-teal-800 transition-colors w-full sm:w-auto justify-center sm:justify-start p-3 sm:p-0 rounded-lg sm:rounded-none hover:bg-teal-800/10">
-                <Phone className="w-4 h-4 sm:w-4 sm:h-4 flex-shrink-0" />
-                <span className="text-sm sm:text-sm underline text-center sm:text-left leading-relaxed">
-                    <span className="block sm:inline">¿Tus clientes te deben y no te pagan?</span>
-                    <span className="block sm:inline sm:ml-1">
-                        Contáctanos: <span className="font-medium">{coactiva_config.cellphones.one}</span>
-                    </span>
-                </span>
-            </button>
-        </motion.div>
+        
     </motion.div>
   )
 }

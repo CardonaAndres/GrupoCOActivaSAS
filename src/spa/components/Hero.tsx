@@ -3,10 +3,11 @@ import { Mail, Menu, Phone, X } from 'lucide-react';
 import { ContactForm } from '../hero/ContactForm';
 import { useNavHook } from '../hooks/useNavHook';
 import { Link } from 'react-router-dom';
-import { router } from '@/main/configs/config';
+import { coactiva_config, router } from '@/main/configs/config';
 import { InfoCards } from '../hero/InfoCards';
 import { SliderBrands } from '../hero/SliderBrands';
 import { PrincipalHeroCard } from '../hero/PrincipalHeroCard';
+import { motion } from 'framer-motion';
 
 const Navigation = () => {
     const { navItems } = useNavHook();
@@ -161,12 +162,49 @@ export const Hero = () => {
 
       {/* Header con fondo siempre blanco */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
-        <div className="px-4 md:px-8 py-3 sm:py-4">
+        <div className="px-4 md:px-8 py-3 md:py-4">
           <div className="flex items-center justify-between max-w-7xl mx-auto">
+            {/* Logo */}
             <Logo />
-            <div className="hidden md:block">
+            
+            {/* Botón de contacto - Mejorado para responsive */}
+            <motion.div className="flex-1 px-2 sm:px-3 md:px-6 max-w-full md:max-w-lg">
+              <button onClick={() => {window.open(`tel:${coactiva_config.cellphones.one}`, '_self')}} 
+                className="group inline-flex items-center gap-1.5 sm:gap-2 text-teal-800/80 hover:text-teal-800 transition-colors w-full justify-center md:justify-start"
+              >
+                
+                {/* Versión móvil - texto completo en columnas */}
+                <span className="flex flex-col sm:hidden text-[12px] leading-tight text-center">
+                  <span>¿Tus clientes te deben?</span>
+                  <span className="font-semibold mt-0.5">
+                    Contáctanos: {coactiva_config.cellphones.one}
+                  </span>
+                </span>
+                
+                {/* Versión tablet - formato intermedio */}
+                <span className="hidden sm:flex md:hidden flex-col text-xs leading-tight">
+                  <span>¿Tus clientes te deben?</span>
+                  <span className="font-medium mt-0.5">
+                    Contáctanos: {coactiva_config.cellphones.one}
+                  </span>
+                </span>
+                
+                {/* Versión desktop - completa en línea */}
+                <span className="hidden md:block text-sm">
+                  <span className="inline">¿Tus clientes te deben y no te pagan?</span>
+                  <span className="inline ml-1">
+                    Contáctanos: <span className="font-medium underline">{coactiva_config.cellphones.one}</span>
+                  </span>
+                </span>
+              </button>
+            </motion.div>
+            
+            {/* Navegación desktop */}
+            <div className="hidden lg:block">
               <Navigation />
             </div>
+            
+            {/* Menú móvil */}
             <MobileMenu isOpen={isMobileMenuOpen} onToggle={toggleMobileMenu} />
           </div>
         </div>
