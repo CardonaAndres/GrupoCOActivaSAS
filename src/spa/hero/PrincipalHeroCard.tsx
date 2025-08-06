@@ -45,7 +45,7 @@ export const PrincipalHeroCard = ({ containerVariants, itemVariants } : Props) =
         </div>
 
         {/* Botones de acción */}
-        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center my-7">
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center mt-7">
             <motion.button onClick={() => window.location.href = '/#servicios-grupocoactivasas'}
                 whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} className="px-10 py-5 bg-teal-900 backdrop-blur-md text-white font-bold text-lg rounded-lg border border-teal-700/50 hover:bg-teal-800/90 transition-all duration-300 min-w-[200px]"
             >

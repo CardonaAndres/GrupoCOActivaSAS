@@ -210,7 +210,7 @@ export const Hero = () => {
       </header>
 
       {/* Main Content */}
-      <main className="z-10 px-4 md:px-8 pt-16 sm:pt-20">
+      <main className="z-10 px-4 md:px-8 pt-20 sm:pt-30">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-center lg:min-h-[calc(100vh-120px)]">
             {/* Left Content */}
@@ -221,7 +221,7 @@ export const Hero = () => {
                 />
             </div>
 
-            <div className="lg:w-2/5 relative z-10 pt-10">
+            <div className="lg:w-2/5 relative z-10">
               <ContactForm />
             </div>
             
