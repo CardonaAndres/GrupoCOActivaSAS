@@ -7,7 +7,6 @@ import { coactiva_config, router } from '@/main/configs/config';
 import { InfoCards } from '../hero/InfoCards';
 import { SliderBrands } from '../hero/SliderBrands';
 import { PrincipalHeroCard } from '../hero/PrincipalHeroCard';
-import { motion } from 'framer-motion';
 
 const Navigation = () => {
     const { navItems } = useNavHook();
@@ -168,14 +167,14 @@ export const Hero = () => {
             <Logo />
             
             {/* Botón de contacto - Mejorado para responsive */}
-            <motion.div className="flex-1 px-2 sm:px-3 md:px-6 max-w-full md:max-w-lg">
+            <div className="flex-1 px-2 sm:px-3 md:px-6 max-w-full md:max-w-lg">
               <button onClick={() => {window.open(`tel:${coactiva_config.cellphones.one}`, '_self')}} 
                 className="group inline-flex items-center gap-1.5 sm:gap-2 text-teal-800/80 hover:text-teal-800 transition-colors w-full justify-center md:justify-start"
               >
                 
                 {/* Versión móvil - texto completo en columnas */}
-                <span className="flex flex-col sm:hidden text-[12px] leading-tight text-center">
-                  <span>¿Tus clientes te deben?</span>
+                <span className="flex flex-col sm:hidden text-[10.5px] leading-tight text-center">
+                  <span>¿Tus clientes te deben y no te pagan?</span>
                   <span className="font-semibold mt-0.5">
                     Contáctanos: {coactiva_config.cellphones.one}
                   </span>
@@ -197,7 +196,7 @@ export const Hero = () => {
                   </span>
                 </span>
               </button>
-            </motion.div>
+            </div>
             
             {/* Navegación desktop */}
             <div className="hidden lg:block">

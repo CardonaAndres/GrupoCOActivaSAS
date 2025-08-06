@@ -60,8 +60,8 @@ export const Navbar = () => {
           
           {/* Logo */}
           <Link to={router.home}>
-            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-4">
-              <div className='w-26 h-26 flex items-center justify-center'>
+            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center">
+              <div className='w-24 h-24 flex items-center justify-center'>
                 <img src={Logo} alt="coactiva logo" className='w-full h-full object-contain' />
               </div>
               <div>
@@ -76,8 +76,8 @@ export const Navbar = () => {
               className="group inline-flex items-center gap-1.5 sm:gap-2 text-teal-800/80 hover:text-teal-800 transition-colors w-full justify-center"
             > 
               {/* Versión móvil - texto completo en columnas */}
-              <span className="flex flex-col sm:hidden text-[12px] leading-tight text-center">
-                <span>¿Tus clientes te deben?</span>
+              <span className="flex flex-col sm:hidden text-[10.5px] leading-tight text-center">
+                <span>¿Tus clientes te deben y no te pagan?</span>
                 <span className="font-semibold mt-0.5">
                   Contáctanos: {coactiva_config.cellphones.one}
                 </span>
