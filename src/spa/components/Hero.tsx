@@ -7,7 +7,6 @@ import { router } from '@/main/configs/config';
 import { InfoCards } from '../hero/InfoCards';
 import { SliderBrands } from '../hero/SliderBrands';
 import { PrincipalHeroCard } from '../hero/PrincipalHeroCard';
-import { FloatingElements } from '../hero/FloatingElements';
 
 const Navigation = () => {
     const { navItems } = useNavHook();
@@ -159,8 +158,6 @@ export const Hero = () => {
   
   return (
     <div className="min-h-screen bg-white overflow-hidden">
-      {/* Elementos flotantes decorativos - Simplificados */}
-      <FloatingElements animationDuration="5s" />
 
       {/* Header con fondo siempre blanco */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
