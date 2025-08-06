@@ -37,7 +37,7 @@ export const SliderBrands = () => {
             </div>
 
             {/* Carrusel minimalista */}
-            <div className="relative overflow-hidden py-8">
+            <div className="relative overflow-hidden pb-8">
                 <motion.div 
                     className="flex items-center"
                     variants={brandSlideVariants}
