@@ -24,58 +24,45 @@ export const SliderBrands = () => {
             >
                 <div className="mb-8">
                     <motion.p initial={{ opacity: 0 }}  animate={{ opacity: 1 }}
-                    transition={{ delay: 1.4 }} className="text-teal-800/80 text-sm font-medium tracking-wider uppercase mb-4"
+                    transition={{ delay: 1.4 }} className="text-teal-800/80 text-sm font-bold tracking-wider uppercase mb-4"
                     >
-                    Resultados efectivos en recuperación de cartera
+                        Alianzas Estratégicas
                     </motion.p>
-                    <motion.h2 initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1.6 }}
-                    className="text-teal-800 text-xl sm:text-2xl lg:text-3xl font-bold mb-8"
-                    >
-                    Empresas líderes que recuperan su cartera con Grupo Coactiva S.A.S
-                    </motion.h2>
                 </div>
 
-                {/* Carrusel infinito sin cortes - Solo logos */}
-                <div className="relative overflow-hidden bg-teal-800text-teal-800/10 backdrop-blur-lg py-5">
-                    <div className="relative flex">
+                {/* Carrusel minimalista */}
+                <div className="relative overflow-hidden py-8">
                     <motion.div 
-                        className="flex items-center space-x-12 sm:space-x-16 md:space-x-20 lg:space-x-24"
-                        variants={brandSlideVariants}
-                        animate="animate"
-                        style={{ minWidth: "200%" }}
+                    className="flex items-center gap-16 md:gap-24"
+                    variants={brandSlideVariants}
+                    animate="animate"
                     >
-                        {/* Primera serie completa */}
-                        {brands.map((brand, index) => (
-                        <div key={`set1-${index}`} className="flex-shrink-0">
-                            <div className="flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 bg-teal-800text-teal-800/95 backdrop-blur-lg rounded-xl border border-teal-800text-teal-800/30 shadow-lg hover:bg-teal-800text-teal-800 transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                    {/* Duplicamos los logos para el efecto infinito */}
+                    {[...brands, ...brands].map((brand, index) => (
+                        <div 
+                        key={`brand-${index}`} 
+                        className="flex-shrink-0 group"
+                        >
+                        <div className="w-32 h-20 md:w-40 md:h-24 flex items-center justify-center">
                             <img 
-                                src={`${brand.logo}`} 
-                                alt={`Logo de ${brand.name}`} 
-                                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-contain hover:grayscale-0 transition-all duration-300"
+                            src={brand.logo} 
+                            alt={brand.name}
+                            className="max-w-full max-h-full object-contain opacity-50 
+                                    group-hover:opacity-90 transition-opacity duration-500
+                                    hover:grayscale-0"
                             />
-                            </div>
                         </div>
-                        ))}
-                        
-                        {/* Segunda serie idéntica para continuidad */}
-                        {brands.map((brand, index) => (
-                            <div key={`set2-${index}`} className="flex-shrink-0">
-                                <div className="flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 bg-teal-800text-teal-800/95 backdrop-blur-lg rounded-xl border border-teal-800text-teal-800/30 shadow-lg hover:bg-teal-800text-teal-800 transition-all duration-300 hover:scale-110 hover:shadow-xl">
-                                <img 
-                                    src={`${brand.logo}`}
-                                    alt={`Logo de ${brand.name}`} 
-                                    className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-contain hover:grayscale-0 transition-all duration-300"
-                                />
-                                </div>
-                            </div>
-                        ))}
+                        </div>
+                    ))}
                     </motion.div>
-                    </div>
                     
-                    {/* Gradientes más sutiles */}
-                    <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-20 bg-gradient-to-r from-teal-800text-teal-800/10 to-transparent pointer-events-none z-10" />
-                    <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-20 bg-gradient-to-l from-teal-800text-teal-800/10 to-transparent pointer-events-none z-10" />
+                    {/* Gradientes sutiles en los bordes */}
+                    <div className="absolute inset-y-0 left-0 w-24 md:w-32 
+                                bg-gradient-to-r from-white via-white/80 to-transparent 
+                                pointer-events-none z-10" />
+                    <div className="absolute inset-y-0 right-0 w-24 md:w-32 
+                                bg-gradient-to-l from-white via-white/80 to-transparent 
+                                pointer-events-none z-10" />
                 </div>
 
                 {/* Estadística adicional */}

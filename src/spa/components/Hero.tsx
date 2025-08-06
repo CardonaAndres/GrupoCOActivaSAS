@@ -157,7 +157,7 @@ export const Hero = () => {
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   
   return (
-    <div className="min-h-screen bg-white overflow-hidden">
+    <div className="min-h-screen bg-teal-50/10 overflow-hidden">
 
       {/* Header con fondo siempre blanco */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
@@ -184,7 +184,7 @@ export const Hero = () => {
                 />
             </div>
 
-            <div className="lg:w-2/5 relative z-10">
+            <div className="lg:w-2/5 relative z-10 pt-10">
               <ContactForm />
             </div>
             
