@@ -117,7 +117,7 @@ export const ContactForm = () => {
     
     return (
         <form onSubmit={onSubmited}>
-            <div className="bg-white/15 backdrop-blur-xl rounded-2xl p-6 lg:p-8 border border-white/20 shadow-2xl">
+            <div className="bg-teal-700/80 backdrop-blur-xl rounded-2xl p-6 lg:p-8 border border-white/20 shadow-2xl">
                 <div className="mb-6">
                     <h2 className="text-xl lg:text-2xl font-bold text-white mb-2">
                         Solicita tu consulta gratuita

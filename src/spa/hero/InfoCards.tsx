@@ -17,18 +17,18 @@ export const InfoCards = ({ containerVariants, itemVariants } : Props) => {
                 <Phone className="w-5 h-5 text-white" />
             </div>
             <div className="text-left">
-                <p className="font-semibold">Consulta inmediata</p>
-                <p className="text-sm text-white/70">+57 {coactiva_config.cellphones.one} </p>
+                <p className="font-semibold text-teal-900">Consulta inmediata</p>
+                <p className="text-sm text-teal-800/70">+57 {coactiva_config.cellphones.one} </p>
             </div>
             </div>
             
             <div className="flex items-center group cursor-pointer hover:text-white transition-colors">
-            <div className="p-2 bg-white rounded-lg mr-3 group-hover:bg-slate-100 transition-colors">
+            <div className="p-2 bg-gray-200 rounded-lg mr-3 group-hover:bg-slate-100 transition-colors">
                 <Mail className="w-5 h-5 text-green-700" />
             </div>
             <div className="text-left">
-                <p className="font-semibold"> {coactiva_config.emails.one} </p>
-                <p className="text-sm text-white/70">Asesoría personalizada</p>
+                <p className="font-semibold text-teal-900"> {coactiva_config.emails.one} </p>
+                <p className="text-sm text-teal-800/70">Asesoría personalizada</p>
             </div>
             </div>
             
