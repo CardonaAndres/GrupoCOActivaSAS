@@ -4,8 +4,8 @@ import { motion } from "framer-motion"
 import { Mail, Phone } from "lucide-react"
 
 interface Props {
-    containerVariants : any,
-    itemVariants : any
+    containerVariants ?: any,
+    itemVariants ?: any
 }
 
 export const InfoCards = ({ containerVariants, itemVariants } : Props) => {

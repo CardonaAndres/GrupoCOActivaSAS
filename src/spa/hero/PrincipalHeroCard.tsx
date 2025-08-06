@@ -10,7 +10,7 @@ interface Props {
 export const PrincipalHeroCard = ({ containerVariants, itemVariants } : Props) => {
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="visible" 
-        className="text-center mb-12 mt-14">
+        className="text-center relative ">
         <motion.div variants={itemVariants} className="mb-4">
         <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 shadow-lg shadow-black/10">
             <Award className="w-5 h-5 text-white mr-3" />
@@ -46,7 +46,7 @@ export const PrincipalHeroCard = ({ containerVariants, itemVariants } : Props) =
 
         {/* Botones de acción */}
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center my-7">
-            <motion.button onClick={() => window.location.href = '/#services'}
+            <motion.button onClick={() => window.location.href = '/#servicios-grupocoactivasas'}
                 whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} className="px-10 py-5 bg-slate-900/80 backdrop-blur-md text-white font-bold text-lg rounded-full border border-slate-700/50 hover:bg-slate-800/90 transition-all duration-300 min-w-[200px]"
             >
                 Ver servicios
