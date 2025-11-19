@@ -10,6 +10,7 @@ import { router } from '../configs/config';
 declare global {
   interface Window {
     grecaptcha: any;
+    gtag: (...args: any[]) => void; 
   }
 }
 
@@ -85,6 +86,15 @@ export const FloatingContactButton = () => {
       await sendEmail(formDataWithRecaptcha)
       setIsSubmitted(true)
       reset()
+
+      // *Evento de conversión de Google Ads**
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-17262857323/hqLbCIy_-eEaEOuYyadA',
+          'value': 1.0,
+          'currency': 'COP'
+        });
+      }
 
       setTimeout(() => {
         setIsSubmitted(false)

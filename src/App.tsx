@@ -1,4 +1,5 @@
 import '@/main/assets/css/index.css';
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { router } from '@/main/configs/config';
 import { HomePage } from '@/spa/pages/HomePage';
@@ -15,8 +16,14 @@ import { FAQPage } from './spa/pages/FAQPage.tsx';
 import { SedePage } from './spa/pages/SedePage.tsx';
 import { BlogPage } from './spa/pages/BlogPage.tsx';
 import { BlogPostPage } from './spa/components/BlogPostPage.tsx';
+import { trackUniqueVisit } from './main/utils/trackVisit.ts';
 
 export const App = () => {
+  useEffect(() => {
+    // Rastrea visita única cada 7 días
+    trackUniqueVisit(7);
+  }, []);
+
   return (
     <>
       <MetaTags />

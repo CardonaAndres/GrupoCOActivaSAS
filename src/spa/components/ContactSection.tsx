@@ -12,6 +12,7 @@ import { LocationsComponent } from './LocationsComponent'
 declare global {
   interface Window {
     grecaptcha: any;
+    gtag: (...args: any[]) => void; 
   }
 }
 
@@ -111,6 +112,16 @@ export const ContactSection = () => {
       
       setIsSubmitted(true)
       reset()
+
+      // **Evento de conversión de Google Ads**
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-17262857323/hqLbCIy_-eEaEOuYyadA',
+          'value': 1.0,
+          'currency': 'COP'
+        });
+      }
+
 
       // Resetear el estado después de 2 segundos
       setTimeout(() => setIsSubmitted(false), 2000)
