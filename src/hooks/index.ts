@@ -1,0 +1,1 @@
+export { useContactHook } from "./contact/useContactHook";
