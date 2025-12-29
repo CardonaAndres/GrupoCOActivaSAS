@@ -8,13 +8,13 @@ const services = [
     icon: Scale,
     title: 'Insolvencia',
     description: 'Soluciones legales para personas y empresas',
-    href: '/servicios-de-cobranzas-en-grupo-coactiva#insolvencia-personal',
+    href: '/nuestros-servicios/insolvencia',
   },
   {
     icon: TrendingUp,
     title: 'Cobro de Cartera',
     description: 'Recuperación eficiente con cobertura nacional',
-    href: '/servicios-de-cobranzas-en-grupo-coactiva#cobro',
+    href: '/nuestros-servicios/cobro-de-cartera',
   },
 ];
 
