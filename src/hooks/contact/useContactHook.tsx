@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from "react";
-import emailjs from '@emailjs/browser';
 
 type EmailData = {
     name: string;
@@ -27,46 +26,25 @@ export const useContactHook = () => {
             setStatus('idle');
             setErrorMessage('');
 
-            // Validaciones básicas
-            if (!emailData.name || !emailData.email || !emailData.message) {
-                throw new Error('Por favor completa todos los campos obligatorios');
-            }
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(emailData),
+            });
 
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailData.email)) {
-                throw new Error('Por favor ingresa un correo electrónico válido');
-            }
+            const data = await response.json();
 
-            const result = await emailjs.send(
-                'service_oio611e',
-                'template_3fcxb7u',
-                {
-                    nombre: emailData.name,
-                    email: emailData.email,
-                    telefono: emailData.phone || 'No proporcionado',
-                    empresa: emailData.company || 'No proporcionado',
-                    cargo: "",
-                    mensaje: emailData.message,
-                },
-                'tdTDxrJyt3wjDmdwz'
-            );
-
-            if (result.status === 200) {
-                setStatus('success');
-                return { success: true };
-            } else {
-                throw new Error('Error al enviar el mensaje');
-            }
+            if (!response.ok)
+                throw new Error(data.error || 'Error al enviar el mensaje');
+            
+            setStatus('success');
+            return { success: true };
 
         } catch (error: any) {
             const errorMsg = error.message || 'Hubo un error al enviar el mensaje. Por favor intenta nuevamente.';
             setStatus('error');
             setErrorMessage(errorMsg);
-            
-            return { 
-                success: false, 
-                error: errorMsg 
-            };
+            return { success: false, error: errorMsg };
         } finally {
             setLoading(false);
         }
