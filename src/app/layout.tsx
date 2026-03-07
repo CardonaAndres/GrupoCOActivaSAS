@@ -28,6 +28,20 @@ export default function RootLayout({ children }: Readonly<Props>) {
           <FloatingContactButtons />
           <Footer />
         </main>
+
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-NEW3QHTMK0"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-NEW3QHTMK0');
+          `}
+        </Script>
       </body>
     </html>
   );
