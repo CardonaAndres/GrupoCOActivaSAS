@@ -10,6 +10,7 @@ const transporter = nodemailer.createTransport({
         pass: process.env.SMTP_PASSWORD,
     },
 });
+
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
@@ -32,9 +33,9 @@ export async function POST(req: NextRequest) {
         }
 
         await transporter.sendMail({
-            from: `"${name}" <${process.env.SMTP_USER}>`,
+            from: `Formulario Web <${process.env.SMTP_USER}>`,
             to: process.env.CONTACT_RECEIVER,
-            replyTo: email,
+            replyTo: `"${name}" <${email}>`,
             subject: `Nuevo mensaje de contacto de ${name}`,
             html: `
                 <h2>Nuevo mensaje de contacto</h2>
