@@ -40,6 +40,7 @@ export default function RootLayout({ children }: Readonly<Props>) {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-NEW3QHTMK0');
+            gtag('config', 'AW-17262857323');
           `}
         </Script>
       </body>
