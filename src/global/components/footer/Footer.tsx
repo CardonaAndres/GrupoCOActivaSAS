@@ -51,7 +51,7 @@ export const Footer = () => {
               />
             </div>
             <p className="text-gray-600 text-sm leading-relaxed border-l-4 border-cyan-800 pl-4">
-              Soluciones jurídicas claras y efectivas para deudas, cartera vencida e insolvencias.
+              Alta eficiencia y cobertura nacional. Líderes en recuperación de cartera empresarial.
             </p>
           </div>
 

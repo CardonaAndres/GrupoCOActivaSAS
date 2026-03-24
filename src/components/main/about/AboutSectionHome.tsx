@@ -52,7 +52,7 @@ export const AboutSectionHome = () => {
                   Sobre Nosotros
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                  Líderes en recuperación de cartera e insolvencia
+                  Líderes en recuperación de cartera
                 </h2>
               </div>
 
