@@ -1,101 +1,101 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { WhatsAppIcon } from '@/global/components';
 import { WhatsAppService } from '@/global/services';
-
-const services = [
-  {
-    number: '01',
-    title: 'Insolvencia Personal',
-    description: 'Libérese de sus deudas por la vía legal. Aplicamos la Ley de la Segunda Oportunidad sin límite de monto. Protección integral de su patrimonio.',
-    highlight: 'Sin límite de monto',
-    href: '/nuestros-servicios/insolvencia',
-  },
-  {
-    number: '02',
-    title: 'Insolvencia Empresarial',
-    description: 'Reorganización y liquidación empresarial bajo la Ley 1116 de 2006. Preservar la empresa como unidad productiva o cerrar operaciones legalmente.',
-    highlight: 'Reorganización y liquidación',
-    href: '/nuestros-servicios/insolvencia',
-  },
-  {
-    number: '03',
-    title: 'Cobro de Cartera Vencida',
-    description: 'Recuperación de cartera con alta eficiencia a nivel nacional. 18 ejecutivos y 7 abogados especializados trabajando para maximizar resultados.',
-    highlight: 'Obligaciones superiores a $10.000.000 COP',
-    href: '/nuestros-servicios/cobro-de-cartera',
-  },
-];
+import { MessageCircle, CalendarCheck } from 'lucide-react';
 
 export const ServicesSection = () => {
   return (
-    <section className="py-24 bg-linear-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            Nuestros Servicios
-          </h2>
-          <div className="w-24 h-1 bg-cyan-800 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            15 años de experiencia en recuperación de cartera y procesos de insolvencia
-          </p>
-        </div>
+    <section className="bg-gray-100">
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto mb-16">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="group relative bg-white p-8 rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-cyan-800"
-            >
-              {/* Number */}
-              <div className="text-6xl font-bold text-gray-100 mb-4">
-                {service.number}
+      {/* ── Hero Banner ── */}
+      <div className="py-12 text-center bg-gray-100">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-cyan-800 leading-tight">
+          Recuperación
+          <br />
+          <span className="text-cyan-800">de cartera vencida</span>
+        </h2>
+        <p className="mt-3 text-xl sm:text-2xl font-semibold text-cyan-900/70 tracking-wide">
+          Personalizada vía Pre-Jurídica
+        </p>
+      </div>
+
+      {/* ── Divider ── */}
+      <div className="w-full h-px bg-gray-300" />
+
+      {/* ── Content block ── */}
+      <div className="py-15 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Sub-header */}
+          <div className="text-center mb-16">
+            <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+              No pierda su dinero
+            </h3>
+            <p className="text-lg text-gray-500 max-w-xl mx-auto">
+              Descubra cómo podemos ayudar a recuperar lo que le pertenece a su empresa
+            </p>
+          </div>
+
+          {/* Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+
+            {/* Card 1 — Hablar con un experto (PRIMARY) */}
+            <div className="relative bg-cyan-800 rounded-2xl p-10 flex flex-col items-center text-center text-white shadow-xl shadow-cyan-900/30 overflow-hidden">
+              {/* decorative circle */}
+              <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-white/5 pointer-events-none" />
+              <div className="absolute -bottom-12 -left-12 w-56 h-56 rounded-full bg-white/5 pointer-events-none" />
+
+              <div className="mb-6 p-4 rounded-2xl bg-white/10 backdrop-blur-sm">
+                <CalendarCheck className="w-10 h-10 text-white" strokeWidth={1.5} />
               </div>
-              
-              {/* Title */}
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 -mt-12">
-                {service.title}
-              </h3>
-              
-              {/* Description */}
-              <p className="text-gray-700 mb-6 leading-relaxed">
-                {service.description}
+
+              <h4 className="text-2xl font-bold mb-3">Hablar con un experto</h4>
+              <p className="text-white/80 text-base leading-relaxed mb-8">
+                Hable con uno de nuestros asesores especializados en{' '}
+                <strong className="text-white">cobro de cartera vencida de altas cuantías</strong>{' '}
+                y obtenga un plan personalizado para su empresa.
               </p>
 
-              {/* Highlight */}
-              <div className="pt-4 border-t border-gray-200 mb-4">
-                <p className="text-sm font-bold text-cyan-800">
-                  {service.highlight}
-                </p>
-              </div>
-
-              {/* Ver más link */}
               <Link
-                href={service.href}
-                className="inline-flex items-center text-cyan-800 hover:text-cyan-900 font-semibold text-sm group-hover:gap-2 transition-all"
+                href="/comunicate-con-grupo-coactiva"
+                className="mt-auto inline-flex items-center gap-2 bg-white text-cyan-800 font-bold px-8 py-3.5 rounded-full hover:bg-cyan-50 transition-colors text-sm uppercase tracking-widest shadow-md"
               >
-                Ver más
-                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                Agendar reunión
+                <CalendarCheck className="w-4 h-4" />
               </Link>
             </div>
-          ))}
-        </div>
 
-        {/* CTA WhatsApp */}
-        <div className="text-center">
-          <a
-            href={WhatsAppService.getWhatsAppUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white px-12 py-5 rounded-lg font-bold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-          >
-            <WhatsAppIcon className="w-6 h-6" />
-            Consulta Gratuita por WhatsApp
-          </a>
+            {/* Card 2 — WhatsApp (SECONDARY) */}
+            <div className="bg-white border border-gray-200 rounded-2xl p-10 flex flex-col items-center text-center shadow-md hover:shadow-lg transition-shadow">
+              <div className="mb-6 p-4 rounded-2xl bg-gray-50 border border-gray-100">
+                <MessageCircle className="w-10 h-10 text-cyan-800" strokeWidth={1.5} />
+              </div>
+
+              <h4 className="text-2xl font-bold text-gray-900 mb-3">Consúltenos</h4>
+              <p className="text-gray-500 text-base leading-relaxed mb-8">
+                Si quiere conocer más sobre nuestro servicio de{' '}
+                <strong className="text-gray-700">cobro de cartera</strong>{' '}
+                y cómo podemos ser un aliado para su empresa, estamos esperando su mensaje.
+              </p>
+
+              <a
+                href={WhatsAppService.getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-auto inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3.5 rounded-full transition-colors text-sm uppercase tracking-widest shadow-md"
+              >
+                <WhatsAppIcon className="w-5 h-5" />
+                Escribir a un asesor
+              </a>
+            </div>
+          </div>
+
+          {/* Bottom trust line */}
+          <p className="text-center text-sm text-gray-400 mt-12 font-medium tracking-wide uppercase">
+            15 años de experiencia · Cobro de cartera pre-jurídica · Resultados comprobados
+          </p>
         </div>
       </div>
     </section>
   );
-}
+};

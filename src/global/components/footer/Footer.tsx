@@ -10,7 +10,6 @@ const quickLinks = [
 ];
 
 const serviceLinks = [
-  { href: '/nuestros-servicios/insolvencia', label: 'Insolvencia' },
   { href: '/nuestros-servicios/cobro-de-cartera', label: 'Cobro de Cartera' },
 ];
 

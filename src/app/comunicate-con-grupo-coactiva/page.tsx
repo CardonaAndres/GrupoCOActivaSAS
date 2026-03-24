@@ -18,7 +18,7 @@ export default function ContactPage() {
               Contáctenos
             </h1>
             <p className="text-lg text-cyan-100">
-              Estamos listos para ayudarle con sus necesidades de recuperación de cartera e insolvencia
+              Estamos listos para ayudarle con sus necesidades de recuperación de cartera
             </p>
           </div>
         </div>

@@ -36,7 +36,7 @@ export default function AboutPage() {
               ¿Quiénes Somos?
             </h1>
             <p className="text-lg text-cyan-100">
-              Líderes en recuperación de cartera y soluciones de insolvencia
+              Líderes en recuperación de cartera
             </p>
           </div>
         </div>
@@ -69,7 +69,7 @@ export default function AboutPage() {
                     Socio-Fundador y Director Jurídico
                   </p>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    Experto en el manejo integral del <strong>cobro de cartera empresarial</strong>, procesos <strong>prejurídicos y jurídicos</strong>, e <strong>insolvencias de persona natural y jurídica</strong>.
+                    Experto en el manejo integral del <strong>cobro de cartera empresarial</strong>, procesos <strong>prejurídicos y jurídicos</strong>.
                   </p>
                   <p className="text-gray-700 leading-relaxed mb-6">
                     Su enfoque combina <strong>estrategia legal, negociación y eficiencia</strong>, permitiendo recuperar la <strong>estabilidad financiera</strong> con un <strong>respaldo jurídico real y confiable</strong>.

@@ -1,2 +1,15 @@
 @import "tailwindcss";
 
+@keyframes hero-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes carousel-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* -50% porque duplicamos los items */
+}
+ 
+.carousel-track {
+  animation: carousel-scroll 35s linear infinite;
+}

@@ -57,7 +57,7 @@ export const AboutSectionHome = () => {
               </div>
 
               <p className="text-gray-700 leading-relaxed mb-6">
-                <strong>Grupo Coactiva S.A.S.</strong> es liderado por <strong>Esteban Restrepo</strong>, con <strong>15 años de experiencia</strong> en el manejo integral del cobro de cartera empresarial, procesos prejurídicos y jurídicos, e insolvencias.
+                <strong>Grupo Coactiva S.A.S.</strong> es liderado por <strong>Esteban Restrepo</strong>, con <strong>15 años de experiencia</strong> en el manejo integral del cobro de cartera empresarial, procesos prejurídicos y jurídicos.
               </p>
 
               <p className="text-gray-700 leading-relaxed mb-8">
