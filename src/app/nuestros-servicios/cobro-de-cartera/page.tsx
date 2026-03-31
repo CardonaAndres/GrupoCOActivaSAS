@@ -4,6 +4,7 @@ import { WhatsAppService } from '@/global/services';
 import { PartnersSection } from '@/components/cobro-cartera';
 import { Users, Scale, Target, CheckCircle, MapPin, Clock, DollarSign } from 'lucide-react';
 import { CobroCarteraMetadata } from '@/global/metadata';
+import { CtaButton } from './CtaButton';
 
 export const metadata = CobroCarteraMetadata
 
@@ -241,15 +242,7 @@ export default function CobroCarteraPage() {
               Servicio estructurado con seguimiento constante y reportes claros
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href={WhatsAppService.getWhatsAppUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-semibold transition-all shadow-lg"
-              >
-                <WhatsAppIcon className="w-6 h-6" />
-                Hablar por WhatsApp
-              </a>
+              <CtaButton />
               <Link
                 href="/comunicate-con-grupo-coactiva"
                 className="inline-flex items-center justify-center gap-2 bg-cyan-700 hover:bg-cyan-800 text-white px-8 py-4 rounded-lg font-semibold transition-all shadow-lg"

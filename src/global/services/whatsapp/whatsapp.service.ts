@@ -11,4 +11,12 @@ export class WhatsAppService {
     ): string{
         return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     }
+
+    static trackWhatsAppConversion(): void {
+        if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+            (window as any).gtag('event', 'conversion', {
+                send_to: 'AW-17262857323/9XLrCPH-6ZIcEOuYyadA'
+            });
+        }
+    }
 }

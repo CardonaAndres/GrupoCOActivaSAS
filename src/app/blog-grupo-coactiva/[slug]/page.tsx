@@ -7,6 +7,7 @@ import { WhatsAppIcon } from '@/global/components';
 import { WhatsAppService } from '@/global/services';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 import { generateBlogSlugMetadata } from '@/global/metadata';
+import { WhatsAppCTA } from './components/WhatsAppCTA';
 
 // Generar metadata dinámica
 export const generateMetadata = async ({ params }: { params: Promise<{ slug: string }>; }): Promise<Metadata> => {
@@ -204,15 +205,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <p className="text-green-50 mb-6">
                 Contáctenos hoy para una consulta gratuita
               </p>
-              <a
-                href={WhatsAppService.getWhatsAppUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-green-600 font-semibold px-8 py-4 rounded-lg transition-all shadow-lg"
-              >
-                <WhatsAppIcon className="w-6 h-6" />
-                Hablar por WhatsApp
-              </a>
+              <WhatsAppCTA />
             </div>
           </div>
         </div>

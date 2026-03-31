@@ -20,6 +20,7 @@ export const FloatingContactButtons = () => {
           aria-label="Contactar por WhatsApp"
           onMouseEnter={() => setShowTooltip('whatsapp')}
           onMouseLeave={() => setShowTooltip(null)}
+          onClick={() => WhatsAppService.trackWhatsAppConversion()}
         >
           <WhatsAppIcon />
           
