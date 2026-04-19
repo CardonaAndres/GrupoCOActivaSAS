@@ -23,7 +23,7 @@ export const RootLayoutMetada: Metadata = {
     template: "%s | Grupo Coactiva SAS"
   },
   
-  description: "Especialistas en recuperación eficiente y ética de cartera vencida en Colombia. Cobertura nacional en Medellín, Bogotá, Cali y toda Latinoamérica. Servicios jurídicos y prejurídicos de cobranza.",
+  description: "Cobro de Cartera Empresarial | Grupo Coactiva SAS | B2B Colombia",
   
   keywords: keywords.join(", "),
   
