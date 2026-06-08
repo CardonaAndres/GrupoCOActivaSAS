@@ -21,7 +21,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     eyebrow: 'Señor empresario',
     title: 'Cobramos la Cartera de su Empresa.',
     titleHighlight: '',
-    description: 'Especialistas en cobro de cartera empresarial con x años de experiencia y 90% de efectividad. Gestión extrajudicial, prejurídica y jurídica a nivel nacional.',
+    description: 'Especialistas en cobro de cartera empresarial con 15 años de experiencia y 90% de efectividad. Gestión extrajudicial, prejurídica y jurídica a nivel nacional.',
     ctaLabel: 'Agendar reunión',
     ctaHref: '/comunicate-con-grupo-coactiva',
   },
