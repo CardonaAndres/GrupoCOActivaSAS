@@ -17,32 +17,25 @@ services:
       retries: 5
       start_period: 15s
     labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=traefik"
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik"
 
-      # ── www (sitio principal) ──────────────────────────────
-      - "traefik.http.routers.grupocoactiva-www.rule=Host(`www.grupocoactivasas.com`)"
-      - "traefik.http.routers.grupocoactiva-www.entrypoints=websecure"
-      - "traefik.http.routers.grupocoactiva-www.tls=true"
-      - "traefik.http.routers.grupocoactiva-www.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.grupocoactiva-www.service=grupocoactiva-svc"
+        - "traefik.http.routers.grupocoactiva-apex.rule=Host(`grupocoactivasas.com`)"
+        - "traefik.http.routers.grupocoactiva-apex.entrypoints=websecure"
+        - "traefik.http.routers.grupocoactiva-apex.tls=true"
+        - "traefik.http.routers.grupocoactiva-apex.tls.certresolver=letsencrypt"
+        - "traefik.http.routers.grupocoactiva-apex.service=grupocoactiva-svc"
 
-      # ── apex (sin www) → 301 a www ──────────────────────────
-      - "traefik.http.routers.grupocoactiva-apex.rule=Host(`grupocoactivasas.com`)"
-      - "traefik.http.routers.grupocoactiva-apex.entrypoints=websecure"
-      - "traefik.http.routers.grupocoactiva-apex.tls=true"
-      - "traefik.http.routers.grupocoactiva-apex.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.grupocoactiva-apex.middlewares=grupocoactiva-www-redirect"
-      - "traefik.http.routers.grupocoactiva-apex.service=grupocoactiva-svc"
+        - "traefik.http.routers.grupocoactiva-www.rule=Host(`www.grupocoactivasas.com`)"
+        - "traefik.http.routers.grupocoactiva-www.entrypoints=websecure"
+        - "traefik.http.routers.grupocoactiva-www.tls=true"
+        - "traefik.http.routers.grupocoactiva-www.tls.certresolver=letsencrypt"
+        - "traefik.http.routers.grupocoactiva-www.service=grupocoactiva-svc"
 
-      - "traefik.http.middlewares.grupocoactiva-www-redirect.redirectregex.regex=^https://grupocoactivasas\\.com/(.*)"
-      - "traefik.http.middlewares.grupocoactiva-www-redirect.redirectregex.replacement=https://www.grupocoactivasas.com/$${1}"
-      - "traefik.http.middlewares.grupocoactiva-www-redirect.redirectregex.permanent=true"
-
-      - "traefik.http.services.grupocoactiva-svc.loadbalancer.server.port=3000"
+        - "traefik.http.services.grupocoactiva-svc.loadbalancer.server.port=3000"
     networks:
       - traefik-network
-      - default
+      - default 
 
 networks:
   traefik-network:
