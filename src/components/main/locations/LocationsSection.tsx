@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { MapPin } from 'lucide-react';
 
 const locations = [
@@ -6,6 +7,7 @@ const locations = [
     name: 'Oficina Medellín',
     address: 'Circular 76 # 39B-135, Laureles',
     city: 'Medellín, Antioquia',
+    landingHref: '/cobro-de-cartera/medellin',
     embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0234567890123!2d-75.5678901234567!3d6.234567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e44290123456789%3A0x1234567890abcdef!2sCircular%2076%20%23%2039B-135%2C%20Laureles%2C%20Medell%C3%ADn%2C%20Antioquia%2C%20Colombia!5e0!3m2!1ses!2sco!4v1234567890123!5m2!1ses!2sco',
   },
   {
@@ -13,6 +15,7 @@ const locations = [
     name: 'Oficina Bogotá',
     address: 'Carrera 13 # 85-32, Zona Rosa',
     city: 'Bogotá, Cundinamarca',
+    landingHref: '/cobro-de-cartera/bogota',
     embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.433650761865!2d-74.06454699999999!3d4.694468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9ac52ff727b7%3A0xd1519e335fabf67e!2zQ2wuIDEwNiAjIDU0LTkzLCBTdWJhLCBCb2dvdMOhLCBELkMuLCBCb2dvdMOhLCBCb2dvdMOhLCBELkMu!5e0!3m2!1ses-419!2sco!4v1750735126127!5m2!1ses-419!2sco',
   }
 ];
@@ -80,6 +83,13 @@ export const LocationsSection = () => {
                   >
                     Ver en Google Maps →
                   </a>
+
+                  <Link
+                    href={location.landingHref}
+                    className="block mt-2 text-cyan-700 hover:text-cyan-800 font-semibold text-sm hover:underline"
+                  >
+                    Cobro de cartera en {location.city.split(',')[0]} →
+                  </Link>
                 </div>
               </div>
             ))}

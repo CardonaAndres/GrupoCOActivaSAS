@@ -1,10 +1,12 @@
 import Link from 'next/link';
-import { CompaniesCarouselSection, WhatsAppIcon } from '@/global/components';
-import { WhatsAppService } from '@/global/services';
-import { PartnersSection } from '@/components/cobro-cartera';
-import { Users, Scale, Target, CheckCircle, MapPin, Clock, DollarSign } from 'lucide-react';
-import { CobroCarteraMetadata } from '@/global/metadata';
 import { CtaButton } from './CtaButton';
+import { cobroCarteraFAQs } from '@/data';
+import { WhatsAppService } from '@/global/services';
+import { CobroCarteraMetadata } from '@/global/metadata';
+import { FAQSchema } from '@/components/common/faq/FAQSchema';
+import { FAQSection } from '@/components/common/faq/FAQSection';
+import { CompaniesCarouselSection, WhatsAppIcon } from '@/global/components';
+import { Users, Scale, Target, CheckCircle, MapPin, Clock, DollarSign } from 'lucide-react';
 
 export const metadata = CobroCarteraMetadata
 
@@ -230,6 +232,14 @@ export default function CobroCarteraPage() {
       <div className='py-5'>
         <CompaniesCarouselSection />
       </div>
+
+            {/* FAQ */}
+      <FAQSchema faqs={cobroCarteraFAQs} />
+      <FAQSection
+        title="Preguntas Frecuentes sobre Cobro de Cartera Empresarial"
+        subtitle="Resolvemos las dudas más comunes sobre nuestro proceso de recuperación de cartera vencida"
+        faqs={cobroCarteraFAQs}
+      />
 
       {/* CTA */}
       <section className="py-12 sm:py-16">

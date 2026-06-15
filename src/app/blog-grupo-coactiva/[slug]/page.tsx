@@ -3,11 +3,10 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { blogPosts } from '../data/posts.data';
-import { WhatsAppIcon } from '@/global/components';
-import { WhatsAppService } from '@/global/services';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
-import { generateBlogSlugMetadata } from '@/global/metadata';
 import { WhatsAppCTA } from './components/WhatsAppCTA';
+import { BlogPostSchema } from './components/BlogPostSchema';
+import { generateBlogSlugMetadata } from '@/global/metadata';
 
 // Generar metadata dinámica
 export const generateMetadata = async ({ params }: { params: Promise<{ slug: string }>; }): Promise<Metadata> => {
@@ -32,6 +31,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="min-h-screen bg-white pt-24">
+      <BlogPostSchema slug={slug} post={post} />
       {/* Hero con imagen destacada */}
       <section className="relative h-96 bg-gray-900">
         <Image

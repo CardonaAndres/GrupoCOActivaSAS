@@ -11,6 +11,8 @@ const quickLinks = [
 
 const serviceLinks = [
   { href: '/nuestros-servicios/cobro-de-cartera', label: 'Cobro de Cartera' },
+  { href: '/cobro-de-cartera/medellin', label: 'Cobro de Cartera en Medellín' },
+  { href: '/cobro-de-cartera/bogota', label: 'Cobro de Cartera en Bogotá' },
 ];
 
 const socialLinks = [
