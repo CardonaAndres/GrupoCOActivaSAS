@@ -17,22 +17,13 @@ services:
       retries: 5
       start_period: 15s
     labels:
-        - "traefik.enable=true"
-        - "traefik.docker.network=traefik"
-
-        - "traefik.http.routers.grupocoactiva-apex.rule=Host(`grupocoactivasas.com`)"
-        - "traefik.http.routers.grupocoactiva-apex.entrypoints=websecure"
-        - "traefik.http.routers.grupocoactiva-apex.tls=true"
-        - "traefik.http.routers.grupocoactiva-apex.tls.certresolver=letsencrypt"
-        - "traefik.http.routers.grupocoactiva-apex.service=grupocoactiva-svc"
-
-        - "traefik.http.routers.grupocoactiva-www.rule=Host(`www.grupocoactivasas.com`)"
-        - "traefik.http.routers.grupocoactiva-www.entrypoints=websecure"
-        - "traefik.http.routers.grupocoactiva-www.tls=true"
-        - "traefik.http.routers.grupocoactiva-www.tls.certresolver=letsencrypt"
-        - "traefik.http.routers.grupocoactiva-www.service=grupocoactiva-svc"
-
-        - "traefik.http.services.grupocoactiva-svc.loadbalancer.server.port=3000"
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      - "traefik.http.routers.grupocoactiva.rule=Host(`grupocoactivasas.com`)"
+      - "traefik.http.routers.grupocoactiva.entrypoints=websecure"
+      - "traefik.http.routers.grupocoactiva.tls=true"
+      - "traefik.http.routers.grupocoactiva.tls.certresolver=letsencrypt"
+      - "traefik.http.services.grupocoactiva.loadbalancer.server.port=3000"
     networks:
       - traefik-network
       - default 
