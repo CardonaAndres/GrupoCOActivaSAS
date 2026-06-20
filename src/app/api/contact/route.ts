@@ -19,6 +19,7 @@ async function sendToCRM(params: {
     email: string;
     phone?: string;
     company?: string;
+    message: string;
 }) {
     const { CRM_URL, CRM_API_TOKEN, COMPANY_ID } = process.env;
 
@@ -36,6 +37,13 @@ async function sendToCRM(params: {
         phone: params.phone || undefined,
         whatsappPhone,
         source: 'web',
+        metadata: {
+            webForm: {
+                company: params.company || null,
+                message: params.message,
+                submittedAt: new Date().toISOString(),
+            },
+        },
     };
 
     try {
@@ -77,7 +85,7 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        const [ emailResult, crmResult ] = await Promise.allSettled([
+        const [emailResult, crmResult] = await Promise.allSettled([
             transporter.sendMail({
                 from: `Formulario Web <${process.env.SMTP_USER}>`,
                 to: process.env.CONTACT_RECEIVER,
@@ -94,7 +102,7 @@ export async function POST(req: NextRequest) {
                     <p>${message.replace(/\n/g, '<br/>')}</p>
                 `,
             }),
-            sendToCRM({ name, email, phone, company }),
+            sendToCRM({ name, email, phone, company, message }),
         ]);
 
         if (emailResult.status === 'rejected') {
@@ -104,7 +112,6 @@ export async function POST(req: NextRequest) {
             console.error('Error sending lead to CRM:', crmResult.reason);
         }
 
-        // Si ambos fallaron, sí informamos error al usuario.
         if (emailResult.status === 'rejected' && crmResult.status === 'rejected') {
             return NextResponse.json(
                 { error: 'Hubo un error al enviar el mensaje. Por favor intenta nuevamente.' },
