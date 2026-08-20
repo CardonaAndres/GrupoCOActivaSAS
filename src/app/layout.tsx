@@ -1,5 +1,6 @@
 import Script from "next/script";
 import "@/global/assets/css/globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { RootLayoutMetada, schemaOrgJSONLD } from "@/global/metadata";
 import { FloatingContactButtons, Footer, Navbar } from "@/global/components";
 
@@ -12,6 +13,7 @@ interface Props {
 export default function RootLayout({ children }: Readonly<Props>) {
   return (
     <html lang="es-CO">
+      <Analytics/>
       <head>
         {/* JSON-LD Schema */}
         <Script
