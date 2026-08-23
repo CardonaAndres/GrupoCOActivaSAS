@@ -1,10 +1,11 @@
 import Script from "next/script";
 import "@/global/assets/css/globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import { RootLayoutMetada, schemaOrgJSONLD } from "@/global/metadata";
+import { RootLayoutMetada, RootLayoutViewport, schemaOrgJSONLD } from "@/global/metadata";
 import { FloatingContactButtons, Footer, Navbar } from "@/global/components";
 
-export const metadata = RootLayoutMetada
+export const metadata = RootLayoutMetada;
+export const viewport = RootLayoutViewport;
 
 interface Props {
   children: React.ReactNode;
@@ -13,14 +14,15 @@ interface Props {
 export default function RootLayout({ children }: Readonly<Props>) {
   return (
     <html lang="es-CO">
-      <Analytics/>
       <head>
-        {/* JSON-LD Schema */}
-        <Script
-          id="schema-org"
+        {/*
+          Grafo de identidad (schema.org) emitido como <script> nativo en el HTML
+          del servidor. Antes se inyectaba con next/script y solo era visible tras
+          ejecutar JavaScript, por lo que los rastreadores de IA no lo veían.
+        */}
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrgJSONLD) }}
-          strategy="beforeInteractive"
         />
       </head>
       <body>
@@ -31,12 +33,14 @@ export default function RootLayout({ children }: Readonly<Props>) {
           <Footer />
         </main>
 
-        {/* Google Analytics */}
+        <Analytics />
+
+        {/* Google Analytics / Google Ads — cargados tras la interactividad (INP) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-17262857323"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, Mail, Linkedin, Instagram } from 'lucide-react';
+import { NAP, SITE_NAME } from '@/global/seo/site.config';
 
 const quickLinks = [
   { href: '/', label: 'Inicio' },
@@ -11,13 +12,23 @@ const quickLinks = [
 
 const serviceLinks = [
   { href: '/nuestros-servicios/cobro-de-cartera', label: 'Cobro de Cartera' },
+  { href: '/cobranza-de-cartera', label: 'Cobranza de Cartera' },
+  { href: '/recuperacion-de-cartera', label: 'Recuperación de Cartera y Deudas' },
+  { href: '/casa-de-cobranza', label: 'Casa de Cobranza en Colombia' },
+  { href: '/abogados-de-cobranza', label: 'Abogados de Cobranza' },
+];
+
+const cityLinks = [
   { href: '/cobro-de-cartera/medellin', label: 'Cobro de Cartera en Medellín' },
   { href: '/cobro-de-cartera/bogota', label: 'Cobro de Cartera en Bogotá' },
+  { href: '/cobro-de-cartera/cali', label: 'Cobro de Cartera en Cali' },
+  { href: '/cobro-de-cartera/barranquilla', label: 'Cobro de Cartera en Barranquilla' },
+  { href: '/cobro-de-cartera/bucaramanga', label: 'Cobro de Cartera en Bucaramanga' },
 ];
 
 const socialLinks = [
   {
-    href: 'http://linkedin.com/in/estebanrestrepoo',
+    href: 'https://www.linkedin.com/in/estebanrestrepoo',
     icon: Linkedin,
     label: 'LinkedIn',
   },
@@ -40,13 +51,13 @@ export const Footer = () => {
     <footer className="bg-white text-gray-800 border-t border-gray-200">
       {/* Main Footer */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="mb-6">
               <Image 
                 src="/imgs/logos/logo-full.png"
-                alt="Grupo Coactiva S.A.S | Logo"
+                alt="Grupo Coactiva SAS | Cobro y recuperación de cartera empresarial en Colombia"
                 width={140}
                 height={40}
                 className="w-32 h-auto"
@@ -59,9 +70,9 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-cyan-800 font-bold text-lg mb-6 uppercase tracking-wide">
+            <h2 className="text-cyan-800 font-bold text-lg mb-6 uppercase tracking-wide">
               Enlaces
-            </h4>
+            </h2>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
@@ -78,9 +89,9 @@ export const Footer = () => {
 
           {/* Services Links */}
           <div>
-            <h4 className="text-cyan-800 font-bold text-lg mb-6 uppercase tracking-wide">
+            <h2 className="text-cyan-800 font-bold text-lg mb-6 uppercase tracking-wide">
               Servicios
-            </h4>
+            </h2>
             <ul className="space-y-3">
               {serviceLinks.map((link, index) => (
                 <li key={index}>
@@ -95,35 +106,54 @@ export const Footer = () => {
             </ul>
           </div>
 
+          {/* Cobertura por ciudad */}
+          <div>
+            <h2 className="text-cyan-800 font-bold text-lg mb-6 uppercase tracking-wide">
+              Ciudades
+            </h2>
+            <ul className="space-y-3">
+              {cityLinks.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-700 hover:text-cyan-800 hover:pl-2 transition-all duration-200 inline-block font-medium text-sm"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Contact */}
           <div>
-            <h4 className="text-cyan-800 font-bold text-lg mb-6 uppercase tracking-wide">
+            <h2 className="text-cyan-800 font-bold text-lg mb-6 uppercase tracking-wide">
               Contacto
-            </h4>
+            </h2>
             <div className="space-y-4 mb-6">
               <a
-                href="tel:+573001234567"
+                href={`tel:${NAP.phoneE164}`}
                 className="flex items-center gap-3 text-gray-700 hover:text-cyan-800 transition-colors group"
               >
                 <div className="bg-cyan-800 text-white p-2 rounded-lg group-hover:bg-cyan-900 transition-colors">
                   <Phone className="w-4 h-4" />
                 </div>
-                <span className="font-medium text-sm">+57 3018594940</span>
+                <span className="font-medium text-sm">{NAP.phone}</span>
               </a>
               <a
-                href="mailto:info@grupocoactivasas.com"
+                href={`mailto:${NAP.email}`}
                 className="flex items-center gap-3 text-gray-700 hover:text-cyan-800 transition-colors group"
               >
                 <div className="bg-cyan-800 text-white p-2 rounded-lg group-hover:bg-cyan-900 transition-colors">
                   <Mail className="w-4 h-4" />
                 </div>
-                <span className="font-medium text-sm break-all">comercial@grupocoactivasas.com</span>
+                <span className="font-medium text-sm break-all">{NAP.email}</span>
               </a>
             </div>
 
             {/* Social Links */}
             <div>
-              <h5 className="text-gray-700 font-semibold mb-3">Síguenos</h5>
+              <h3 className="text-gray-700 font-semibold mb-3">Síguenos</h3>
               <div className="space-y-2">
                 {socialLinks.map((social, index) => {
                   const Icon = social.icon;
@@ -153,7 +183,7 @@ export const Footer = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
             <p className="font-medium">
-              © {currentYear} Grupo Coactiva S.A.S. Todos los derechos reservados.
+              © {currentYear} {SITE_NAME}. Todos los derechos reservados.
             </p>
             <div className="flex gap-6">
               <Link

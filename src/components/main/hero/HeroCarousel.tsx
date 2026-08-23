@@ -100,12 +100,16 @@ export const HeroCarousel = ({ slides, interval = 6000 }: HeroCarouselProps) => 
               {slide.eyebrow}
             </p>
 
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-white leading-tight mb-2">
-              {slide.title}
-            </h1>
+            {/*
+              Headline. Punto I1 del diagnóstico: el tratamiento visual del
+              salto de línea partía la frase en dos <h1>. Ahora es un único
+              encabezado con dos líneas, sin cambio visual.
+            */}
             <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-white leading-tight mb-6">
-              {slide.titleHighlight}
+              <span className="block mb-2">{slide.title}</span>
+              {slide.titleHighlight && (
+                <span className="block">{slide.titleHighlight}</span>
+              )}
             </h1>
 
             {/* Accent bar */}

@@ -50,7 +50,7 @@ export const ServicesSection = () => {
                 <CalendarCheck className="w-10 h-10 text-white" strokeWidth={1.5} />
               </div>
 
-              <h4 className="text-2xl font-bold mb-3">Hablar con un experto</h4>
+              <h3 className="text-2xl font-bold mb-3">Hablar con un experto</h3>
               <p className="text-white/80 text-base leading-relaxed mb-8">
                 Hable con uno de nuestros asesores especializados en{' '}
                 <strong className="text-white">cobro de cartera vencida de altas cuantías</strong>{' '}
@@ -72,7 +72,7 @@ export const ServicesSection = () => {
                 <MessageCircle className="w-10 h-10 text-cyan-800" strokeWidth={1.5} />
               </div>
 
-              <h4 className="text-2xl font-bold text-gray-900 mb-3">Consúltenos</h4>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Consúltenos</h3>
               <p className="text-gray-500 text-base leading-relaxed mb-8">
                 Si quiere conocer más sobre nuestro servicio de{' '}
                 <strong className="text-gray-700">cobro de cartera</strong>{' '}

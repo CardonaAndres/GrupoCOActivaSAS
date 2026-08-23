@@ -42,7 +42,7 @@ export const Navbar = () => {
           >
             <Image
               src='/imgs/logos/logo-full.png'
-              alt='Logo | Grupo Coactiva S.A.S'
+              alt='Grupo Coactiva SAS | Casa de cobranza en Medellín y Bogotá'
               width={140}
               height={40}
               className="w-25 sm:w-30 md:w-32.5 h-auto"

@@ -25,7 +25,7 @@ export const AboutSectionHome = () => {
             <div className="relative">
               <div className="relative h-144 rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/imgs/people/esteban-restrepo.png"
+                  src="/imgs/people/esteban-restrepo.webp"
                   alt="Esteban Restrepo - Director Jurídico"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -57,7 +57,7 @@ export const AboutSectionHome = () => {
               </div>
 
               <p className="text-gray-700 leading-relaxed mb-6">
-                <strong>Grupo Coactiva S.A.S.</strong> es liderado por <strong>Esteban Restrepo</strong>, con <strong>15 años de experiencia</strong> en el manejo integral del cobro de cartera empresarial, procesos prejurídicos y jurídicos.
+                <strong>Grupo Coactiva SAS</strong> es liderado por <strong>Esteban Restrepo</strong>, con <strong>15 años de experiencia</strong> en el manejo integral del cobro de cartera empresarial, procesos prejurídicos y jurídicos.
               </p>
 
               <p className="text-gray-700 leading-relaxed mb-8">

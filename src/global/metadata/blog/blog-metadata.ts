@@ -1,31 +1,42 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
+import { absoluteUrl, SITE_NAME, LOCALE, SITE_URL } from '@/global/seo/site.config';
+
+/**
+ * Índice del blog.
+ *
+ * Punto A1 del diagnóstico: la canónica declaraba `/blog`, ruta que devuelve
+ * 404. La ruta real es `/blog-grupo-coactiva`. Esta página es la vía de
+ * descubrimiento de toda la biblioteca de artículos, por lo que la señal
+ * incorrecta comprometía la indexación de los 23 artículos.
+ */
+const path = '/blog-grupo-coactiva';
+const description =
+  'Guías sobre cobro de cartera, cobranza empresarial, recuperación de deudas e insolvencia en Colombia, escritas por abogados especializados.';
 
 export const BlogMetadata: Metadata = {
-  title: 'Blog - Artículos sobre Cobro de Cartera e Insolvencia | Grupo Coactiva SAS',
-  description: 'Descubre artículos especializados sobre cobro de cartera vencida, insolvencia empresarial, recuperación de deudas y asesoría legal en Colombia.',
-  keywords: [
-    'blog cobro de cartera',
-    'artículos recuperación cartera',
-    'insolvencia empresarial Colombia',
-    'cobro prejurídico',
-    'factura electrónica',
-    'ley 1116',
-    'recuperación de deudas',
-  ],
-  openGraph: {
-    title: 'Blog - Artículos sobre Cobro de Cartera e Insolvencia | Grupo Coactiva SAS',
-    description: 'Artículos especializados sobre cobro de cartera vencida, insolvencia empresarial y recuperación de deudas en Colombia.',
-    type: 'website',
-    locale: 'es_CO',
-    url: 'https://grupocoactivasas.com/blog',
-    siteName: 'Grupo Coactiva SAS',
+  // 39 caracteres: con el template de marca queda en 60.
+  title: 'Blog de Cobro y Recuperación de Cartera',
+  description,
+
+  alternates: {
+    canonical: absoluteUrl(path),
+    types: {
+      'application/rss+xml': `${SITE_URL}/feed.xml`,
+    },
   },
+
+  openGraph: {
+    title: 'Blog de Cobro y Recuperación de Cartera',
+    description,
+    type: 'website',
+    locale: LOCALE,
+    url: absoluteUrl(path),
+    siteName: SITE_NAME,
+  },
+
   twitter: {
     card: 'summary_large_image',
-    title: 'Blog - Artículos sobre Cobro de Cartera e Insolvencia | Grupo Coactiva SAS',
-    description: 'Artículos especializados sobre cobro de cartera vencida, insolvencia empresarial y recuperación de deudas.',
-  },
-  alternates: {
-    canonical: 'https://grupocoactivasas.com/blog',
+    title: 'Blog de Cobro y Recuperación de Cartera',
+    description,
   },
 };

@@ -51,7 +51,7 @@ export default function AboutPage() {
                 {/* Image */}
                 <div className="relative h-125 bg-gray-100">
                   <Image
-                    src="/imgs/people/esteban-restrepo.png"
+                    src="/imgs/people/esteban-restrepo.webp"
                     alt="Esteban Restrepo - Director Jurídico Grupo Coactiva"
                     fill
                     className="object-contain"
@@ -116,7 +116,7 @@ export default function AboutPage() {
 
             <div className="prose prose-lg max-w-none">
               <p className="text-gray-700 leading-relaxed mb-6">
-                En Grupo Coactiva S.A.S. brindamos <strong>asesoría legal estratégica, personalizada y efectiva</strong>, orientada a la <strong>protección del patrimonio</strong> y la <strong>recuperación de la estabilidad económica</strong>.
+                En Grupo Coactiva SAS brindamos <strong>asesoría legal estratégica, personalizada y efectiva</strong>, orientada a la <strong>protección del patrimonio</strong> y la <strong>recuperación de la estabilidad económica</strong>.
               </p>
 
               <p className="text-gray-700 leading-relaxed mb-6">

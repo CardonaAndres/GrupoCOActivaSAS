@@ -56,7 +56,7 @@ export const Form = () => {
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start gap-3 animate-in fade-in slide-in-from-top-2">
                     <CheckCircle className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
                     <div>
-                        <h4 className="font-semibold text-green-900">¡Mensaje enviado con éxito!</h4>
+                        <p className="font-semibold text-green-900">¡Mensaje enviado con éxito!</p>
                         <p className="text-sm text-green-700 mt-1">
                             Gracias por contactarnos. Nos pondremos en contacto contigo pronto.
                         </p>
@@ -69,7 +69,7 @@ export const Form = () => {
                 <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3 animate-in fade-in slide-in-from-top-2">
                     <XCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
                     <div>
-                        <h4 className="font-semibold text-red-900">Error al enviar</h4>
+                        <p className="font-semibold text-red-900">Error al enviar</p>
                         <p className="text-sm text-red-700 mt-1">
                             {errorMessage}
                         </p>

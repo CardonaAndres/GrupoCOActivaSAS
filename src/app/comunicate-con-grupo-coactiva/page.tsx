@@ -61,7 +61,7 @@ export default function ContactPage() {
                       <Phone className="w-6 h-6 text-cyan-700" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Teléfono</h4>
+                      <h3 className="font-semibold text-gray-900 mb-1">Teléfono</h3>
                       <a href="tel:+573018594940" className="text-gray-600 hover:text-cyan-700 transition-colors">
                         +57 3018594940
                       </a>
@@ -73,7 +73,7 @@ export default function ContactPage() {
                       <Mail className="w-6 h-6 text-cyan-700" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
+                      <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
                       <a href="mailto:info@grupocoactivasas.com" className="text-gray-600 hover:text-cyan-700 transition-colors break-all">
                         comercial@grupocoactivasas.com
                       </a>

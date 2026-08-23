@@ -1,230 +1,330 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { SITE_URL, SITE_NAME, LOCALE, NAP, absoluteUrl } from "@/global/seo/site.config";
 
-const BASE_URL = "https://www.grupocoactivasas.com";
+/**
+ * Metadatos raíz.
+ *
+ * Cambios frente a la versión anterior (diagnóstico SEO, bloque B):
+ *  - B1: el template ya no duplica la marca; las páginas declaran títulos cortos
+ *        sin marca y el template la añade una sola vez.
+ *  - B2: título por defecto dentro del rango visible (50-60 caracteres).
+ *  - B10/B12: theme-color y manifest.
+ *  - B13: se retira `meta keywords` (en desuso desde 2009).
+ *  - H6: se retiran `geo.region` / `geo.position` (en desuso).
+ */
 
-// Palabras clave principales
-const keywords = [
-  "abogados cobranza Colombia",
-  "recuperación de cartera",
-  "cobro de cartera vencida",
-  "cobro jurídico",
-  "empresas de cobranza Medellín",
-  "empresas de cobranza Bogotá",
-  "casa de cobranza Colombia",
-  "cobro ejecutivo",
-  "cobro prejuridico",
-  "abogados especialistas cobranza"
-];
-
+export const RootLayoutViewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#164e63" },
+    { media: "(prefers-color-scheme: dark)", color: "#083344" },
+  ],
+  colorScheme: "light",
+};
 
 export const RootLayoutMetada: Metadata = {
-  metadataBase: new URL('https://www.grupocoactivasas.com'),
-  
+  metadataBase: new URL(SITE_URL),
+
   title: {
-    default: "Grupo Coactiva SAS | Abogados Especialistas en Recuperación de Cartera - Colombia",
-    template: "%s | Grupo Coactiva SAS"
+    // 51 caracteres
+    default: "Cobro de Cartera y Cobranza Empresarial en Colombia",
+    template: `%s | ${SITE_NAME}`,
   },
-  
-  description: "Cobro de Cartera Empresarial | Grupo Coactiva SAS | B2B Colombia",
-  
-  keywords: keywords.join(", "),
-  
-  authors: [{ name: "Grupo Coactiva SAS" }],
-  
-  creator: "Grupo Coactiva SAS",
-  publisher: "Grupo Coactiva SAS",
-  
+
+  description:
+    "Casa de cobranza y abogados especialistas en cobro y recuperación de cartera vencida en Medellín, Bogotá y toda Colombia. Pago por resultados.",
+
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+
   robots: {
     index: true,
     follow: true,
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
-  
+
   alternates: {
-    canonical: "https://www.grupocoactivasas.com",
+    canonical: SITE_URL,
+    types: {
+      "application/rss+xml": `${SITE_URL}/feed.xml`,
+    },
   },
-  
+
   openGraph: {
     type: "website",
-    locale: "es_CO",
-    url: "https://www.grupocoactivasas.com",
-    siteName: "Grupo Coactiva SAS",
-    title: "Grupo Coactiva SAS | Expertos en Recuperación de Cartera Colombia",
-    description: "Recuperación eficiente y ética de cartera vencida. Cobertura en Colombia y Latinoamérica. Servicios jurídicos y prejurídicos especializados.",
+    locale: LOCALE,
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: "Cobro y Recuperación de Cartera Empresarial en Colombia",
+    description:
+      "Recuperación de cartera vencida para empresas en Medellín, Bogotá y toda Colombia. Gestión prejurídica y jurídica con equipo propio de abogados.",
   },
-  
+
   twitter: {
     card: "summary_large_image",
-    title: "Grupo Coactiva SAS | Expertos en Recuperación de Cartera",
-    description: "Especialistas en cobro de cartera vencida. Cobertura nacional en Colombia y Latinoamérica.",
+    site: "@grupocoactiva",
+    creator: "@grupocoactiva",
+    title: "Cobro y Recuperación de Cartera Empresarial en Colombia",
+    description:
+      "Casa de cobranza B2B con sedes en Medellín y Bogotá. Recuperamos su cartera vencida con modelo de pago por resultados.",
   },
-  
-  icons: {
-    icon: "/imgs/logos/logo.png",
-    shortcut: "/imgs/logos/logo.png",
-    apple: "/imgs/logos/logo.png",
-  },
-  
+
+  // Los iconos (favicon.ico, icon.png, apple-icon.png) se resuelven por
+  // convención de archivos en src/app, por lo que no se declaran aquí.
+
   verification: {
-    // google: "tu-codigo-de-verificacion-google", // Agregar después de crear Google Search Console
+    // google: "codigo-de-verificacion", // Añadir tras dar de alta Google Search Console
   },
-  
+
   other: {
-    "contact:phone_number": "+57 3018594940",
-    "contact:email": "comercial@grupocoactivasas.com",
-    "geo.region": "CO",
-    "geo.placename": "Medellín",
-    "geo.position": "6.244203;-75.581212", // Coordenadas aproximadas de Laureles
-  }
+    "contact:phone_number": NAP.phone,
+    "contact:email": NAP.email,
+  },
 };
 
-// Schema.org JSON-LD para LocalBusiness
+/**
+ * Grafo de identidad corporativa (schema.org).
+ *
+ * Bloque C del diagnóstico: se sirve como <script type="application/ld+json">
+ * nativo desde el HTML del servidor, de modo que también lo lean los
+ * rastreadores de IA (GPTBot, ClaudeBot, PerplexityBot, Google-Extended),
+ * que no ejecutan JavaScript.
+ */
 export const schemaOrgJSONLD = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "LegalService",
-      "@id": `${BASE_URL}/#organization`,
-      "name": "Grupo Coactiva SAS",
-      "description": "Especialistas en recuperación eficiente, ética y profesional de cartera vencida en Colombia y Latinoamérica",
-      "url": BASE_URL,
-      "logo": `${BASE_URL}/imgs/logos/logo.png`,
-      "image": `${BASE_URL}/imgs/logos/logo.png`,
-      "telephone": "+57-301-859-4940",
-      "email": "comercial@grupocoactivasas.com",
-      "priceRange": "$$",
-      "areaServed": [
-        { "@type": "Country", "name": "Colombia" },
-        { "@type": "City", "name": "Medellín" },
-        { "@type": "City", "name": "Bogotá" },
-        { "@type": "City", "name": "Cali" }
-      ],
-      "sameAs": [
-        "https://www.instagram.com/grupocoactiva"
-        // Agregar aquí Facebook, LinkedIn corporativo, etc. cuando existan
-      ],
-      "founder": {
-        "@id": `${BASE_URL}/#esteban-restrepo`
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_NAME,
+      inLanguage: "es-CO",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${SITE_URL}/blog-grupo-coactiva?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
       },
-      "department": [
-        { "@id": `${BASE_URL}/#sede-medellin` },
-        { "@id": `${BASE_URL}/#sede-bogota` }
+    },
+    {
+      "@type": ["LegalService", "ProfessionalService", "Organization"],
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      legalName: "Grupo Coactiva SAS",
+      alternateName: [
+        "Coactiva",
+        "Casa de cobranza Grupo Coactiva",
+        "Grupo Coactiva cobro de cartera",
       ],
-      "hasOfferCatalog": {
+      description:
+        "Casa de cobranza y firma de abogados especializada en cobro de cartera, cobranza de cartera y recuperación de deudas empresariales en Medellín, Bogotá y toda Colombia.",
+      slogan: "Recuperamos su cartera vencida. Usted solo paga por resultados.",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        "@id": `${SITE_URL}/#logo`,
+        url: `${SITE_URL}/imgs/logos/logo-full.png`,
+        contentUrl: `${SITE_URL}/imgs/logos/logo-full.png`,
+        caption: SITE_NAME,
+      },
+      image: `${SITE_URL}/opengraph-image`,
+      telephone: NAP.phoneSchema,
+      email: NAP.email,
+      priceRange: "$$",
+      currenciesAccepted: "COP",
+      knowsLanguage: ["es-CO"],
+      knowsAbout: [
+        "Cobro de cartera",
+        "Cobranza de cartera",
+        "Recuperación de cartera",
+        "Recuperación de deudas",
+        "Cobro jurídico",
+        "Cobro prejurídico",
+        "Proceso ejecutivo",
+        "Ley 1116 de insolvencia empresarial",
+      ],
+      areaServed: [
+        { "@type": "Country", name: "Colombia" },
+        { "@type": "City", name: "Medellín" },
+        { "@type": "City", name: "Bogotá" },
+        { "@type": "City", name: "Cali" },
+        { "@type": "City", name: "Barranquilla" },
+        { "@type": "City", name: "Bucaramanga" },
+      ],
+      sameAs: [
+        "https://www.instagram.com/grupocoactiva",
+        // Añadir aquí LinkedIn corporativo, Facebook y ficha de Google Business Profile
+      ],
+      founder: { "@id": `${SITE_URL}/#esteban-restrepo` },
+      employee: { "@id": `${SITE_URL}/#esteban-restrepo` },
+      department: [
+        { "@id": `${SITE_URL}/#sede-medellin` },
+        { "@id": `${SITE_URL}/#sede-bogota` },
+      ],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: NAP.phoneSchema,
+          email: NAP.email,
+          contactType: "sales",
+          areaServed: "CO",
+          availableLanguage: ["es"],
+        },
+      ],
+      hasOfferCatalog: {
         "@type": "OfferCatalog",
-        "name": "Servicios de Cobranza",
-        "itemListElement": [
+        name: "Servicios de cobro y recuperación de cartera",
+        itemListElement: [
           {
             "@type": "Offer",
-            "itemOffered": {
+            itemOffered: {
               "@type": "Service",
-              "name": "Cobro Jurídico de Cartera",
-              "description": "Recuperación judicial de cartera vencida"
-            }
+              name: "Cobro Jurídico de Cartera",
+              description:
+                "Recuperación judicial de cartera vencida mediante proceso ejecutivo y medidas cautelares.",
+              serviceType: "Cobro jurídico",
+              areaServed: { "@type": "Country", name: "Colombia" },
+            },
           },
           {
             "@type": "Offer",
-            "itemOffered": {
+            itemOffered: {
               "@type": "Service",
-              "name": "Cobro Prejurídico",
-              "description": "Gestión extrajudicial de cobranza"
-            }
+              name: "Cobro Prejurídico",
+              description:
+                "Gestión extrajudicial de cobranza de cartera con negociación y acuerdos de pago.",
+              serviceType: "Cobro prejurídico",
+              areaServed: { "@type": "Country", name: "Colombia" },
+            },
           },
           {
             "@type": "Offer",
-            "itemOffered": {
+            itemOffered: {
               "@type": "Service",
-              "name": "Recuperación de Cartera Vencida",
-              "description": "Estrategias personalizadas de recuperación"
-            }
-          }
-        ]
-      }
+              name: "Recuperación de Cartera Vencida",
+              description:
+                "Recuperación de deudas empresariales B2B con estrategias personalizadas y pago por resultados.",
+              serviceType: "Recuperación de cartera",
+              areaServed: { "@type": "Country", name: "Colombia" },
+            },
+          },
+        ],
+      },
     },
 
     // ── Sede Medellín ──
     {
       "@type": "LegalService",
-      "@id": `${BASE_URL}/#sede-medellin`,
-      "name": "Grupo Coactiva SAS - Sede Medellín",
-      "branchOf": { "@id": `${BASE_URL}/#organization` },
-      "telephone": "+57-301-859-4940",
-      "address": {
+      "@id": `${SITE_URL}/#sede-medellin`,
+      name: "Grupo Coactiva SAS - Sede Medellín",
+      description:
+        "Sede principal de Grupo Coactiva SAS en Laureles, Medellín. Cobro de cartera y recuperación de deudas empresariales en Medellín y Antioquia.",
+      branchOf: { "@id": `${SITE_URL}/#organization` },
+      parentOrganization: { "@id": `${SITE_URL}/#organization` },
+      url: absoluteUrl("/cobro-de-cartera/medellin"),
+      telephone: NAP.phoneSchema,
+      email: NAP.email,
+      priceRange: "$$",
+      image: `${SITE_URL}/imgs/logos/logo-full.png`,
+      address: {
         "@type": "PostalAddress",
-        "streetAddress": "Circular 76 #39B-135, Laureles",
-        "addressLocality": "Medellín",
-        "addressRegion": "Antioquia",
-        "postalCode": "050034",
-        "addressCountry": "CO"
+        streetAddress: NAP.medellin.street,
+        addressLocality: NAP.medellin.locality,
+        addressRegion: NAP.medellin.region,
+        postalCode: NAP.medellin.postalCode,
+        addressCountry: NAP.medellin.country,
       },
-      "geo": {
+      geo: {
         "@type": "GeoCoordinates",
-        "latitude": "6.244203",
-        "longitude": "-75.581212"
+        latitude: NAP.medellin.lat,
+        longitude: NAP.medellin.lng,
       },
-      "openingHoursSpecification": [
+      areaServed: [
+        { "@type": "City", name: "Medellín" },
+        { "@type": "AdministrativeArea", name: "Antioquia" },
+      ],
+      openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
-          ],
-          "opens": "08:00",
-          "closes": "17:00"
-        }
-      ]
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "08:00",
+          closes: "17:00",
+        },
+      ],
     },
 
     // ── Sede Bogotá ──
     {
       "@type": "LegalService",
-      "@id": `${BASE_URL}/#sede-bogota`,
-      "name": "Grupo Coactiva SAS - Sede Bogotá",
-      "branchOf": { "@id": `${BASE_URL}/#organization` },
-      "telephone": "+57-301-859-4940",
-      "address": {
+      "@id": `${SITE_URL}/#sede-bogota`,
+      name: "Grupo Coactiva SAS - Sede Bogotá",
+      description:
+        "Sede de Grupo Coactiva SAS en la Zona Rosa de Bogotá. Cobro de cartera y recuperación de deudas empresariales en Bogotá y Cundinamarca.",
+      branchOf: { "@id": `${SITE_URL}/#organization` },
+      parentOrganization: { "@id": `${SITE_URL}/#organization` },
+      url: absoluteUrl("/cobro-de-cartera/bogota"),
+      telephone: NAP.phoneSchema,
+      email: NAP.email,
+      priceRange: "$$",
+      image: `${SITE_URL}/imgs/logos/logo-full.png`,
+      address: {
         "@type": "PostalAddress",
-        "streetAddress": "Carrera 13 # 85-32, Zona Rosa",
-        "addressLocality": "Bogotá",
-        "addressRegion": "Cundinamarca",
-        "addressCountry": "CO"
+        streetAddress: NAP.bogota.street,
+        addressLocality: NAP.bogota.locality,
+        addressRegion: NAP.bogota.region,
+        postalCode: NAP.bogota.postalCode,
+        addressCountry: NAP.bogota.country,
       },
-      "openingHoursSpecification": [
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: NAP.bogota.lat,
+        longitude: NAP.bogota.lng,
+      },
+      areaServed: [
+        { "@type": "City", name: "Bogotá" },
+        { "@type": "AdministrativeArea", name: "Cundinamarca" },
+      ],
+      openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
-          ],
-          "opens": "08:00",
-          "closes": "17:00"
-        }
-      ]
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "08:00",
+          closes: "17:00",
+        },
+      ],
     },
 
     // ── Persona: fundador (E-E-A-T) ──
     {
       "@type": "Person",
-      "@id": `${BASE_URL}/#esteban-restrepo`,
-      "name": "Esteban Restrepo",
-      "jobTitle": "Socio-Fundador y Director Jurídico",
-      "worksFor": { "@id": `${BASE_URL}/#organization` },
-      "sameAs": [
-        "http://linkedin.com/in/estebanrestrepoo",
-        "https://www.instagram.com/estebanrlegal"
-      ]
-    }
-  ]
+      "@id": `${SITE_URL}/#esteban-restrepo`,
+      name: "Esteban Restrepo",
+      jobTitle: "Socio-Fundador y Director Jurídico",
+      description:
+        "Abogado y director jurídico de Grupo Coactiva SAS, especializado en cobro de cartera empresarial, proceso ejecutivo e insolvencia en Colombia.",
+      image: `${SITE_URL}/imgs/people/esteban-restrepo.webp`,
+      url: absoluteUrl("/quienes-somos-grupo-coactiva"),
+      worksFor: { "@id": `${SITE_URL}/#organization` },
+      knowsAbout: [
+        "Cobro de cartera",
+        "Proceso ejecutivo",
+        "Ley 1116 de insolvencia empresarial",
+        "Recuperación de deudas",
+      ],
+      sameAs: [
+        "https://www.linkedin.com/in/estebanrestrepoo",
+        "https://www.instagram.com/estebanrlegal",
+      ],
+    },
+  ],
 };

@@ -6,7 +6,12 @@ import { blogPosts } from '../data/posts.data';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 import { WhatsAppCTA } from './components/WhatsAppCTA';
 import { BlogPostSchema } from './components/BlogPostSchema';
+import { ArticleAuthorBox } from './components/ArticleAuthorBox';
+import { ArticleRelatedLinks } from './components/ArticleRelatedLinks';
 import { generateBlogSlugMetadata } from '@/global/metadata';
+import { postDates } from '../data/post-dates.data';
+import { blogSeo, blogCategories } from '../data/blog-taxonomy.data';
+import { authorForPost } from '@/data/team/authors.data';
 
 // Generar metadata dinámica
 export const generateMetadata = async ({ params }: { params: Promise<{ slug: string }>; }): Promise<Metadata> => {
@@ -28,6 +33,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!post) notFound();
 
   const { content, images } = post;
+  const seo = blogSeo[slug];
+  const category = seo ? blogCategories[seo.category] : null;
+  const dates = postDates[slug];
+  const author = authorForPost(slug);
 
   return (
     <div className="min-h-screen bg-white pt-24">
@@ -45,7 +54,39 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full relative z-10">
           <div className="max-w-4xl mx-auto h-full flex flex-col justify-end pb-12">
-            {/* Back link */}
+            {/* Migas de pan, coherentes con el BreadcrumbList del schema */}
+            <nav aria-label="Ruta de navegación" className="mb-6">
+              <ol className="flex flex-wrap items-center gap-2 text-sm text-cyan-200">
+                <li>
+                  <Link href="/" className="hover:text-white hover:underline">
+                    Inicio
+                  </Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li>
+                  <Link
+                    href="/blog-grupo-coactiva"
+                    className="hover:text-white hover:underline"
+                  >
+                    Blog
+                  </Link>
+                </li>
+                {category && (
+                  <>
+                    <li aria-hidden="true">/</li>
+                    <li>
+                      <Link
+                        href={`/blog-grupo-coactiva/categoria/${category.slug}`}
+                        className="hover:text-white hover:underline"
+                      >
+                        {category.name}
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </ol>
+            </nav>
+
             <Link
               href="/blog-grupo-coactiva"
               className="inline-flex items-center gap-2 text-white hover:text-cyan-300 mb-6 transition-colors w-fit"
@@ -58,6 +99,40 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
               {content.title}
             </h1>
+
+            {/* Firma y fechas: autoría humana verificable (E-E-A-T) */}
+            <p className="mt-4 text-cyan-100 text-sm">
+              Por{' '}
+              <Link href={author.profileUrl} className="font-semibold hover:underline">
+                {author.name}
+              </Link>
+              , {author.jobTitle}
+              {dates?.publishedAt && (
+                <>
+                  {' · '}
+                  <time dateTime={dates.publishedAt}>
+                    Publicado el{' '}
+                    {new Date(`${dates.publishedAt}T12:00:00Z`).toLocaleDateString(
+                      'es-CO',
+                      { year: 'numeric', month: 'long', day: 'numeric' }
+                    )}
+                  </time>
+                </>
+              )}
+              {dates?.updatedAt && (
+                <>
+                  {' · '}
+                  <time dateTime={dates.updatedAt}>
+                    Actualizado el{' '}
+                    {new Date(`${dates.updatedAt}T12:00:00Z`).toLocaleDateString('es-CO', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+                </>
+              )}
+            </p>
           </div>
         </div>
       </section>
@@ -69,7 +144,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {/* Introduction */}
             <div className="prose prose-lg max-w-none mb-8">
               {content.introduction.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="text-gray-700 leading-relaxed mb-4">
+                <p
+                  key={index}
+                  data-speakable={index === 0 ? '' : undefined}
+                  className="text-gray-700 leading-relaxed mb-4"
+                >
                   {paragraph}
                 </p>
               ))}
@@ -108,6 +187,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {/* Benefits/Stages (if exists) */}
             {content.benefits && (
               <div className="mb-8">
+                {/* Encabezado de sección: evita el salto de jerarquía h1 -> h3
+                    en los artículos que no incluyen bloque de importancia. */}
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  Puntos clave
+                </h2>
                 <div className="space-y-6">
                   {content.benefits.map((benefit, index) => (
                     <div key={index} className="border-l-4 border-cyan-700 pl-6">
@@ -126,6 +210,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {/* Stages (if exists) */}
             {content.stages && (
               <div className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  Etapas del proceso
+                </h2>
                 <div className="space-y-6">
                   {content.stages.map((stage, index) => (
                     <div key={index} className="bg-gray-50 rounded-lg p-6">
@@ -211,45 +298,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </article>
 
-      {/* Related Articles */}
-      <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Más artículos que pueden interesarte
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-6">
-              {Object.entries(blogPosts)
-                .filter(([postSlug]) => postSlug !== slug)
-                .slice(0, 2)
-                .map(([postSlug, relatedPost]) => (
-                  <Link
-                    key={postSlug}
-                    href={`/blog-grupo-coactiva/${postSlug}`}
-                    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-                  >
-                    <div className="relative h-40">
-                      <Image
-                        src={relatedPost.images[0].url}
-                        alt={relatedPost.images[0].alt}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
-                        {relatedPost.content.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm line-clamp-2">
-                        {relatedPost.content.introduction.split('\n\n')[0]}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <ArticleAuthorBox author={author} />
+      <ArticleRelatedLinks slug={slug} />
     </div>
   );
 }

@@ -7,13 +7,13 @@ export const COMPANIES: Company[] = [
   { name: '04', logo: '/imgs/allies/miro_seguridad.webp', width: 140, height: 98 },
   { name: '05', logo: '/imgs/allies/procopal.webp', width: 140, height: 98 },
   { name: '06', logo: '/imgs/allies/vallas_y_avisos.webp', width: 140,  height: 98 },
-  { name: '07', logo: '/imgs/allies/argos.JPG', width: 140,  height: 98 },
-  { name: '08', logo: '/imgs/allies/bm.PNG', width: 140,  height: 98 },
-  { name: '09', logo: '/imgs/allies/brinks.PNG', width: 140,  height: 98 },
-  { name: '10', logo: '/imgs/allies/camara-comercio-bogota.PNG', width: 140,  height: 98 },
-  { name: '11', logo: '/imgs/allies/eco-petrol.JPG', width: 140,  height: 98 },
-  { name: '12', logo: '/imgs/allies/mayra.png', width: 140,  height: 98 },
-  { name: '13', logo: '/imgs/allies/yamaha.JPG', width: 140,  height: 98 },
+  { name: '07', logo: '/imgs/allies/argos.webp', width: 140,  height: 98 },
+  { name: '08', logo: '/imgs/allies/bm.webp', width: 140,  height: 98 },
+  { name: '09', logo: '/imgs/allies/brinks.webp', width: 140,  height: 98 },
+  { name: '10', logo: '/imgs/allies/camara-comercio-bogota.webp', width: 140,  height: 98 },
+  { name: '11', logo: '/imgs/allies/eco-petrol.webp', width: 140,  height: 98 },
+  { name: '12', logo: '/imgs/allies/mayra.webp', width: 140,  height: 98 },
+  { name: '13', logo: '/imgs/allies/yamaha.webp', width: 140,  height: 98 },
 ];
 
 export const CompaniesCarouselSection = () => {
