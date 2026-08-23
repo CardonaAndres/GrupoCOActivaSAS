@@ -18,14 +18,6 @@ const serviceLinks = [
   { href: '/abogados-de-cobranza', label: 'Abogados de Cobranza' },
 ];
 
-const cityLinks = [
-  { href: '/cobro-de-cartera/medellin', label: 'Cobro de Cartera en Medellín' },
-  { href: '/cobro-de-cartera/bogota', label: 'Cobro de Cartera en Bogotá' },
-  { href: '/cobro-de-cartera/cali', label: 'Cobro de Cartera en Cali' },
-  { href: '/cobro-de-cartera/barranquilla', label: 'Cobro de Cartera en Barranquilla' },
-  { href: '/cobro-de-cartera/bucaramanga', label: 'Cobro de Cartera en Bucaramanga' },
-];
-
 const socialLinks = [
   {
     href: 'https://www.linkedin.com/in/estebanrestrepoo',
@@ -98,25 +90,6 @@ export const Footer = () => {
                   <Link
                     href={link.href}
                     className="text-gray-700 hover:text-cyan-800 hover:pl-2 transition-all duration-200 inline-block font-medium"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Cobertura por ciudad */}
-          <div>
-            <h2 className="text-cyan-800 font-bold text-lg mb-6 uppercase tracking-wide">
-              Ciudades
-            </h2>
-            <ul className="space-y-3">
-              {cityLinks.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-700 hover:text-cyan-800 hover:pl-2 transition-all duration-200 inline-block font-medium text-sm"
                   >
                     {link.label}
                   </Link>
