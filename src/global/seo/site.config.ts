@@ -19,9 +19,9 @@ export const LOCALE = 'es_CO';
 
 /** Datos NAP unificados (sitio, schema, Google Business Profile, directorios). */
 export const NAP = {
-  phone: '+57 301 859 4940',
-  phoneE164: '+573018594940',
-  phoneSchema: '+57-301-859-4940',
+  phone: '+57 316 403 3330',
+  phoneE164: '+573164033330',
+  phoneSchema: '+57-316-403-3330',
   email: 'comercial@grupocoactivasas.com',
   medellin: {
     street: 'Circular 76 #39B-135, Laureles',

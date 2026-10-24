@@ -2,7 +2,7 @@
  * Normaliza y valida un número de teléfono colombiano para WhatsApp.
  * - Acepta con o sin '+', con o sin '57', con espacios/guiones/paréntesis.
  * - Debe ser un celular colombiano: 10 dígitos empezando por 3
- *   (ej: 3018594940), o ese mismo número con prefijo 57 (12 dígitos).
+ *   (ej: 3164033330), o ese mismo número con prefijo 57 (12 dígitos).
  * - Devuelve el número normalizado como 57XXXXXXXXXX (sin '+'),
  *   o null si no es válido.
  */
