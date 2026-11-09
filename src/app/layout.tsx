@@ -15,6 +15,15 @@ export default function RootLayout({ children }: Readonly<Props>) {
   return (
     <html lang="es-CO">
       <head>
+        {/* Etiqueta de Google (GTM-KR3HBSPM) — justo después de <head>, como indica Google */}
+        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KR3HBSPM" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());`,
+          }}
+        />
         {/*
           Grafo de identidad (schema.org) emitido como <script> nativo en el HTML
           del servidor. Antes se inyectaba con next/script y solo era visible tras
